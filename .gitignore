@@ -1,0 +1,18 @@
+# Godot-specific ignores
+.import/
+export.cfg
+export_presets.cfg
+
+# Mono-specific ignores
+.mono/
+
+# System/tool-specific ignores
+.directory
+*~
+*.orig
+
+# Exported files
+build/
+
+# Inc config files
+.inkgd*
