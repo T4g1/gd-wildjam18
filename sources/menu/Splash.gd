@@ -6,25 +6,25 @@ onready var topic := $Topic
 
 export (String, FILE, "*.tscn,*.scn") var title_screen_path
 
+var animate_state
+
 
 func _input(event: InputEvent) -> void:
 	if event.is_action_pressed("ui_cancel"):
-		load_title()
+		Utils.force_complete(animate_state)
 
 
 func _ready() -> void:
 	logo.modulate.a = 0
 	topic.modulate.a = 0
 
-	animate()
+	animate_state = animate()
 
 
 func animate() -> void:
 	"""
 	Does some animations before showing the title screen
 	"""
-	yield(get_tree().create_timer(1), "timeout")
-
 	# Fade in then out the logo
 	var __ = tween.interpolate_property(logo, "modulate:a", 0, 1, 1, Tween.TRANS_SINE, Tween.EASE_IN_OUT, 1)
 	__ = tween.interpolate_property(logo, "modulate:a", 1, 0, 1, Tween.TRANS_SINE, Tween.EASE_IN_OUT, 2)

@@ -12,3 +12,11 @@ func change_scene(path: String) -> void:
 		return
 
 	assert(get_tree().change_scene(path) == OK)
+
+
+func force_complete(function_state: GDScriptFunctionState) -> void:
+	"""
+	Force a pending yield to finish
+	"""
+	while function_state is GDScriptFunctionState:
+		function_state = function_state.resume()

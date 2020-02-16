@@ -9,6 +9,7 @@ script = ExtResource( 1 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
+game_path = "res://sources/game/Game.tscn"
 
 [node name="Title" type="Label" parent="."]
 margin_left = 181.86
