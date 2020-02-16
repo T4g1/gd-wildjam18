@@ -22,7 +22,9 @@ config/icon="res://icon.png"
 
 2d_physics/layer_1="Floor"
 2d_physics/layer_2="Pipe"
-2d_physics/layer_11="Player"
+2d_physics/layer_3="DeathHole"
+2d_physics/layer_11="PlayerBody"
+2d_physics/layer_12="PayerStandShape"
 
 [rendering]
 

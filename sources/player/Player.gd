@@ -1,6 +1,8 @@
 extends KinematicBody2D
 
 
+signal death
+
 const GRAVITY: int = 500
 # const RUN_MIN_SPEED: int = 10
 const RUN_MAX_SPEED: int = 500
@@ -106,3 +108,8 @@ func _on_StandShape_body_shape_exited(body_id, body, body_shape, area_shape):
 	if stand_shape_collide_time == 0:
 		can_stand = true
 	print('Exit stand shape: ', stand_shape_collide_time)
+
+
+func _on_DeathHole_body_shape_entered(body_id, body, body_shape, area_shape):
+	print('You death')
+	emit_signal("death")
