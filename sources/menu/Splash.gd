@@ -45,7 +45,4 @@ func load_title() -> void:
 	"""
 	var __ = tween.stop_all()
 
-	if title_screen_path == "":
-		return
-
-	__ = get_tree().change_scene("res://source/menu/TitleScreen.tscn")
+	Utils.change_scene(title_screen_path)
