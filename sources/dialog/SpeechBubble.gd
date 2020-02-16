@@ -7,18 +7,29 @@ signal bubble_start		# Start displaying
 signal bubble_next		# Show next line
 signal bubble_end		# Nothing more to say
 
-# Who is speaking? Empty for narrator
-export (NodePath) var who
-
-# Is this a thought?
-export (bool) var thinking
 
 onready var label := $PanelContainer/Content as Label
 
 
 func say(content: String) -> void:
 	"""
-	Set the content of the bubble
+	Text said out loud by the character
+	"""
+	# TODO: Different style?
+	start(content)
+
+
+func think(content: String) -> void:
+	"""
+	Thought of a character
+	"""
+	# TODO: Different style?
+	start(content)
+
+
+func start(content: String) -> void:
+	"""
+	Displays the given text
 	"""
 	label.text = content
 	label.lines_skipped = 0
