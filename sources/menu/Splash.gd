@@ -11,7 +11,7 @@ var animate_state
 
 func _input(event: InputEvent) -> void:
 	if event.is_action_pressed("ui_cancel"):
-		Utils.cancel_yield(animate_state)
+		Utils.force_complete(animate_state)
 
 
 func _ready() -> void:

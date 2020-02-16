@@ -14,7 +14,7 @@ func change_scene(path: String) -> void:
 	assert(get_tree().change_scene(path) == OK)
 
 
-func cancel_yield(function_state: GDScriptFunctionState) -> void:
+func force_complete(function_state: GDScriptFunctionState) -> void:
 	"""
 	Force a pending yield to finish
 	"""
