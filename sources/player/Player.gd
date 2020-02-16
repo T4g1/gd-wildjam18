@@ -3,21 +3,20 @@ extends KinematicBody2D
 
 signal death
 
-const GRAVITY: int = 500
-# const RUN_MIN_SPEED: int = 10
-const RUN_MAX_SPEED: int = 500
-const JUMP_SPEED: int = 200
-const RUN_FORCE: int = 1000
-const STOP_FORCE: int = 1000
+export var Gravity: int = 500
+export var  RunMaxSpeed: int = 500
+export var  JumpSpeed: int = 200
+export var  RunForce: int = 1000
+export var StopForce: int = 1000
 
-# player must stand atleast in STAND_BOUNCING_TIME to jump
-const STAND_BOUNCING_TIME: float = 0.15
+# player must stand atleast in StandBouncingTime to jump
+export var  StandBouncingTime: float = 0.15
 
 var velocity: Vector2 = Vector2()
 var jumping: bool = false
 var crouching: bool = false
 
-var stand_time: float = STAND_BOUNCING_TIME * 2
+var stand_time: float = StandBouncingTime * 2
 
 # number of body enter the stand shape. 
 # Use to check if player can stand from crouching or not, for example stand in a pipe
@@ -32,7 +31,7 @@ func _ready():
 #	pass
 
 func _physics_process(delta):
-	var run_force = Vector2(0, GRAVITY)
+	var current_run_force = Vector2(0, Gravity)
 
 	var run_left = Input.is_action_pressed("ui_left")
 	var run_right = Input.is_action_pressed("ui_right")
@@ -41,14 +40,14 @@ func _physics_process(delta):
 	var stop = true
 	
 	if run_left:
-		if velocity.x > -RUN_MAX_SPEED:
-			run_force.x -= RUN_FORCE
+		if velocity.x > -RunMaxSpeed:
+			current_run_force.x -= RunForce
 			stop = false
 		else:
 			print('Reached max speed when run left')
 	elif run_right:
-		if velocity.x < RUN_MAX_SPEED:
-			run_force.x += RUN_FORCE
+		if velocity.x < RunMaxSpeed:
+			current_run_force.x += RunForce
 			stop = false
 		else:
 			print('Reached max speed when run right')
@@ -57,13 +56,13 @@ func _physics_process(delta):
 		var vsign = sign(velocity.x)
 		var vlen = abs(velocity.x)
 		
-		vlen -= STOP_FORCE * delta
+		vlen -= StopForce * delta
 		if vlen < 0:
 			vlen = 0
 			
 		velocity.x = vlen * vsign
 		
-	velocity += run_force * delta
+	velocity += current_run_force * delta
 	velocity = move_and_slide(velocity, Vector2(0, -1))
 
 	if is_on_floor():
@@ -85,11 +84,11 @@ func _physics_process(delta):
 				stand_time += delta
 			else:
 				print('Can not stand in pipe')
-		elif not jumping and stand_time > STAND_BOUNCING_TIME:
+		elif not jumping and stand_time > StandBouncingTime:
 			print('Jump')
-			velocity.y = -JUMP_SPEED
+			velocity.y = -JumpSpeed
 			jumping = true
-		elif stand_time < STAND_BOUNCING_TIME:
+		elif stand_time < StandBouncingTime:
 			# just stand after crouch, need more time to stand before jump
 			print('Stand time: ', stand_time)
 			stand_time += delta
