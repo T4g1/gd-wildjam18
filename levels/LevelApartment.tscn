@@ -1,5 +1,25 @@
-[gd_scene load_steps=2 format=2]
+[gd_scene load_steps=6 format=2]
 
 [ext_resource path="res://sources/level/Level.tscn" type="PackedScene" id=1]
+[ext_resource path="res://sources/dialog/DialogLine.tscn" type="PackedScene" id=2]
+[ext_resource path="res://sources/dialog/Dialog.tscn" type="PackedScene" id=3]
+[ext_resource path="res://sources/dialog/SpeechBubble.tscn" type="PackedScene" id=4]
+[ext_resource path="res://levels/LevelApartment.gd" type="Script" id=5]
 
 [node name="LevelApartment" instance=ExtResource( 1 )]
+script = ExtResource( 5 )
+
+[node name="Introduction" parent="." index="0" instance=ExtResource( 3 )]
+bubble_path = NodePath("../SpeechBubble")
+
+[node name="DialogLine" parent="Introduction" index="0" instance=ExtResource( 2 )]
+content = "This The story of Fabula"
+
+[node name="DialogLine2" parent="Introduction" index="1" instance=ExtResource( 2 )]
+content = "Help him save his family in this cursed world"
+
+[node name="SpeechBubble" parent="." index="1" instance=ExtResource( 4 )]
+margin_left = 315.034
+margin_top = 466.823
+margin_right = 315.034
+margin_bottom = 466.823
