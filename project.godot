@@ -9,13 +9,43 @@
 config_version=4
 
 _global_script_classes=[ {
+"base": "Control",
+"class": "Dialog",
+"language": "GDScript",
+"path": "res://sources/dialog/Dialog.gd"
+}, {
+"base": "Node",
+"class": "DialogLine",
+"language": "GDScript",
+"path": "res://sources/dialog/DialogLine.gd"
+}, {
+"base": "Node2D",
+"class": "Game",
+"language": "GDScript",
+"path": "res://sources/game/Game.gd"
+}, {
 "base": "Node2D",
 "class": "Interactable",
 "language": "GDScript",
 "path": "res://sources/entity/Interactable.gd"
+}, {
+"base": "Node2D",
+"class": "Level",
+"language": "GDScript",
+"path": "res://sources/level/Level.gd"
+}, {
+"base": "Control",
+"class": "SpeechBubble",
+"language": "GDScript",
+"path": "res://sources/dialog/SpeechBubble.gd"
 } ]
 _global_script_class_icons={
-"Interactable": ""
+"Dialog": "",
+"DialogLine": "",
+"Game": "",
+"Interactable": "",
+"Level": "",
+"SpeechBubble": ""
 }
 
 [application]

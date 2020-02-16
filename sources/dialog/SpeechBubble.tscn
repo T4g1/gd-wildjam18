@@ -1,0 +1,35 @@
+[gd_scene load_steps=2 format=2]
+
+[ext_resource path="res://sources/dialog/SpeechBubble.gd" type="Script" id=1]
+
+[node name="SpeechBubble" type="Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+script = ExtResource( 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="PanelContainer" type="PanelContainer" parent="."]
+margin_right = 400.0
+margin_bottom = 100.0
+rect_min_size = Vector2( 400, 100 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Content" type="Label" parent="PanelContainer"]
+margin_left = 7.0
+margin_top = 24.0
+margin_right = 393.0
+margin_bottom = 76.0
+custom_constants/line_spacing = 5
+text = "line1: AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+line2: AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+line3: AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+line4: AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
+clip_text = true
+max_lines_visible = 3
+__meta__ = {
+"_edit_use_anchors_": false
+}
