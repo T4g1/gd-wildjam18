@@ -11,9 +11,7 @@ var animate_state
 
 func _input(event: InputEvent) -> void:
 	if event.is_action_pressed("ui_cancel"):
-		# TODO: Move in Utils as force_complete(function_state)
-		while animate_state is GDScriptFunctionState:
-			animate_state = animate_state.resume()
+		Utils.cancel_yield(animate_state)
 
 
 func _ready() -> void:
