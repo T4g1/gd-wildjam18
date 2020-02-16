@@ -16,7 +16,12 @@ _global_script_class_icons={
 [application]
 
 config/name="gd-wildjam18"
+run/main_scene="res://sources/menu/Splash.tscn"
 config/icon="res://icon.png"
+
+[autoload]
+
+Utils="*res://sources/Utils.gd"
 
 [locale]
 
