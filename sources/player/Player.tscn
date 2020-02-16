@@ -92,5 +92,5 @@ shape = SubResource( 4 )
 
 [node name="Camera2D" type="Camera2D" parent="."]
 current = true
-[connection signal="body_shape_entered" from="StandShape" to="." method="_on_StandShape_body_shape_entered"]
-[connection signal="body_shape_exited" from="StandShape" to="." method="_on_StandShape_body_shape_exited"]
+[connection signal="body_entered" from="StandShape" to="." method="_on_StandShape_body_entered"]
+[connection signal="body_exited" from="StandShape" to="." method="_on_StandShape_body_exited"]
