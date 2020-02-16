@@ -23,6 +23,10 @@ config/icon="res://icon.png"
 
 Utils="*res://sources/Utils.gd"
 
+[locale]
+
+translations=PoolStringArray( "res://assets/translation/text.en.translation", "res://assets/translation/text.es.translation" )
+
 [rendering]
 
 environment/default_environment="res://default_env.tres"
