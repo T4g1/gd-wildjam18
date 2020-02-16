@@ -8,9 +8,20 @@
 
 config_version=4
 
-_global_script_classes=[  ]
+_global_script_classes=[ {
+"base": "Control",
+"class": "Dialog",
+"language": "GDScript",
+"path": "res://sources/dialog/Dialog.gd"
+}, {
+"base": "Control",
+"class": "SpeechBubble",
+"language": "GDScript",
+"path": "res://sources/dialog/SpeechBubble.gd"
+} ]
 _global_script_class_icons={
-
+"Dialog": "",
+"SpeechBubble": ""
 }
 
 [application]
