@@ -25,7 +25,7 @@ func on_interacted(_actor: Node2D) -> void:
 	Called when actor interacts with this
 	Override to define behavior
 	"""
-	print("interacted")
+	pass
 
 
 func on_range_entered(_actor: Node2D) -> void:
@@ -33,7 +33,7 @@ func on_range_entered(_actor: Node2D) -> void:
 	Called when something that can interact with this is in range
 	Override to define behavior
 	"""
-	print(_actor.name, " in range")
+	pass
 
 
 func on_range_exited(_actor: Node2D) -> void:
@@ -42,7 +42,7 @@ func on_range_exited(_actor: Node2D) -> void:
 	leave the interaction range
 	Override to define behavior
 	"""
-	print(_actor.name, " out of range")
+	pass
 
 
 func interact(actor: Node2D):
