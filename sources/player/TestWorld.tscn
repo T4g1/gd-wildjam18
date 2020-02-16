@@ -1,0 +1,81 @@
+[gd_scene load_steps=7 format=2]
+
+[ext_resource path="res://sources/player/Player.tscn" type="PackedScene" id=1]
+
+[sub_resource type="RectangleShape2D" id=1]
+extents = Vector2( 515.045, 22.908 )
+
+[sub_resource type="Gradient" id=2]
+
+[sub_resource type="GradientTexture" id=3]
+gradient = SubResource( 2 )
+
+[sub_resource type="RectangleShape2D" id=4]
+extents = Vector2( 94.6894, 14.7458 )
+
+[sub_resource type="GradientTexture" id=5]
+
+[node name="TestWorld" type="Node2D"]
+
+[node name="World" type="Node2D" parent="."]
+
+[node name="Floor" type="StaticBody2D" parent="World"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="World/Floor"]
+position = Vector2( 512.861, 401.31 )
+shape = SubResource( 1 )
+
+[node name="Sprite" type="Sprite" parent="World/Floor"]
+position = Vector2( 515.251, 400.422 )
+scale = Vector2( 0.50063, 42.1166 )
+texture = SubResource( 3 )
+
+[node name="StaticBody" type="StaticBody2D" parent="World"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="World/StaticBody"]
+position = Vector2( 439.401, 295.201 )
+shape = SubResource( 4 )
+
+[node name="Sprite" type="Sprite" parent="World/StaticBody"]
+position = Vector2( 440.252, 294.151 )
+scale = Vector2( 0.0925734, 28.2723 )
+texture = SubResource( 5 )
+
+[node name="StaticBody2" type="StaticBody2D" parent="World"]
+position = Vector2( 649.925, 50.6485 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="World/StaticBody2"]
+position = Vector2( 439.401, 295.201 )
+shape = SubResource( 4 )
+
+[node name="Sprite" type="Sprite" parent="World/StaticBody2"]
+position = Vector2( 440.252, 294.151 )
+scale = Vector2( 0.0925734, 28.2723 )
+texture = SubResource( 5 )
+
+[node name="StaticBody4" type="StaticBody2D" parent="World"]
+position = Vector2( -518.886, 52.5965 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="World/StaticBody4"]
+position = Vector2( 439.401, 295.201 )
+shape = SubResource( 4 )
+
+[node name="Sprite" type="Sprite" parent="World/StaticBody4"]
+position = Vector2( 440.252, 294.151 )
+scale = Vector2( 0.0925734, 28.2723 )
+texture = SubResource( 5 )
+
+[node name="StaticBody3" type="StaticBody2D" parent="World"]
+position = Vector2( 306, 26 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="World/StaticBody3"]
+position = Vector2( 439.401, 295.201 )
+shape = SubResource( 4 )
+
+[node name="Sprite" type="Sprite" parent="World/StaticBody3"]
+position = Vector2( 440.252, 294.151 )
+scale = Vector2( 0.0925734, 28.2723 )
+texture = SubResource( 5 )
+
+[node name="Player" parent="." instance=ExtResource( 1 )]
+position = Vector2( 74.0247, -1.948 )
