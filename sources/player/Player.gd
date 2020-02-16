@@ -7,13 +7,20 @@ const RUN_MAX_SPEED: int = 500
 const JUMP_SPEED: int = 200
 const RUN_FORCE: int = 1000
 const STOP_FORCE: int = 1000
-const STAND_BOUNCING_TIME: float = 0.15  # player must stand atleast in STAND_BOUNCING_TIME to jump
+
+# player must stand atleast in STAND_BOUNCING_TIME to jump
+const STAND_BOUNCING_TIME: float = 0.15
 
 var velocity: Vector2 = Vector2()
 var jumping: bool = false
 var crouching: bool = false
 
 var stand_time: float = STAND_BOUNCING_TIME * 2
+
+# number of body enter the stand shape. 
+# Use to check if player can stand from crouching or not, for example stand in a pipe
+var stand_shape_collide_time: int = 0
+var can_stand: bool = true
 
 func _ready():
 	pass # Replace with function body.
@@ -69,10 +76,13 @@ func _physics_process(delta):
 
 	if jump:
 		if crouching:
-			print('Stand')
-			$AnimationPlayer.play("Standup")
-			crouching = false
-			stand_time += delta
+			if can_stand:
+				print('Stand')
+				$AnimationPlayer.play("Standup")
+				crouching = false
+				stand_time += delta
+			else:
+				print('Can not stand in pipe')
 		elif not jumping and stand_time > STAND_BOUNCING_TIME:
 			print('Jump')
 			velocity.y = -JUMP_SPEED
@@ -81,3 +91,18 @@ func _physics_process(delta):
 			# just stand after crouch, need more time to stand before jump
 			print('Stand time: ', stand_time)
 			stand_time += delta
+
+
+func _on_StandShape_body_shape_entered(body_id, body, body_shape, area_shape):
+	# TODO check if collide with world instead of other part
+	stand_shape_collide_time += 1
+	can_stand = false
+	print('Enter stand shape: ', stand_shape_collide_time)
+
+
+func _on_StandShape_body_shape_exited(body_id, body, body_shape, area_shape):
+	# TODO check if collide with world instead of other part
+	stand_shape_collide_time -= 1
+	if stand_shape_collide_time == 0:
+		can_stand = true
+	print('Exit stand shape: ', stand_shape_collide_time)

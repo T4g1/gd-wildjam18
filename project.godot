@@ -18,6 +18,12 @@ _global_script_class_icons={
 config/name="gd-wildjam18"
 config/icon="res://icon.png"
 
+[layer_names]
+
+2d_physics/layer_1="Floor"
+2d_physics/layer_2="Pipe"
+2d_physics/layer_11="Player"
+
 [rendering]
 
 environment/default_environment="res://default_env.tres"

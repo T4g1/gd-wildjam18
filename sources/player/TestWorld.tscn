@@ -20,6 +20,7 @@ extents = Vector2( 94.6894, 14.7458 )
 [node name="World" type="Node2D" parent="."]
 
 [node name="Floor" type="StaticBody2D" parent="World"]
+collision_mask = 0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="World/Floor"]
 position = Vector2( 512.861, 401.31 )
@@ -31,6 +32,8 @@ scale = Vector2( 0.50063, 42.1166 )
 texture = SubResource( 3 )
 
 [node name="StaticBody" type="StaticBody2D" parent="World"]
+collision_layer = 2
+collision_mask = 0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="World/StaticBody"]
 position = Vector2( 439.401, 295.201 )
@@ -43,6 +46,8 @@ texture = SubResource( 5 )
 
 [node name="StaticBody2" type="StaticBody2D" parent="World"]
 position = Vector2( 649.925, 50.6485 )
+collision_layer = 2
+collision_mask = 0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="World/StaticBody2"]
 position = Vector2( 439.401, 295.201 )
@@ -55,6 +60,8 @@ texture = SubResource( 5 )
 
 [node name="StaticBody4" type="StaticBody2D" parent="World"]
 position = Vector2( -518.886, 52.5965 )
+collision_layer = 2
+collision_mask = 0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="World/StaticBody4"]
 position = Vector2( 439.401, 295.201 )
@@ -67,6 +74,8 @@ texture = SubResource( 5 )
 
 [node name="StaticBody3" type="StaticBody2D" parent="World"]
 position = Vector2( 306, 26 )
+collision_layer = 2
+collision_mask = 0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="World/StaticBody3"]
 position = Vector2( 439.401, 295.201 )
