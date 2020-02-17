@@ -19,6 +19,7 @@ content = "This The story of Fabula"
 content = "Help him save his family in this cursed world"
 
 [node name="SpeechBubble" parent="." index="1" instance=ExtResource( 4 )]
+visible = false
 margin_left = 315.034
 margin_top = 466.823
 margin_right = 315.034

@@ -11,6 +11,11 @@ signal puzzle_won
 const MIN_VALUE = 0
 const MAX_VALUE = 4
 
+const LEFT =  Vector2(-1,  0)
+const RIGHT = Vector2( 1,  0)
+const UP =    Vector2( 0, -1)
+const DOWN =  Vector2( 0,  1)
+
 export (int, 0, 4) var initial_antenna = 0
 export (int, 0, 4) var initial_channel = 0
 export (int) var max_win_streak = 4
@@ -19,9 +24,16 @@ var state = Vector2(0, 0)
 var correct_move = Vector2(0, 0)
 var win_streak = 0
 var clues
+var moves = [
+	DOWN,
+	UP,
+	RIGHT,
+	LEFT,
+]
 
 
 func _ready() -> void:
+	# Same order as "moves": Clues matching every moves
 	clues = [
 		$Clues/BottomClue,
 		$Clues/TopClue,
@@ -49,31 +61,42 @@ func _input(event: InputEvent) -> void:
 		emit_signal("puzzle_quit")
 
 	var guess = Vector2(0, 0)
+	var button
 	if event.is_action_pressed("ui_down"):
-		guess = Vector2(0, -1)
+		button = $Channel/Down
+		guess = DOWN
 	if event.is_action_pressed("ui_up"):
-		guess = Vector2(0, 1)
+		button = $Channel/Up
+		guess = UP
 	if event.is_action_pressed("ui_right"):
-		guess = Vector2(1, 0)
+		button = $Antenna/Right
+		guess = RIGHT
 	if event.is_action_pressed("ui_left"):
-		guess = Vector2(-1, 0)
+		button = $Antenna/Left
+		guess = LEFT
 
 	if guess.length() > 0:
-		yield(move(guess), "completed")
+		animate_press(button)
+		yield(play(guess), "completed")
 
 
-func move(guess: Vector2) -> void:
+func animate_press(button: AnimatedSprite) -> void:
 	"""
-	Move the current state of the puzzle
+	Animate the press on a button
+	"""
+	button.play("pressed")
+	yield(button, "animation_finished")
+	button.play("default")
+
+
+func play(guess: Vector2) -> void:
+	"""
+	Try a possible move
 	"""
 	if guess == correct_move:
 		yield(right_guess(), "completed")
 	else:
 		yield(wrong_guess(), "completed")
-
-	state += guess
-	state.x = int(state.x) % MAX_VALUE
-	state.y = int(state.y) % MAX_VALUE
 
 	if has_won():
 		print("you won")
@@ -87,13 +110,6 @@ func generate_clue() -> void:
 	Generate next visual clue
 	"""
 	hide_clues()
-
-	var moves = [
-		Vector2( 0, -1),
-		Vector2( 0,  1),
-		Vector2( 1,  0),
-		Vector2(-1,  0)
-	]
 
 	assert(clues.size() == moves.size())
 
@@ -116,6 +132,7 @@ func show_clue(clue: Node2D) -> void:
 	Show a visual clue to the player
 	"""
 	clue.visible = true
+	clue.scale = Vector2(1, 1) + Vector2(1, 1) * win_streak
 
 
 func has_won() -> bool:
