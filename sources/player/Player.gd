@@ -5,18 +5,16 @@ class_name Player
 
 signal death
 
-export var Gravity: int = 500
-export var  RunMaxSpeed: int = 500
-export var  JumpSpeed: int = 200
-export var  RunForce: int = 1000
-export var StopForce: int = 1000
-
-# player must stand atleast in StandBouncingTime to jump
-export var  StandBouncingTime: float = 0.15
+export(float) var Gravity = 500
+export(float) var  RunMaxSpeed = 500
+export(float) var  JumpSpeed = 200
+export(float) var JumpMaxDuration = 0.5
+export(float) var  RunForce = 1000
+export(float) var StopForce = 1000
 
 var velocity: Vector2 = Vector2()
 var jumping: bool = false
-var crouching: bool = false
+var on_air_time: float = 0
 
 func _ready():
 	pass
@@ -28,15 +26,28 @@ func _ready():
 func _physics_process(delta):
 	var force = Vector2(0, Gravity)
 
-	var walk = Input.get_action_strength("move_right") - Input.get_action_strength("move_left")
+	var walk = Input.get_action_strength("ui_right") - Input.get_action_strength("ui_left")
 	var jump = Input.is_action_pressed("ui_up")
-	var stop = true
 	
+	# while jumping, player can't change direction. Can be update later
+	if not jumping:
+		force.x = update_horizontal_force(walk, delta)
+		
+	velocity += force * delta
+	velocity = move_and_slide(velocity, Vector2.UP)
+	
+	try_to_jump(jump, delta)
+	on_air_time += delta
+
+	
+func update_horizontal_force(walk, delta):
+	var horizontal_force = 0
+
 	if abs(velocity.x) < RunMaxSpeed:
-		force.x += RunForce * walk
-			
-	if stop:
-		# slide player
+		horizontal_force += RunForce * walk
+	
+	if abs(walk) < 0.5:
+		# slide player before stop
 		var vsign = sign(velocity.x)
 		var vlen = abs(velocity.x)
 		
@@ -46,12 +57,19 @@ func _physics_process(delta):
 			
 		velocity.x = vlen * vsign
 		
-	velocity += force * delta
-	velocity = move_and_slide(velocity, Vector2(0, -1))
+	return horizontal_force
+	
+func try_to_jump(jump, delta):
+	var falling = false
 
 	if is_on_floor():
+		on_air_time = 0
 		jumping = false
+		
+	if jumping and velocity.y > 0:
+		# If falling, no longer jumping.
+		falling = true
 
-	if jump and not jumping:
-			velocity.y = -JumpSpeed
-			jumping = true
+	if on_air_time < JumpMaxDuration and jump and not falling:
+		velocity.y = -JumpSpeed
+		jumping = true
