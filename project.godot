@@ -57,14 +57,18 @@ _global_script_class_icons={
 [application]
 
 config/name="gd-wildjam18"
+run/main_scene="res://levels/LevelApartment.tscn"
 config/icon="res://icon.png"
 
 [layer_names]
 
-2d_physics/layer_1="Platform"
-2d_physics/layer_2="Obstacle"
-2d_physics/layer_3="Wall"
-2d_physics/layer_11="Player"
+2d_physics/layer_1="player"
+2d_physics/layer_2="interactable"
+2d_physics/layer_3="obstacle"
+
+[physics]
+
+2d/default_gravity=200
 
 [rendering]
 

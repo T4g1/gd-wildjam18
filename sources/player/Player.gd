@@ -1,75 +1,90 @@
+"""
+Handles player logic
+"""
 extends KinematicBody2D
-
-
 class_name Player
 
-signal death
-
-export(float) var Gravity = 500
-export(float) var  RunMaxSpeed = 500
-export(float) var  JumpSpeed = 200
-export(float) var JumpMaxDuration = 0.5
-export(float) var  RunForce = 1000
-export(float) var StopForce = 1000
+export (float) var max_speed = 200
+export (float) var jump_force = 10
+export (float) var jump_duration = 0.3
+export (float) var run_force = 10
+export (float) var stop_force = 300
 
 var velocity: Vector2 = Vector2()
 var jumping: bool = false
-var on_air_time: float = 0
-
-func _ready():
-	pass
+var air_time: float = 0
+var gravity
 
 
-#func _process(delta):
-#	pass
+func _ready() -> void:
+	gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
 
-func _physics_process(delta):
-	var force = Vector2(0, Gravity)
 
-	var walk = Input.get_action_strength("ui_right") - Input.get_action_strength("ui_left")
-	var jump = Input.is_action_pressed("ui_up")
-	
-	# while jumping, player can't change direction. Can be update later
-	if not jumping:
-		force.x = update_horizontal_force(walk, delta)
-		
-	velocity += force * delta
-	velocity = move_and_slide(velocity, Vector2.UP)
-	
-	try_to_jump(jump, delta)
-	on_air_time += delta
+func _physics_process(delta) -> void:
+	"""
+	Handles player movements
+	"""
 
-	
-func update_horizontal_force(walk, delta):
-	var horizontal_force = 0
+	if jumping:
+		air_time += delta
 
-	if abs(velocity.x) < RunMaxSpeed:
-		horizontal_force += RunForce * walk
-	
-	if abs(walk) < 0.5:
-		# slide player before stop
-		var vsign = sign(velocity.x)
-		var vlen = abs(velocity.x)
-		
-		vlen -= StopForce * delta
-		if vlen < 0:
-			vlen = 0
-			
-		velocity.x = vlen * vsign
-		
-	return horizontal_force
-	
-func try_to_jump(jump, delta):
-	var falling = false
+	var movement = Vector2(0, 0)
 
-	if is_on_floor():
-		on_air_time = 0
+	# Walking
+	if Input.is_action_pressed("ui_left"):
+		movement.x -= 1
+	if Input.is_action_pressed("ui_right"):
+		movement.x += 1
+
+	# Jumping
+	if Input.is_action_pressed("ui_up"):
+		var falling = velocity.y > 0
+
+		# Jumps begin
+		if is_on_floor():
+			jumping = true
+			movement.y -= 1
+
+		# Can not jump while falling
+		elif falling:
+			jumping = false
+
+		# Going further up while jumping
+		elif jumping and air_time < jump_duration:
+			movement.y -= 1
+	else:
 		jumping = false
-		
-	if jumping and velocity.y > 0:
-		# If falling, no longer jumping.
-		falling = true
+		air_time = 0
 
-	if on_air_time < JumpMaxDuration and jump and not falling:
-		velocity.y = -JumpSpeed
-		jumping = true
+	# Natural forces
+	velocity += Vector2(0, gravity) * delta
+
+	# Player input
+	velocity += movement * Vector2(run_force, jump_force)
+
+	velocity.x = clamp(velocity.x, -max_speed, max_speed)
+	velocity.y = clamp(velocity.y, -max_speed, max_speed)
+
+	# Apply friction when player stop moving to come to a stop
+	if movement.x == 0:
+		var friction = sign(velocity.x) * stop_force * delta
+		if abs(friction) <= abs(velocity.x):
+			velocity.x -= friction
+		else:
+			velocity.x = 0
+
+	velocity = move_and_slide(velocity, Vector2.UP)
+
+	update_animation()
+
+
+func update_animation() -> void:
+	"""
+	Update player animation based on velocity
+	"""
+	if velocity.x != 0:
+		$Sprite.play("run")
+
+		$Sprite.flip_h = velocity.x < 0
+	else:
+		$Sprite.play("idle")
