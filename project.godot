@@ -25,11 +25,10 @@ config/icon="res://icon.png"
 
 [layer_names]
 
-2d_physics/layer_1="Floor"
-2d_physics/layer_2="Pipe"
-2d_physics/layer_3="DeathHole"
-2d_physics/layer_11="PlayerBody"
-2d_physics/layer_12="PayerStandShape"
+2d_physics/layer_1="Platform"
+2d_physics/layer_2="Obstacle"
+2d_physics/layer_3="Wall"
+2d_physics/layer_11="Player"
 
 [rendering]
 
