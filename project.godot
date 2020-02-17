@@ -34,6 +34,11 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://sources/level/Level.gd"
 }, {
+"base": "KinematicBody2D",
+"class": "Player",
+"language": "GDScript",
+"path": "res://sources/player/Player.gd"
+}, {
 "base": "Control",
 "class": "SpeechBubble",
 "language": "GDScript",
@@ -45,14 +50,15 @@ _global_script_class_icons={
 "Game": "",
 "Interactable": "",
 "Level": "",
+"Player": "",
 "SpeechBubble": ""
 }
 
 [application]
 
 config/name="gd-wildjam18"
-run/main_scene="res://sources/menu/Splash.tscn"
-config/icon="res://icon.png"
+run/main_scene="res://sources/game/Game.tscn"
+config/icon="res://assets/images/icon.png"
 
 [autoload]
 
@@ -78,4 +84,4 @@ translations=PoolStringArray( "res://assets/translation/text.en.translation", "r
 
 [rendering]
 
-environment/default_environment="res://default_env.tres"
+environment/default_environment="res://assets/default_env.tres"

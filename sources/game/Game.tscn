@@ -3,6 +3,8 @@
 [ext_resource path="res://sources/game/Game.gd" type="Script" id=1]
 [ext_resource path="res://levels/LevelApartment.tscn" type="PackedScene" id=2]
 
-[node name="Game" type="Node2D"]
+[node name="Game" type="Node2D" groups=[
+"game",
+]]
 script = ExtResource( 1 )
 levels = [ ExtResource( 2 ) ]

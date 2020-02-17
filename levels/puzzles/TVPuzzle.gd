@@ -57,6 +57,8 @@ func reset() -> void:
 
 
 func _input(event: InputEvent) -> void:
+	get_tree().set_input_as_handled()
+
 	if event.is_action_pressed("ui_cancel"):
 		emit_signal("puzzle_quit")
 
