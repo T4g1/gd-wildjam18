@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=2]
+[gd_scene load_steps=11 format=2]
 
 [ext_resource path="res://sources/level/Level.tscn" type="PackedScene" id=1]
 [ext_resource path="res://sources/dialog/DialogLine.tscn" type="PackedScene" id=2]
@@ -7,9 +7,13 @@
 [ext_resource path="res://levels/LevelApartment.gd" type="Script" id=5]
 [ext_resource path="res://sources/player/Player.tscn" type="PackedScene" id=6]
 [ext_resource path="res://entities/TV.tscn" type="PackedScene" id=7]
+[ext_resource path="res://assets/images/level1/temp_bg.png" type="Texture" id=8]
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 388.042, 10 )
+
+[sub_resource type="RectangleShape2D" id=2]
+extents = Vector2( 9.56412, 60.987 )
 
 [node name="LevelApartment" instance=ExtResource( 1 )]
 script = ExtResource( 5 )
@@ -30,18 +34,35 @@ margin_top = 466.823
 margin_right = 315.034
 margin_bottom = 466.823
 
-[node name="Player" parent="." index="2" instance=ExtResource( 6 )]
-position = Vector2( 37.975, 102.875 )
-jump_duration = 0.2
+[node name="Background" type="Sprite" parent="." index="2"]
+position = Vector2( 84.8247, 82.308 )
+scale = Vector2( 0.546251, 0.546251 )
+texture = ExtResource( 8 )
 
-[node name="RigidBody2D" type="RigidBody2D" parent="." index="3"]
+[node name="Limits" type="RigidBody2D" parent="." index="3"]
 collision_layer = 4
 collision_mask = 0
 mode = 1
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="RigidBody2D" index="0"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Limits" index="0"]
 position = Vector2( 101.463, 130.473 )
 shape = SubResource( 1 )
 
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="Limits" index="1"]
+position = Vector2( -146.921, 83.2727 )
+shape = SubResource( 2 )
+
+[node name="CollisionShape2D3" type="CollisionShape2D" parent="Limits" index="2"]
+position = Vector2( 334.371, 80.9513 )
+shape = SubResource( 2 )
+
 [node name="TV" parent="." index="4" instance=ExtResource( 7 )]
-position = Vector2( 109.337, 96.3646 )
+position = Vector2( 111.779, 90.9033 )
+scale = Vector2( 0.560956, 0.754988 )
+
+[node name="Player" parent="." index="5" instance=ExtResource( 6 )]
+position = Vector2( -85.0565, 103.501 )
+jump_duration = 0.2
+
+[node name="Camera2D" type="Camera2D" parent="Player" index="3"]
+current = true
