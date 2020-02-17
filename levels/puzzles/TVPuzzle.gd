@@ -19,6 +19,7 @@ const DOWN =  Vector2( 0,  1)
 export (int, 0, 4) var initial_antenna = 0
 export (int, 0, 4) var initial_channel = 0
 export (int) var max_win_streak = 4
+export (float) var size_factor = 0.2
 
 var state = Vector2(0, 0)
 var correct_move = Vector2(0, 0)
@@ -134,7 +135,7 @@ func show_clue(clue: Node2D) -> void:
 	Show a visual clue to the player
 	"""
 	clue.visible = true
-	clue.scale = Vector2(1, 1) + Vector2(1, 1) * win_streak
+	clue.scale = Vector2(1, 1) + Vector2(size_factor, size_factor) * win_streak
 
 
 func has_won() -> bool:
