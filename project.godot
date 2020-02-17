@@ -57,7 +57,7 @@ _global_script_class_icons={
 [application]
 
 config/name="gd-wildjam18"
-run/main_scene="res://levels/LevelApartment.tscn"
+run/main_scene="res://sources/menu/Splash.tscn"
 config/icon="res://icon.png"
 
 [layer_names]
