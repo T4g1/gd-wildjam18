@@ -12,7 +12,7 @@ animations = [ {
 } ]
 
 [sub_resource type="RectangleShape2D" id=2]
-extents = Vector2( 18.2701, 43.3168 )
+extents = Vector2( 13.5179, 20.195 )
 
 [node name="Player" type="KinematicBody2D" groups=[
 "actor",
@@ -22,7 +22,7 @@ collision_mask = 0
 script = ExtResource( 2 )
 
 [node name="AnimatedSprite" type="AnimatedSprite" parent="."]
-scale = Vector2( 0.520415, 1.3453 )
+scale = Vector2( 0.431329, 0.69624 )
 frames = SubResource( 1 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]

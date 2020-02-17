@@ -36,6 +36,8 @@ func animate() -> void:
 	__ = tween.start()
 	yield(tween, "tween_all_completed")
 
+	yield(get_tree().create_timer(1), "timeout")
+
 	load_title()
 
 

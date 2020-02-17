@@ -14,14 +14,14 @@ animations = [ {
 } ]
 
 [sub_resource type="RectangleShape2D" id=2]
-extents = Vector2( 158.6, 58.8999 )
+extents = Vector2( 40.8008, 17.0996 )
 
 [node name="TV" instance=ExtResource( 1 )]
 script = ExtResource( 3 )
 puzzle_scene = ExtResource( 4 )
 
 [node name="Sprite" parent="." index="0"]
-scale = Vector2( 3.10321, 1.24612 )
+scale = Vector2( 0.963424, 0.40972 )
 frames = SubResource( 1 )
 
 [node name="InteractionRange" parent="." index="1"]

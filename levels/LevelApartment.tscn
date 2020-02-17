@@ -28,7 +28,8 @@ margin_right = 315.034
 margin_bottom = 466.823
 
 [node name="TV" parent="." index="2" instance=ExtResource( 6 )]
-position = Vector2( 223.302, 316.411 )
+position = Vector2( 52.3401, 83.373 )
 
 [node name="Player" parent="." index="3" instance=ExtResource( 7 )]
-position = Vector2( 532.692, 334.827 )
+position = Vector2( 159.133, 88.1506 )
+speed = 200.0
