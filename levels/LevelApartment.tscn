@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=2]
+[gd_scene load_steps=18 format=2]
 
 [ext_resource path="res://sources/level/Level.tscn" type="PackedScene" id=1]
 [ext_resource path="res://sources/dialog/DialogLine.tscn" type="PackedScene" id=2]
@@ -9,6 +9,10 @@
 [ext_resource path="res://entities/TV.tscn" type="PackedScene" id=7]
 [ext_resource path="res://assets/images/level1/scene.png" type="Texture" id=8]
 [ext_resource path="res://levels/puzzles/TVPuzzle.tscn" type="PackedScene" id=9]
+[ext_resource path="res://entities/Fridge.tscn" type="PackedScene" id=10]
+[ext_resource path="res://entities/Drawer.tscn" type="PackedScene" id=11]
+[ext_resource path="res://entities/Window.tscn" type="PackedScene" id=12]
+[ext_resource path="res://entities/FrontDoor.tscn" type="PackedScene" id=13]
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 167.863, 10 )
@@ -75,13 +79,28 @@ shape = SubResource( 3 )
 position = Vector2( 33.2068, 58.5754 )
 shape = SubResource( 4 )
 
-[node name="TV" parent="." index="4" instance=ExtResource( 7 )]
-position = Vector2( 110.757, 90.2222 )
-interactable = false
-
-[node name="Player" parent="." index="5" instance=ExtResource( 6 )]
+[node name="Player" parent="." index="4" instance=ExtResource( 6 )]
 position = Vector2( -27.8509, 98.3262 )
 jump_duration = 0.2
 
 [node name="Camera2D" type="Camera2D" parent="Player" index="3"]
 current = true
+
+[node name="Fridge" parent="." index="5" instance=ExtResource( 10 )]
+position = Vector2( 174.561, 95.2681 )
+
+[node name="Drawer" parent="." index="6" instance=ExtResource( 11 )]
+position = Vector2( 7.35558, 103.054 )
+interactable = false
+
+[node name="TV" parent="." index="7" instance=ExtResource( 7 )]
+position = Vector2( 110.757, 90.2222 )
+interactable = false
+
+[node name="FrontDoor" parent="." index="8" instance=ExtResource( 13 )]
+position = Vector2( 240.729, 91.9414 )
+interactable = false
+
+[node name="Window" parent="." index="9" instance=ExtResource( 12 )]
+position = Vector2( -60.3979, 85.4886 )
+interactable = false

@@ -11,7 +11,7 @@ signal interacted		# When this is interacted with
 
 
 export (NodePath) var interaction_range
-export (bool) var interactable = true
+export (bool) var interactable = true setget set_interactable
 
 var actors_in_range = []
 
@@ -42,8 +42,7 @@ func on_range_entered(_actor: Node2D) -> void:
 	Called when something that can interact with this is in range
 	Override to define behavior
 	"""
-	modulate.r = 0
-	modulate.g = 0
+	$Label.display()
 
 
 func on_range_exited(_actor: Node2D) -> void:
@@ -52,15 +51,14 @@ func on_range_exited(_actor: Node2D) -> void:
 	leave the interaction range
 	Override to define behavior
 	"""
-	modulate.r = 1
-	modulate.g = 1
+	$Label.hide()
 
 
 func interact(actor: Node2D):
 	"""
 	Called when something interact with this
 	"""
-	if not actor in actors_in_range:
+	if not actor in actors_in_range or not interactable:
 		return
 
 	emit_signal("interacted", actor)
@@ -69,7 +67,7 @@ func interact(actor: Node2D):
 
 
 func _on_range_entered(body: Node2D) -> void:
-	if not body.is_in_group("actor"):
+	if not body.is_in_group("actor") or not interactable:
 		return
 
 	emit_signal("range_entered", body)
@@ -81,7 +79,7 @@ func _on_range_entered(body: Node2D) -> void:
 
 
 func _on_range_exited(body: Node2D) -> void:
-	if not body.is_in_group("actor"):
+	if not body.is_in_group("actor") or not interactable:
 		return
 
 	emit_signal("range_exited", body)
@@ -92,3 +90,13 @@ func _on_range_exited(body: Node2D) -> void:
 		actors_in_range.remove(id)
 
 	on_range_exited(body)
+
+
+func set_interactable(value: bool) -> void:
+	"""
+	Override for custom behaviors
+	"""
+	interactable = value
+
+	if not interactable:
+		$Label.hide()
