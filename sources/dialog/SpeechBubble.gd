@@ -8,35 +8,49 @@ signal bubble_next		# Show next line
 signal bubble_end		# Nothing more to say
 
 
-onready var label := $PanelContainer/Content as Label
+onready var nametag := $Name/Margin/Label as Label
+onready var label := $Content/Margin/Label as Label
 
 
-func say(content: String) -> void:
+func say(content: String, who: String="") -> void:
 	"""
 	Text said out loud by the character
 	"""
 	# TODO: Different style?
-	start(content)
+	start(content, who)
 
 
-func think(content: String) -> void:
+func think(content: String, who: String="") -> void:
 	"""
 	Thought of a character
 	"""
 	# TODO: Different style?
-	start(content)
+	start(content, who)
 
 
-func start(content: String) -> void:
+func start(content: String, who: String="") -> void:
 	"""
 	Displays the given text
 	"""
+	show_name(who)
+
 	label.text = content
 	label.lines_skipped = 0
 
 	visible = true
 
 	emit_signal("bubble_start")
+
+
+func show_name(who: String) -> void:
+	"""
+	Displays who's talking
+	"""
+	if who != "":
+		$Name.visible = true
+		nametag.text = who
+	else:
+		$Name.visible = false
 
 
 func next() -> void:

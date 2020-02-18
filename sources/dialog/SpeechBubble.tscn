@@ -1,39 +1,90 @@
-[gd_scene load_steps=3 format=2]
+[gd_scene load_steps=4 format=2]
 
 [ext_resource path="res://sources/dialog/SpeechBubble.gd" type="Script" id=1]
 [ext_resource path="res://assets/fonts/poco/Poco_DynamicFont.tres" type="DynamicFont" id=2]
+[ext_resource path="res://assets/ui_theme.tres" type="Theme" id=3]
 
 [node name="SpeechBubble" type="Control"]
 anchor_right = 1.0
 anchor_bottom = 1.0
+theme = ExtResource( 3 )
 script = ExtResource( 1 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="PanelContainer" type="PanelContainer" parent="."]
+[node name="Content" type="PanelContainer" parent="."]
 anchor_left = 0.5
 anchor_top = 1.0
 anchor_right = 0.5
 anchor_bottom = 1.0
-margin_left = -67.0
-margin_top = -50.0
-margin_right = 68.0
-margin_bottom = -7.0
+margin_left = -65.0
+margin_top = -37.897
+margin_right = 65.0
+margin_bottom = -6.89697
+__meta__ = {
+"_edit_group_": true,
+"_edit_use_anchors_": false
+}
+
+[node name="Margin" type="MarginContainer" parent="Content"]
+margin_left = 1.0
+margin_top = 1.0
+margin_right = 129.0
+margin_bottom = 30.0
+custom_constants/margin_right = 1
+custom_constants/margin_top = 1
+custom_constants/margin_left = 2
+custom_constants/margin_bottom = 1
+
+[node name="Label" type="Label" parent="Content/Margin"]
+margin_left = 2.0
+margin_top = 1.0
+margin_right = 127.0
+margin_bottom = 28.0
+size_flags_vertical = 1
+custom_fonts/font = ExtResource( 2 )
+text = "TESTTESTTESTTESTTESTTESTTESTTESTTESTTESTTESTTESTTESTTESTTESTTESTTESTTESTTESTTESTTESTTESTTEST"
+autowrap = true
+max_lines_visible = 3
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Content" type="Label" parent="PanelContainer"]
-margin_left = 7.0
-margin_top = 7.0
-margin_right = 128.0
-margin_bottom = 36.0
+[node name="Name" type="PanelContainer" parent="."]
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+margin_left = -80.0
+margin_top = -50.3091
+margin_right = -45.0
+margin_bottom = -39.3091
+__meta__ = {
+"_edit_group_": true,
+"_edit_use_anchors_": false
+}
+
+[node name="Margin" type="MarginContainer" parent="Name"]
+margin_left = 1.0
+margin_top = 1.0
+margin_right = 34.0
+margin_bottom = 10.0
+custom_constants/margin_right = 1
+custom_constants/margin_top = 1
+custom_constants/margin_left = 2
+custom_constants/margin_bottom = 1
+
+[node name="Label" type="Label" parent="Name/Margin"]
+margin_left = 2.0
+margin_top = 1.0
+margin_right = 32.0
+margin_bottom = 8.0
 size_flags_vertical = 1
 custom_fonts/font = ExtResource( 2 )
+text = "TESTTESTTESTTESTTESTTESTTESTTESTTESTTESTTESTTESTTESTTESTTESTTESTTESTTESTTESTTESTTESTTESTTEST"
 autowrap = true
-clip_text = true
-max_lines_visible = 3
+max_lines_visible = 1
 __meta__ = {
 "_edit_use_anchors_": false
 }

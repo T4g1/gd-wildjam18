@@ -103,55 +103,56 @@ __meta__ = {
 
 [node name="WakeUp" parent="UI/Introduction" index="0" instance=ExtResource( 2 )]
 content = "1PM? Already that late? "
-who = NodePath("../../Player")
+who = "Johnny"
 thinking = true
 
 [node name="Hungry" parent="UI/Introduction" index="1" instance=ExtResource( 2 )]
 content = "I should probably get out of bed now and get some food..."
-who = NodePath("../../Player")
+who = "Johnny"
 thinking = true
 
 [node name="FoodGrabbed" parent="UI" index="2" instance=ExtResource( 3 )]
 
 [node name="GoEat" parent="UI/FoodGrabbed" index="0" instance=ExtResource( 2 )]
 content = "Alright, lets eat that while watching the news"
-who = NodePath("../../Player")
+who = "Johnny"
 thinking = true
 
 [node name="TVBroken" parent="UI" index="3" instance=ExtResource( 3 )]
 
 [node name="NoticeBroken" parent="UI/TVBroken" index="0" instance=ExtResource( 2 )]
 content = "Hmmm, seems like the signal has trouble getting in
- I wonder whats causing that..."
-who = NodePath("../../Player")
+I wonder whats causing that..."
+who = "Johnny"
 thinking = true
 
 [node name="LetsFix" parent="UI/TVBroken" index="1" instance=ExtResource( 2 )]
 content = "Lets fix it..."
-who = NodePath("../../Player")
+who = "Johnny"
 thinking = true
 
 [node name="PlagueInfo" parent="UI" index="4" instance=ExtResource( 3 )]
 
 [node name="Hotnews" parent="UI/PlagueInfo" index="0" instance=ExtResource( 2 )]
 content = "Today on Hotnews: A succession of plague will trouble the next few weeks. All citizen are urged to join the closest shelter immediately!"
+who = "TV"
 
 [node name="PlayerPanic" parent="UI/PlagueInfo" index="1" instance=ExtResource( 2 )]
 content = "Oh my god! That can't be true, lets see what's hapenning by the window..."
-who = NodePath("../../Player")
+who = "Johnny"
 
 [node name="WindowLook" parent="UI" index="5" instance=ExtResource( 3 )]
 
 [node name="MorePanic" parent="UI/WindowLook" index="0" instance=ExtResource( 2 )]
 content = "Is that a tornado!!!? Quick, I need to take my keys in the drawer next to the bed and leave NOW"
-who = NodePath("../../Player")
+who = "Johnny"
 
 [node name="KeyGot" parent="UI" index="6" instance=ExtResource( 3 )]
 
 [node name="TimeToLeave" parent="UI/KeyGot" index="0" instance=ExtResource( 2 )]
 content = "Let's exit by the front door now...
 "
-who = NodePath("../../Player")
+who = "Johnny"
 thinking = true
 
 [node name="Tween" type="Tween" parent="." index="9"]

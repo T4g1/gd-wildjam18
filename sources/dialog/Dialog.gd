@@ -46,9 +46,9 @@ func next() -> void:
 
 	var next_line = lines[current_line]
 	if next_line.thinking:
-		bubble.think(next_line.content)
+		bubble.think(next_line.content, next_line.who)
 	else:
-		bubble.say(next_line.content)
+		bubble.say(next_line.content, next_line.who)
 
 	emit_signal("dialog_next")
 

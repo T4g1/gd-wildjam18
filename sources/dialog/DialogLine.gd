@@ -6,5 +6,5 @@ class_name DialogLine
 
 
 export (String, MULTILINE) var content		# What is being said
-export (NodePath) var who					# Who said that? none for narrator
+export (String) var who						# Who said that? empty for narrator
 export (bool) var thinking					# Thinking or said out loud?
