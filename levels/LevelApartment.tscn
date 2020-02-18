@@ -1,9 +1,8 @@
-[gd_scene load_steps=18 format=2]
+[gd_scene load_steps=17 format=2]
 
 [ext_resource path="res://sources/level/Level.tscn" type="PackedScene" id=1]
 [ext_resource path="res://sources/dialog/DialogLine.tscn" type="PackedScene" id=2]
 [ext_resource path="res://sources/dialog/Dialog.tscn" type="PackedScene" id=3]
-[ext_resource path="res://sources/dialog/SpeechBubble.tscn" type="PackedScene" id=4]
 [ext_resource path="res://levels/LevelApartment.gd" type="Script" id=5]
 [ext_resource path="res://sources/player/Player.tscn" type="PackedScene" id=6]
 [ext_resource path="res://entities/TV.tscn" type="PackedScene" id=7]
@@ -30,27 +29,11 @@ extents = Vector2( 2.77517, 20.2218 )
 script = ExtResource( 5 )
 puzzle_scene = ExtResource( 9 )
 
-[node name="Introduction" parent="." index="0" instance=ExtResource( 3 )]
-bubble_path = NodePath("../SpeechBubble")
-
-[node name="DialogLine" parent="Introduction" index="0" instance=ExtResource( 2 )]
-content = "This The story of Fabula"
-
-[node name="DialogLine2" parent="Introduction" index="1" instance=ExtResource( 2 )]
-content = "Help him save his family in this cursed world"
-
-[node name="SpeechBubble" parent="." index="1" instance=ExtResource( 4 )]
-visible = false
-margin_left = 315.034
-margin_top = 466.823
-margin_right = 315.034
-margin_bottom = 466.823
-
-[node name="Background" type="Sprite" parent="." index="2"]
+[node name="Background" type="Sprite" parent="." index="0"]
 position = Vector2( 84.8247, 82.308 )
 texture = ExtResource( 8 )
 
-[node name="Limits" type="RigidBody2D" parent="." index="3"]
+[node name="Limits" type="RigidBody2D" parent="." index="1"]
 collision_layer = 4
 collision_mask = 0
 mode = 1
@@ -79,28 +62,96 @@ shape = SubResource( 3 )
 position = Vector2( 33.2068, 58.5754 )
 shape = SubResource( 4 )
 
-[node name="Player" parent="." index="4" instance=ExtResource( 6 )]
+[node name="Player" parent="." index="2" instance=ExtResource( 6 )]
 position = Vector2( -27.8509, 98.3262 )
 jump_duration = 0.2
 
 [node name="Camera2D" type="Camera2D" parent="Player" index="3"]
 current = true
 
-[node name="Fridge" parent="." index="5" instance=ExtResource( 10 )]
+[node name="Fridge" parent="." index="3" instance=ExtResource( 10 )]
 position = Vector2( 174.561, 95.2681 )
 
-[node name="Drawer" parent="." index="6" instance=ExtResource( 11 )]
+[node name="Drawer" parent="." index="4" instance=ExtResource( 11 )]
 position = Vector2( 7.35558, 103.054 )
 interactable = false
 
-[node name="TV" parent="." index="7" instance=ExtResource( 7 )]
+[node name="TV" parent="." index="5" instance=ExtResource( 7 )]
 position = Vector2( 110.757, 90.2222 )
 interactable = false
 
-[node name="FrontDoor" parent="." index="8" instance=ExtResource( 13 )]
+[node name="FrontDoor" parent="." index="6" instance=ExtResource( 13 )]
 position = Vector2( 240.729, 91.9414 )
 interactable = false
 
-[node name="Window" parent="." index="9" instance=ExtResource( 12 )]
+[node name="Window" parent="." index="7" instance=ExtResource( 12 )]
 position = Vector2( -60.3979, 85.4886 )
 interactable = false
+
+[node name="UI" type="CanvasLayer" parent="." index="8"]
+
+[node name="Mask" type="ColorRect" parent="UI" index="0"]
+visible = false
+anchor_right = 1.0
+anchor_bottom = 1.0
+color = Color( 0, 0, 0, 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Introduction" parent="UI" index="1" instance=ExtResource( 3 )]
+
+[node name="WakeUp" parent="UI/Introduction" index="0" instance=ExtResource( 2 )]
+content = "1PM? Already that late? "
+who = NodePath("../../Player")
+thinking = true
+
+[node name="Hungry" parent="UI/Introduction" index="1" instance=ExtResource( 2 )]
+content = "I should probably get out of bed now and get some food..."
+who = NodePath("../../Player")
+thinking = true
+
+[node name="FoodGrabbed" parent="UI" index="2" instance=ExtResource( 3 )]
+
+[node name="GoEat" parent="UI/FoodGrabbed" index="0" instance=ExtResource( 2 )]
+content = "Alright, lets eat that while watching the news"
+who = NodePath("../../Player")
+thinking = true
+
+[node name="TVBroken" parent="UI" index="3" instance=ExtResource( 3 )]
+
+[node name="NoticeBroken" parent="UI/TVBroken" index="0" instance=ExtResource( 2 )]
+content = "Hmmm, seems like the signal has trouble getting in
+ I wonder whats causing that..."
+who = NodePath("../../Player")
+thinking = true
+
+[node name="LetsFix" parent="UI/TVBroken" index="1" instance=ExtResource( 2 )]
+content = "Lets fix it..."
+who = NodePath("../../Player")
+thinking = true
+
+[node name="PlagueInfo" parent="UI" index="4" instance=ExtResource( 3 )]
+
+[node name="Hotnews" parent="UI/PlagueInfo" index="0" instance=ExtResource( 2 )]
+content = "Today on Hotnews: A succession of plague will trouble the next few weeks. All citizen are urged to join the closest shelter immediately!"
+
+[node name="PlayerPanic" parent="UI/PlagueInfo" index="1" instance=ExtResource( 2 )]
+content = "Oh my god! That can't be true, lets see what's hapenning by the window..."
+who = NodePath("../../Player")
+
+[node name="WindowLook" parent="UI" index="5" instance=ExtResource( 3 )]
+
+[node name="MorePanic" parent="UI/WindowLook" index="0" instance=ExtResource( 2 )]
+content = "Is that a tornado!!!? Quick, I need to take my keys in the drawer next to the bed and leave NOW"
+who = NodePath("../../Player")
+
+[node name="KeyGot" parent="UI" index="6" instance=ExtResource( 3 )]
+
+[node name="TimeToLeave" parent="UI/KeyGot" index="0" instance=ExtResource( 2 )]
+content = "Let's exit by the front door now...
+"
+who = NodePath("../../Player")
+thinking = true
+
+[node name="Tween" type="Tween" parent="." index="9"]

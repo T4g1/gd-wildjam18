@@ -59,6 +59,9 @@ func end() -> void:
 	emit_signal("bubble_end")
 
 
-func _input(event: InputEvent) -> void:
+func _unhandled_input(event: InputEvent) -> void:
+	if not visible:
+		return
+
 	if event.is_action_pressed("ui_accept"):
 		next()
