@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=2]
+[gd_scene load_steps=12 format=2]
 
 [ext_resource path="res://sources/level/Level.tscn" type="PackedScene" id=1]
 [ext_resource path="res://sources/dialog/DialogLine.tscn" type="PackedScene" id=2]
@@ -8,6 +8,7 @@
 [ext_resource path="res://sources/player/Player.tscn" type="PackedScene" id=6]
 [ext_resource path="res://entities/TV.tscn" type="PackedScene" id=7]
 [ext_resource path="res://assets/images/level1/temp_bg.png" type="Texture" id=8]
+[ext_resource path="res://levels/puzzles/TVPuzzle.tscn" type="PackedScene" id=9]
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 388.042, 10 )
@@ -17,6 +18,7 @@ extents = Vector2( 9.56412, 60.987 )
 
 [node name="LevelApartment" instance=ExtResource( 1 )]
 script = ExtResource( 5 )
+puzzle_scene = ExtResource( 9 )
 
 [node name="Introduction" parent="." index="0" instance=ExtResource( 3 )]
 bubble_path = NodePath("../SpeechBubble")

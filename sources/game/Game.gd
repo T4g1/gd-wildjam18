@@ -17,6 +17,9 @@ var puzzle = null		# Stores any ongoing puzzle scene
 func _ready() -> void:
 	assert(levels.size() > 0)
 
+	# Allows us to keep the gray background in the editor
+	VisualServer.set_default_clear_color(Color.black)
+
 	start()
 
 

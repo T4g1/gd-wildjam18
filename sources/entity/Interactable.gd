@@ -41,7 +41,8 @@ func on_range_entered(_actor: Node2D) -> void:
 	Called when something that can interact with this is in range
 	Override to define behavior
 	"""
-	pass
+	modulate.r = 0
+	modulate.g = 0
 
 
 func on_range_exited(_actor: Node2D) -> void:
@@ -50,7 +51,8 @@ func on_range_exited(_actor: Node2D) -> void:
 	leave the interaction range
 	Override to define behavior
 	"""
-	pass
+	modulate.r = 1
+	modulate.g = 1
 
 
 func interact(actor: Node2D):

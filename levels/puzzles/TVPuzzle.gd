@@ -102,7 +102,6 @@ func play(guess: Vector2) -> void:
 		yield(wrong_guess(), "completed")
 
 	if has_won():
-		print("you won")
 		emit_signal("puzzle_won")
 	else:
 		generate_clue()
@@ -150,8 +149,6 @@ func wrong_guess() -> void:
 	yield(get_tree(), "idle_frame")
 	win_streak = 0
 
-	print("wrong guess")
-
 
 func right_guess() -> void:
 	"""
@@ -160,5 +157,3 @@ func right_guess() -> void:
 	# TODO
 	yield(get_tree(), "idle_frame")
 	win_streak += 1
-
-	print("correct guess")
