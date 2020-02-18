@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=2]
+[gd_scene load_steps=14 format=2]
 
 [ext_resource path="res://sources/level/Level.tscn" type="PackedScene" id=1]
 [ext_resource path="res://sources/dialog/DialogLine.tscn" type="PackedScene" id=2]
@@ -7,14 +7,20 @@
 [ext_resource path="res://levels/LevelApartment.gd" type="Script" id=5]
 [ext_resource path="res://sources/player/Player.tscn" type="PackedScene" id=6]
 [ext_resource path="res://entities/TV.tscn" type="PackedScene" id=7]
-[ext_resource path="res://assets/images/level1/temp_bg.png" type="Texture" id=8]
+[ext_resource path="res://assets/images/level1/scene.png" type="Texture" id=8]
 [ext_resource path="res://levels/puzzles/TVPuzzle.tscn" type="PackedScene" id=9]
 
 [sub_resource type="RectangleShape2D" id=1]
-extents = Vector2( 388.042, 10 )
+extents = Vector2( 167.863, 10 )
 
 [sub_resource type="RectangleShape2D" id=2]
-extents = Vector2( 9.56412, 60.987 )
+extents = Vector2( 10.0384, 38.9408 )
+
+[sub_resource type="RectangleShape2D" id=3]
+extents = Vector2( 2.74109, 18.8766 )
+
+[sub_resource type="RectangleShape2D" id=4]
+extents = Vector2( 2.77517, 20.2218 )
 
 [node name="LevelApartment" instance=ExtResource( 1 )]
 script = ExtResource( 5 )
@@ -38,7 +44,6 @@ margin_bottom = 466.823
 
 [node name="Background" type="Sprite" parent="." index="2"]
 position = Vector2( 84.8247, 82.308 )
-scale = Vector2( 0.546251, 0.546251 )
 texture = ExtResource( 8 )
 
 [node name="Limits" type="RigidBody2D" parent="." index="3"]
@@ -47,23 +52,35 @@ collision_mask = 0
 mode = 1
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Limits" index="0"]
-position = Vector2( 101.463, 130.473 )
+position = Vector2( 79.385, 122.64 )
 shape = SubResource( 1 )
 
-[node name="CollisionShape2D2" type="CollisionShape2D" parent="Limits" index="1"]
-position = Vector2( -146.921, 83.2727 )
+[node name="CollisionShape2D6" type="CollisionShape2D" parent="Limits" index="1"]
+position = Vector2( 82.6203, 46.2865 )
+shape = SubResource( 1 )
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="Limits" index="2"]
+position = Vector2( -67.802, 79.2356 )
 shape = SubResource( 2 )
 
-[node name="CollisionShape2D3" type="CollisionShape2D" parent="Limits" index="2"]
-position = Vector2( 334.371, 80.9513 )
+[node name="CollisionShape2D3" type="CollisionShape2D" parent="Limits" index="3"]
+position = Vector2( 252.136, 80.2344 )
 shape = SubResource( 2 )
+
+[node name="CollisionShape2D4" type="CollisionShape2D" parent="Limits" index="4"]
+position = Vector2( 136.619, 59.4949 )
+shape = SubResource( 3 )
+
+[node name="CollisionShape2D5" type="CollisionShape2D" parent="Limits" index="5"]
+position = Vector2( 33.2068, 58.5754 )
+shape = SubResource( 4 )
 
 [node name="TV" parent="." index="4" instance=ExtResource( 7 )]
-position = Vector2( 111.779, 90.9033 )
-scale = Vector2( 0.560956, 0.754988 )
+position = Vector2( 110.757, 90.2222 )
+interactable = false
 
 [node name="Player" parent="." index="5" instance=ExtResource( 6 )]
-position = Vector2( -85.0565, 103.501 )
+position = Vector2( -27.8509, 98.3262 )
 jump_duration = 0.2
 
 [node name="Camera2D" type="Camera2D" parent="Player" index="3"]

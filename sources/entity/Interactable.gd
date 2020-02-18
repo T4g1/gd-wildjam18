@@ -11,6 +11,7 @@ signal interacted		# When this is interacted with
 
 
 export (NodePath) var interaction_range
+export (bool) var interactable = true
 
 var actors_in_range = []
 
