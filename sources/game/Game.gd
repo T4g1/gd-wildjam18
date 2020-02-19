@@ -11,9 +11,14 @@ export (Array, PackedScene) var levels
 var level
 var level_id: int
 
+var puzzle = null		# Stores any ongoing puzzle scene
+
 
 func _ready() -> void:
 	assert(levels.size() > 0)
+
+	# Allows us to keep the gray background in the editor
+	VisualServer.set_default_clear_color(Color.black)
 
 	start()
 
@@ -77,3 +82,32 @@ func end(won: bool) -> void:
 
 func on_level_end() -> void:
 	next()
+
+
+func puzzle_start(scene: PackedScene) -> Node2D:
+	"""
+	Player enters a puzzle scene
+	"""
+	Utils.get_player().disable()
+
+	puzzle = scene.instance()
+	add_child(puzzle)
+
+	assert(puzzle.connect("puzzle_quit", self, "puzzle_quit") == OK)
+
+	return puzzle
+
+
+func puzzle_quit() -> void:
+	"""
+	Player leave the puzzle screen
+	"""
+	Utils.get_player().enable()
+
+	if not puzzle:
+		return
+
+	remove_child(puzzle)
+	puzzle.queue_free()
+
+	puzzle = null

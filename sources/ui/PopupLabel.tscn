@@ -1,0 +1,46 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://sources/ui/PopupLabel.gd" type="Script" id=1]
+[ext_resource path="res://assets/fonts/poco/Poco_DynamicFont.tres" type="DynamicFont" id=2]
+
+[node name="PopupLabel" type="Control"]
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+script = ExtResource( 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Tween" type="Tween" parent="."]
+
+[node name="Icon" type="TextureRect" parent="."]
+modulate = Color( 1, 1, 1, 0.784314 )
+anchor_left = 0.5
+anchor_right = 0.5
+margin_left = -8.0
+margin_top = -16.6434
+margin_right = 8.0
+margin_bottom = -0.643425
+rect_min_size = Vector2( 16, 16 )
+mouse_filter = 2
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label" type="Label" parent="."]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -25.0
+margin_top = -6.0
+margin_right = 25.0
+margin_bottom = 6.0
+custom_fonts/font = ExtResource( 2 )
+custom_colors/font_outline_modulate = Color( 0, 0, 0, 1 )
+align = 1
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}

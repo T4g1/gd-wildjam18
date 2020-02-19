@@ -7,23 +7,17 @@ signal dialog_start
 signal dialog_next
 signal dialog_end
 
-export (NodePath) var bubble_path
-
-var bubble
+onready var bubble = $SpeechBubble
 
 var lines = []
 var current_line = 0
 
 
 func _ready() -> void:
-	bubble = get_node(bubble_path)
-
-	assert(bubble)
-	assert(bubble.connect("bubble_end", self, "on_bubble_end") == OK)
-
 	# Get lines
 	for child in get_children():
-		assert(child is DialogLine)
+		if not child is DialogLine:
+			continue
 
 		lines.append(child)
 
@@ -52,9 +46,9 @@ func next() -> void:
 
 	var next_line = lines[current_line]
 	if next_line.thinking:
-		bubble.think(next_line.content)
+		bubble.think(next_line.content, next_line.who)
 	else:
-		bubble.say(next_line.content)
+		bubble.say(next_line.content, next_line.who)
 
 	emit_signal("dialog_next")
 
@@ -69,4 +63,7 @@ func end() -> void:
 
 
 func on_bubble_end():
+	if not visible:
+		return
+
 	next()

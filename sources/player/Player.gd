@@ -3,6 +3,7 @@ Handles player logic
 """
 extends KinematicBody2D
 class_name Player
+signal interact
 
 export (float) var max_speed = 200
 export (float) var jump_force = 10
@@ -18,6 +19,11 @@ var gravity
 
 func _ready() -> void:
 	gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
+
+
+func _unhandled_input(event: InputEvent) -> void:
+	if event.is_action_pressed("interact"):
+		emit_signal("interact", self)
 
 
 func _physics_process(delta) -> void:
@@ -88,3 +94,19 @@ func update_animation() -> void:
 		$Sprite.flip_h = velocity.x < 0
 	else:
 		$Sprite.play("idle")
+
+
+func disable():
+	"""
+	Disable player interactions
+	"""
+	set_physics_process(false)
+	set_process_unhandled_input(false)
+
+
+func enable():
+	"""
+	Enable player interactions
+	"""
+	set_physics_process(true)
+	set_process_unhandled_input(true)
