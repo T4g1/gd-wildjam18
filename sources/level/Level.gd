@@ -19,3 +19,16 @@ func end() -> void:
 	Called when player reach end of the level
 	"""
 	emit_signal("level_end")
+
+
+func start_dialog(dialog) -> void:
+	"""
+	Starts a dialog and deactivate player while its speaking
+	"""
+	$Player.disable()
+
+	dialog.start()
+
+	yield(dialog, "dialog_end")
+
+	$Player.enable()

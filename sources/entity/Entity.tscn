@@ -1,7 +1,9 @@
-[gd_scene load_steps=3 format=2]
+[gd_scene load_steps=4 format=2]
 
 [ext_resource path="res://sources/entity/Interactable.gd" type="Script" id=1]
 [ext_resource path="res://sources/ui/PopupLabel.tscn" type="PackedScene" id=2]
+
+[sub_resource type="RectangleShape2D" id=1]
 
 [node name="Entity" type="Node2D" groups=[
 "interactable",
@@ -17,7 +19,11 @@ __meta__ = {
 }
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="InteractionRange"]
+shape = SubResource( 1 )
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 
 [node name="Label" parent="." instance=ExtResource( 2 )]
+margin_top = -23.0
+margin_bottom = -23.0
+text = "Take"
