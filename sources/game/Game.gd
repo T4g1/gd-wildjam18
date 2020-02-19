@@ -27,7 +27,7 @@ func start() -> void:
 	"""
 	Game just started
 	"""
-	level_id = 0
+	level_id = -1
 	next()
 
 	emit_signal("game_start")
