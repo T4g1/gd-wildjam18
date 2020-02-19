@@ -7,6 +7,7 @@ signal game_start
 signal game_end
 
 export (Array, PackedScene) var levels
+export (String, FILE, "*.tscn,*.scn") var credits_path
 
 var level
 var level_id: int
@@ -27,7 +28,7 @@ func start() -> void:
 	"""
 	Game just started
 	"""
-	level_id = -1
+	level_id = 0
 	next()
 
 	emit_signal("game_start")
@@ -74,8 +75,7 @@ func end(won: bool) -> void:
 	When the game is terminated
 	"""
 	if won:
-		# TODO: Goes to credits
-		pass
+		Utils.credits()
 
 	emit_signal("game_end")
 
