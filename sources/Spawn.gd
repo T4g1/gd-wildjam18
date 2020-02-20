@@ -13,7 +13,6 @@ var triggered = false
 
 
 func _ready():
-	return
 	if activated:
 		activate()
 	else:

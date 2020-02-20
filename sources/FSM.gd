@@ -55,3 +55,17 @@ func _set_state(new_state: Node) -> void:
 		print("%s: %s" % [owner.name, new_state.name])
 
 	new_state.on_enter()
+
+
+func disable() -> void:
+	"""
+	Disable processing
+	"""
+	current_state.disable()
+
+
+func enable() -> void:
+	"""
+	Enable processing
+	"""
+	current_state.enable()

@@ -89,30 +89,36 @@ func update_animation() -> void:
 		$Sprite.flip_h = velocity.x < 0
 
 
-func disable():
+func disable() -> void:
 	"""
 	Disable player interactions
 	"""
 	set_physics_process(false)
 	set_process_unhandled_input(false)
 
+	stop()
 
-func enable():
+	$States.disable()
+
+
+func enable() -> void:
 	"""
 	Enable player interactions
 	"""
 	set_physics_process(true)
 	set_process_unhandled_input(true)
 
+	$States.enable()
 
-func is_falling():
+
+func is_falling() -> bool:
 	"""
 	Check if player is falling
 	"""
 	return velocity.y > 0
 
 
-func is_on_wall():
+func is_on_wall() -> bool:
 	"""
 	Check if the player is very close to a wall
 	is_on_wall from KinematicBody2D is unreliable as it gets detected only
@@ -120,3 +126,15 @@ func is_on_wall():
 	This one works standing next to a wall too
 	"""
 	return $WallDetector.get_overlapping_bodies().size() > 0
+
+
+func stop() -> void:
+	"""
+	Stops player from moving
+	"""
+	$States.set_state("idle")
+
+	speed = Vector2(0, 0)
+	direction = Vector2(0, 0)
+	input_direction = Vector2(0, 0)
+	velocity = Vector2(0, 0)
