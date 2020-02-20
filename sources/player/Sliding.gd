@@ -3,6 +3,8 @@ extends "res://sources/State.gd"
 func enter():
 	owner.wall_direction = owner.direction.x
 
+	owner.play_animation("slide")
+
 
 func _unhandled_input(event: InputEvent) -> void:
 	if event.is_action_pressed("ui_up"):

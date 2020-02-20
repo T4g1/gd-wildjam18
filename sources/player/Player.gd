@@ -74,16 +74,19 @@ func _physics_process(delta) -> void:
 	update_animation()
 
 
+func play_animation(animation_name: String) -> void:
+	"""
+	Play the given animation
+	"""
+	$Sprite.play(animation_name)
+
+
 func update_animation() -> void:
 	"""
-	Update player animation based on velocity
+	Update player animation direction on velocity
 	"""
 	if velocity.x != 0:
-		$Sprite.play("run")
-
 		$Sprite.flip_h = velocity.x < 0
-	else:
-		$Sprite.play("idle")
 
 
 func disable():

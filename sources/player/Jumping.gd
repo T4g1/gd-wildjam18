@@ -6,6 +6,8 @@ var air_time
 func enter():
 	air_time = 0
 
+	owner.play_animation("jump")
+
 
 func _physics_process(delta) -> void:
 	air_time += delta

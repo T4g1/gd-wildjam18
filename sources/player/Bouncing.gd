@@ -6,6 +6,8 @@ var bounce_time
 func enter():
 	bounce_time = 0
 
+	owner.play_animation("jump")
+
 
 func _physics_process(delta) -> void:
 	bounce_time += delta
