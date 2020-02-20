@@ -8,3 +8,4 @@
 ]]
 script = ExtResource( 1 )
 levels = [ ExtResource( 2 ) ]
+credits_path = "res://sources/menu/Credits.tscn"

@@ -4,8 +4,6 @@ onready var tween := $Tween as Tween
 onready var logo := $Logo
 onready var topic := $Topic
 
-export (String, FILE, "*.tscn,*.scn") var title_screen_path
-
 var animate_state
 
 
@@ -47,4 +45,4 @@ func load_title() -> void:
 	"""
 	var __ = tween.stop_all()
 
-	Utils.change_scene(title_screen_path)
+	Utils.main_menu()
