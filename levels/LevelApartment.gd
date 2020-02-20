@@ -15,9 +15,7 @@ func _ready() -> void:
 	assert($Drawer.connect("interacted", self, "on_drawer_interacted") == OK)
 	assert($FrontDoor.connect("interacted", self, "on_front_door_interacted") == OK)
 
-	$UI/Mask.visible = false
-
-	$Tornado.enable()
+	$UI/Mask.visible = true
 
 	introduction()
 
