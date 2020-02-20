@@ -21,10 +21,10 @@ export (int, 0, 4) var initial_channel = 0
 export (int) var max_win_streak = 4
 export (float) var size_factor = 0.2
 
+var accept_inputs = true
 var state = Vector2(0, 0)
 var correct_move = Vector2(0, 0)
 var win_streak = 0
-var clues
 var moves = [
 	DOWN,
 	UP,
@@ -32,16 +32,28 @@ var moves = [
 	LEFT,
 ]
 
+# Same order as "moves": Clues matching every moves
+onready var clues = [
+	$Clues/BottomClue,
+	$Clues/TopClue,
+	$Clues/RighClue,
+	$Clues/LeftClue
+]
+
+onready var sfx_channels = [
+	$SFX/Channel1,
+	$SFX/Channel2,
+	$SFX/Channel3
+]
+
+onready var sfx_antennas = [
+	$SFX/Antenna1,
+	$SFX/Antenna2,
+	$SFX/Antenna3
+]
+
 
 func _ready() -> void:
-	# Same order as "moves": Clues matching every moves
-	clues = [
-		$Clues/BottomClue,
-		$Clues/TopClue,
-		$Clues/RighClue,
-		$Clues/LeftClue
-	]
-
 	reset()
 
 
@@ -59,6 +71,9 @@ func reset() -> void:
 
 func _input(event: InputEvent) -> void:
 	get_tree().set_input_as_handled()
+
+	if not accept_inputs:
+		return
 
 	if event.is_action_pressed("ui_cancel"):
 		emit_signal("puzzle_quit")
@@ -79,8 +94,10 @@ func _input(event: InputEvent) -> void:
 		guess = LEFT
 
 	if guess.length() > 0:
+		accept_inputs = false
+
 		animate_press(button)
-		yield(play(guess), "completed")
+		play(guess)
 
 
 func animate_press(button: AnimatedSprite) -> void:
@@ -96,6 +113,15 @@ func play(guess: Vector2) -> void:
 	"""
 	Try a possible move
 	"""
+	var sfx
+	if guess.y != 0:
+		sfx = sfx_channels[randi() % sfx_channels.size()]
+	else:
+		sfx = sfx_antennas[randi() % sfx_antennas.size()]
+
+	sfx.play()
+	yield(sfx, "finished")
+
 	if guess == correct_move:
 		yield(right_guess(), "completed")
 	else:
@@ -105,6 +131,8 @@ func play(guess: Vector2) -> void:
 		emit_signal("puzzle_won")
 	else:
 		generate_clue()
+
+	accept_inputs = true
 
 
 func generate_clue() -> void:
@@ -145,8 +173,9 @@ func wrong_guess() -> void:
 	"""
 	Animation showing the player is wrong
 	"""
-	# TODO
+	$SFX/Error.play()
 	yield(get_tree(), "idle_frame")
+
 	win_streak = 0
 
 
@@ -154,6 +183,7 @@ func right_guess() -> void:
 	"""
 	Animation showing the player is correct
 	"""
-	# TODO
+	$SFX/Correct.play()
 	yield(get_tree(), "idle_frame")
+
 	win_streak += 1
