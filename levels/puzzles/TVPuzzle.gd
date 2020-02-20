@@ -71,7 +71,7 @@ func reset() -> void:
 
 func _input(event: InputEvent) -> void:
 	get_tree().set_input_as_handled()
-	
+
 	if not accept_inputs:
 		return
 
@@ -95,7 +95,7 @@ func _input(event: InputEvent) -> void:
 
 	if guess.length() > 0:
 		accept_inputs = false
-		
+
 		animate_press(button)
 		play(guess)
 
@@ -118,10 +118,10 @@ func play(guess: Vector2) -> void:
 		sfx = sfx_channels[randi() % sfx_channels.size()]
 	else:
 		sfx = sfx_antennas[randi() % sfx_antennas.size()]
-	
+
 	sfx.play()
 	yield(sfx, "finished")
-		
+
 	if guess == correct_move:
 		yield(right_guess(), "completed")
 	else:
@@ -131,7 +131,7 @@ func play(guess: Vector2) -> void:
 		emit_signal("puzzle_won")
 	else:
 		generate_clue()
-	
+
 	accept_inputs = true
 
 
@@ -175,7 +175,7 @@ func wrong_guess() -> void:
 	"""
 	$SFX/Error.play()
 	yield(get_tree(), "idle_frame")
-	
+
 	win_streak = 0
 
 
@@ -185,5 +185,5 @@ func right_guess() -> void:
 	"""
 	$SFX/Correct.play()
 	yield(get_tree(), "idle_frame")
-	
+
 	win_streak += 1

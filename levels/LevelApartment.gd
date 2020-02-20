@@ -20,19 +20,6 @@ func _ready() -> void:
 	introduction()
 
 
-func start_dialog(dialog) -> void:
-	"""
-	Starts a dialog and deactivate player while its speaking
-	"""
-	$Player.disable()
-
-	dialog.start()
-
-	yield(dialog, "dialog_end")
-
-	$Player.enable()
-
-
 func introduction() -> void:
 	"""
 	Level start hidden with a dialog
