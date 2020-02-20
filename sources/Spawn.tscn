@@ -10,6 +10,7 @@ extents = Vector2( 18.2991, 17.318 )
 "spawn",
 ]]
 z_index = -1
+collision_layer = 8
 script = ExtResource( 1 )
 
 [node name="Sprite" type="Sprite" parent="."]

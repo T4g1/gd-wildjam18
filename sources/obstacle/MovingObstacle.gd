@@ -4,6 +4,7 @@ Shall be children of a PathFollow2D
 """
 extends Node2D
 signal triggered
+signal end_reached
 
 export(float) var speed = 100
 export (bool) var is_moving = false
@@ -20,7 +21,17 @@ func _process(delta):
 	"""Only move when follower/path is set
 	"""
 	if is_moving:
-		set_offset(follower.offset + speed * delta)
+		move(delta)
+
+
+func move(delta) -> void:
+	"""
+	Move along the path
+	"""
+	set_offset(follower.offset + speed * delta)
+
+	if follower.unit_offset >= 1:
+		emit_signal("end_reached")
 
 
 func set_offset(value: float) -> void:

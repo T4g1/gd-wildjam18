@@ -11,11 +11,12 @@ func _ready():
 		assert(spawn.connect("spawn_left", self, "_on_spawn_left") == OK)
 
 
-func _on_spawn_left():
+func _on_spawn_left(spawn) -> void:
 	"""
 	Enable the tornado when player leaves spawn
 	"""
-	tornado.enable()
+	if spawn == Utils.get_game().get_active_spawn():
+		tornado.enable()
 
 
 func _on_Tornado_triggered(_body) -> void:
@@ -24,5 +25,12 @@ func _on_Tornado_triggered(_body) -> void:
 	"""
 	var spawn = Utils.get_game().get_active_spawn()
 	$Player.position = spawn.global_position
+
+	yield(get_tree(), "idle_frame")
+
 	tornado.set_offset(spawn.get_parent().offset)
 	tornado.disable()
+
+
+func _on_Tornado_end_reached() -> void:
+	end()

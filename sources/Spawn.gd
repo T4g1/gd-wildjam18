@@ -13,6 +13,7 @@ var triggered = false
 
 
 func _ready():
+	return
 	if activated:
 		activate()
 	else:
@@ -46,7 +47,7 @@ func _on_body_entered(_body) -> void:
 	trigger_count += 1
 
 	triggered = true
-	emit_signal("spawn_entered")
+	emit_signal("spawn_entered", self)
 
 	if trigger_once and trigger_count > 1:
 		return
@@ -59,7 +60,7 @@ func _on_body_exited(_body) -> void:
 		return
 
 	triggered = false
-	emit_signal("spawn_left")
+	emit_signal("spawn_left", self)
 
 
 func is_active():
