@@ -1,8 +1,9 @@
-[gd_scene load_steps=17 format=2]
+[gd_scene load_steps=19 format=2]
 
 [ext_resource path="res://sources/level/Level.tscn" type="PackedScene" id=1]
 [ext_resource path="res://sources/dialog/DialogLine.tscn" type="PackedScene" id=2]
 [ext_resource path="res://sources/dialog/Dialog.tscn" type="PackedScene" id=3]
+[ext_resource path="res://entities/Tornado.tscn" type="PackedScene" id=4]
 [ext_resource path="res://levels/LevelApartment.gd" type="Script" id=5]
 [ext_resource path="res://sources/player/Player.tscn" type="PackedScene" id=6]
 [ext_resource path="res://entities/TV.tscn" type="PackedScene" id=7]
@@ -24,6 +25,11 @@ extents = Vector2( 2.74109, 18.8766 )
 
 [sub_resource type="RectangleShape2D" id=4]
 extents = Vector2( 2.77517, 20.2218 )
+
+[sub_resource type="Curve2D" id=5]
+_data = {
+"points": PoolVector2Array( 0, 0, 0, 0, -131.178, 87.6096, 0, 0, 0, 0, 254.745, 88.4458 )
+}
 
 [node name="LevelApartment" instance=ExtResource( 1 )]
 script = ExtResource( 5 )
@@ -156,3 +162,12 @@ who = "Johnny"
 thinking = true
 
 [node name="Tween" type="Tween" parent="." index="9"]
+
+[node name="Tornado" parent="." index="10" instance=ExtResource( 4 )]
+trajectory_path = NodePath("../Path2D")
+
+[node name="Path2D" type="Path2D" parent="." index="11"]
+curve = SubResource( 5 )
+__meta__ = {
+"_edit_group_": true
+}
