@@ -6,8 +6,9 @@ class_name Player
 signal interact
 
 export (Vector2) var max_speed = Vector2(150, 150)
-export (float) var jump_force = 200
+export (float) var jump_force = 250
 export (float) var jump_duration = 0.3
+export (float) var bounce_duration = 0.3
 export (float) var sliding_speed = 5
 export (float) var acceleration = 9
 export (float) var deceleration = 7
@@ -20,6 +21,8 @@ var gravity
 
 var input_direction: Vector2 = Vector2()
 var direction: Vector2 = Vector2()
+
+var wall_direction: int = 0			# Where was wall last hit
 
 
 func _ready() -> void:
@@ -60,19 +63,6 @@ func _physics_process(delta) -> void:
 	else:
 		speed.x -= deceleration
 
-	# Jumping
-	if jumping:
-		air_time += delta
-
-		# End of the jump
-		var falling = velocity.y > 0
-		if air_time >= jump_duration or falling:
-			jumping = false
-		else:
-			velocity.y = -jump_force
-	else:
-		air_time = 0
-
 	speed.x = clamp(speed.x, 0, max_speed.x)
 
 	velocity.x = speed.x * direction.x
@@ -80,10 +70,6 @@ func _physics_process(delta) -> void:
 
 	velocity = move_and_slide(velocity, Vector2.UP)
 	speed.x = abs(velocity.x)
-
-	var sliding = not is_on_floor() and is_on_wall()
-	if sliding and not jumping:
-		velocity.y = sliding_speed
 
 	update_animation()
 
@@ -114,3 +100,20 @@ func enable():
 	"""
 	set_physics_process(true)
 	set_process_unhandled_input(true)
+
+
+func is_falling():
+	"""
+	Check if player is falling
+	"""
+	return velocity.y > 0
+
+
+func is_on_wall():
+	"""
+	Check if the player is very close to a wall
+	is_on_wall from KinematicBody2D is unreliable as it gets detected only
+	if player move in direction of the wall during that frame
+	This one works standing next to a wall too
+	"""
+	return $WallDetector.get_overlapping_bodies().size() > 0

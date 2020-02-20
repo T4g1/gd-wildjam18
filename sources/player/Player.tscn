@@ -1,10 +1,19 @@
-[gd_scene load_steps=4 format=2]
+[gd_scene load_steps=11 format=2]
 
 [ext_resource path="res://assets/player_spriteframes.tres" type="SpriteFrames" id=1]
 [ext_resource path="res://sources/player/Player.gd" type="Script" id=2]
+[ext_resource path="res://sources/FSM.gd" type="Script" id=3]
+[ext_resource path="res://sources/player/Idle.gd" type="Script" id=4]
+[ext_resource path="res://sources/player/Falling.gd" type="Script" id=5]
+[ext_resource path="res://sources/player/Jumping.gd" type="Script" id=6]
+[ext_resource path="res://sources/player/Sliding.gd" type="Script" id=7]
+[ext_resource path="res://sources/player/Bouncing.gd" type="Script" id=8]
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 5.62455, 12.5059 )
+
+[sub_resource type="RectangleShape2D" id=2]
+extents = Vector2( 1.47234, 10.2016 )
 
 [node name="Player" type="KinematicBody2D" groups=[
 "actor",
@@ -20,9 +29,41 @@ shape = SubResource( 1 )
 [node name="Sprite" type="AnimatedSprite" parent="."]
 frames = ExtResource( 1 )
 animation = "idle"
+frame = 1
 playing = true
 __meta__ = {
 "_edit_lock_": true
 }
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+
+[node name="States" type="Node" parent="."]
+script = ExtResource( 3 )
+INITIAL_STATE = NodePath("idle")
+
+[node name="idle" type="Node" parent="States"]
+script = ExtResource( 4 )
+
+[node name="falling" type="Node" parent="States"]
+script = ExtResource( 5 )
+
+[node name="jumping" type="Node" parent="States"]
+script = ExtResource( 6 )
+
+[node name="sliding" type="Node" parent="States"]
+script = ExtResource( 7 )
+
+[node name="bouncing" type="Node" parent="States"]
+script = ExtResource( 8 )
+
+[node name="WallDetector" type="Area2D" parent="."]
+collision_layer = 0
+collision_mask = 4
+
+[node name="Right" type="CollisionShape2D" parent="WallDetector"]
+position = Vector2( 6.687, 1.5 )
+shape = SubResource( 2 )
+
+[node name="Left" type="CollisionShape2D" parent="WallDetector"]
+position = Vector2( -7.683, 1.5 )
+shape = SubResource( 2 )
