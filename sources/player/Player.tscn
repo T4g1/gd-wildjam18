@@ -28,7 +28,7 @@ shape = SubResource( 1 )
 
 [node name="Sprite" type="AnimatedSprite" parent="."]
 frames = ExtResource( 1 )
-animation = "fall"
+animation = "idle"
 playing = true
 __meta__ = {
 "_edit_lock_": true
