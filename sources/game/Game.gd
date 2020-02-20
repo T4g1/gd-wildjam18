@@ -109,3 +109,16 @@ func puzzle_quit() -> void:
 	puzzle.queue_free()
 
 	puzzle = null
+
+
+func get_active_spawn() -> Node:
+	"""
+	Get where player should spawn
+	"""
+	for spawn in get_tree().get_nodes_in_group("spawn"):
+		if spawn.is_active():
+			return spawn
+
+	# Should always have an active spawn!
+	assert(false)
+	return null

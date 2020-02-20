@@ -1,8 +1,15 @@
-[gd_scene load_steps=4 format=2]
+[gd_scene load_steps=7 format=2]
 
 [ext_resource path="res://sources/level/Level.tscn" type="PackedScene" id=1]
 [ext_resource path="res://levels/LevelTornado.gd" type="Script" id=2]
 [ext_resource path="res://assets/action_tileset.tres" type="TileSet" id=3]
+[ext_resource path="res://entities/Tornado.tscn" type="PackedScene" id=4]
+[ext_resource path="res://sources/Spawn.tscn" type="PackedScene" id=5]
+
+[sub_resource type="Curve2D" id=1]
+_data = {
+"points": PoolVector2Array( 0, 0, 0, 0, -784.45, 16.4998, 0, 0, 0, 0, 861.9, 2.19977 )
+}
 
 [node name="LevelTornado" instance=ExtResource( 1 )]
 script = ExtResource( 2 )
@@ -18,3 +25,38 @@ tile_data = PoolIntArray( -851975, 0, 0, -786439, 0, 0, -851923, 0, 0, -720903, 
 [node name="Player" parent="." index="1"]
 position = Vector2( -653.996, -1.02669 )
 jump_force = 100.0
+
+[node name="TornadoPath" type="Path2D" parent="." index="4"]
+position = Vector2( 7.04205, -1.7605 )
+curve = SubResource( 1 )
+
+[node name="TornadoFollow" type="PathFollow2D" parent="TornadoPath" index="0"]
+position = Vector2( -784.45, 16.4998 )
+rotation = -0.00868514
+rotate = false
+loop = false
+
+[node name="Tornado" parent="TornadoPath/TornadoFollow" index="0" instance=ExtResource( 4 )]
+position = Vector2( 1.88922, -40.0102 )
+rotation = 0.00868514
+
+[node name="FirstSpawn" type="PathFollow2D" parent="TornadoPath" index="1"]
+position = Vector2( -784.45, 16.4998 )
+rotation = -0.00868514
+rotate = false
+
+[node name="Spawn" parent="TornadoPath/FirstSpawn" index="0" instance=ExtResource( 5 )]
+position = Vector2( 129.838, -15.852 )
+rotation = 0.00868514
+activated = true
+
+[node name="SecondSpawn" type="PathFollow2D" parent="TornadoPath" index="2"]
+position = Vector2( -186.082, 11.3024 )
+rotation = -0.00868634
+offset = 593.4
+rotate = false
+
+[node name="Spawn" parent="TornadoPath/SecondSpawn" index="0" instance=ExtResource( 5 )]
+position = Vector2( 81.1285, -18.9829 )
+rotation = 0.00868514
+[connection signal="triggered" from="TornadoPath/TornadoFollow/Tornado" to="." method="_on_Tornado_triggered"]

@@ -1,39 +1,40 @@
+"""
+Handles a trigger that moves along a path
+Shall be children of a PathFollow2D
+"""
 extends Node2D
 signal triggered
 
 export(float) var speed = 100
-export(NodePath) var trajectory_path
+export (bool) var is_moving = false
 
-var follower: PathFollow2D
-var is_moving: bool = false
+var follower
 
 
 func _ready():
-	assert(trajectory_path)
-	assert(get_node(trajectory_path))
-
-	call_deferred("attach_to_trajectory", get_node(trajectory_path))
+	follower = get_parent()
+	assert(follower is PathFollow2D)
 
 
 func _process(delta):
 	"""Only move when follower/path is set
 	"""
-	if is_moving and follower:
-		follower.offset += speed * delta
+	if is_moving:
+		set_offset(follower.offset + speed * delta)
 
 
-func attach_to_trajectory(trajectory):
-	"""Create PathFollow2D and make it follow the path
+func set_offset(value: float) -> void:
 	"""
-	assert(trajectory is Path2D)
+	Sets where the tornado is on the path
+	"""
+	follower.offset = value
 
-	get_parent().remove_child(self)
 
-	follower = PathFollow2D.new()
-	follower.loop = false
-	follower.add_child(self)
-
-	trajectory.add_child(follower)
+func get_offset() -> float:
+	"""
+	Get where the tornado is on the path
+	"""
+	return follower.offset
 
 
 func disable() -> void:
