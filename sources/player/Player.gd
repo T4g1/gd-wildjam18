@@ -5,16 +5,20 @@ extends KinematicBody2D
 class_name Player
 signal interact
 
-export (float) var max_speed = 200
-export (float) var jump_force = 10
+export (Vector2) var max_speed = Vector2(150, 150)
+export (float) var jump_force = 200
 export (float) var jump_duration = 0.3
-export (float) var run_force = 10
-export (float) var stop_force = 300
+export (float) var acceleration = 9
+export (float) var deceleration = 7
 
-var velocity: Vector2 = Vector2()
+var speed: Vector2 = Vector2()		# Absolute speed of the player
+var velocity: Vector2 = Vector2()	# Velocity applied to the player
 var jumping: bool = false
 var air_time: float = 0
 var gravity
+
+var input_direction: Vector2 = Vector2()
+var direction: Vector2 = Vector2()
 
 
 func _ready() -> void:
@@ -25,61 +29,56 @@ func _unhandled_input(event: InputEvent) -> void:
 	if event.is_action_pressed("interact"):
 		emit_signal("interact", self)
 
+	# Jumping
+	if event.is_action_pressed("ui_up"):
+		jumping = true
+	if event.is_action_released("ui_up"):
+		jumping = false
+
 
 func _physics_process(delta) -> void:
 	"""
 	Handles player movements
 	"""
 
+	# Inputs
+	if input_direction.length():
+		direction = input_direction
+
+	input_direction = Vector2(0, 0)
+	if Input.is_action_pressed("ui_left"):
+		input_direction.x -= 1
+	if Input.is_action_pressed("ui_right"):
+		input_direction.x += 1
+
+	# Movement
+	if input_direction.x == - direction.x:
+		speed.x = 0
+	if input_direction.x:
+		speed.x += acceleration
+	else:
+		speed.x -= deceleration
+
+	# Jumping
 	if jumping:
 		air_time += delta
 
-	var movement = Vector2(0, 0)
-
-	# Walking
-	if Input.is_action_pressed("ui_left"):
-		movement.x -= 1
-	if Input.is_action_pressed("ui_right"):
-		movement.x += 1
-
-	# Jumping
-	if Input.is_action_pressed("ui_up"):
+		# End of the jump
 		var falling = velocity.y > 0
-
-		# Jumps begin
-		if is_on_floor():
-			jumping = true
-			movement.y -= 1
-
-		# Can not jump while falling
-		elif falling:
+		if air_time >= jump_duration or falling:
 			jumping = false
-
-		# Going further up while jumping
-		elif jumping and air_time < jump_duration:
-			movement.y -= 1
+		else:
+			velocity.y = -jump_force
 	else:
-		jumping = false
 		air_time = 0
 
-	# Natural forces
-	velocity += Vector2(0, gravity) * delta
+	speed.x = clamp(speed.x, 0, max_speed.x)
 
-	# Player input
-	velocity += movement * Vector2(run_force, jump_force)
+	velocity.x = speed.x * direction.x
+	velocity.y += gravity * delta
 
-	velocity.x = clamp(velocity.x, -max_speed, max_speed)
-	velocity.y = clamp(velocity.y, -max_speed, max_speed)
-
-	# Apply friction when player stop moving to come to a stop
-	if movement.x == 0:
-		var friction = sign(velocity.x) * stop_force * delta
-		if abs(friction) <= abs(velocity.x):
-			velocity.x -= friction
-		else:
-			velocity.x = 0
-
-	velocity = move_and_slide(velocity, Vector2.UP)
+	velocity = move_and_slide(velocity)
+	speed.x = abs(velocity.x)
 
 	update_animation()
 

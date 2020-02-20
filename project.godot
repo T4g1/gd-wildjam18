@@ -96,7 +96,7 @@ interact={
 
 [physics]
 
-2d/default_gravity=200
+2d/default_gravity=500
 
 [rendering]
 
