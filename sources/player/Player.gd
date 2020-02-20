@@ -8,6 +8,7 @@ signal interact
 export (Vector2) var max_speed = Vector2(150, 150)
 export (float) var jump_force = 200
 export (float) var jump_duration = 0.3
+export (float) var sliding_speed = 5
 export (float) var acceleration = 9
 export (float) var deceleration = 7
 
@@ -30,7 +31,7 @@ func _unhandled_input(event: InputEvent) -> void:
 		emit_signal("interact", self)
 
 	# Jumping
-	if event.is_action_pressed("ui_up"):
+	if event.is_action_pressed("ui_up") and is_on_floor():
 		jumping = true
 	if event.is_action_released("ui_up"):
 		jumping = false
@@ -77,8 +78,12 @@ func _physics_process(delta) -> void:
 	velocity.x = speed.x * direction.x
 	velocity.y += gravity * delta
 
-	velocity = move_and_slide(velocity)
+	velocity = move_and_slide(velocity, Vector2.UP)
 	speed.x = abs(velocity.x)
+
+	var sliding = not is_on_floor() and is_on_wall()
+	if sliding and not jumping:
+		velocity.y = sliding_speed
 
 	update_animation()
 
