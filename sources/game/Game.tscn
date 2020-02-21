@@ -13,5 +13,4 @@
 ]]
 script = ExtResource( 1 )
 levels = [ ExtResource( 2 ), ExtResource( 4 ), ExtResource( 3 ), ExtResource( 5 ), ExtResource( 6 ) ]
-
-[node name="PauseMenu" parent="." instance=ExtResource( 7 )]
+PauseMenu = ExtResource( 7 )

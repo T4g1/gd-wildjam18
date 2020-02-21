@@ -18,18 +18,10 @@ var puzzle = null		# Stores any ongoing puzzle scene
 
 func _ready() -> void:
 	assert(levels.size() > 0)
+	assert(PauseMenu)
 
 	# Allows us to keep the gray background in the editor
 	VisualServer.set_default_clear_color(Color.black)
-
-	# Connect and handle pause menu signal
-	assert($PauseMenu.connect("pause", self, "on_pause") == OK)
-	assert($PauseMenu.connect("resume", self, "on_resume") == OK)
-	assert($PauseMenu.connect("go_to_main_menu", self, "on_go_to_main_menu") == OK)
-
-	# Add pause menu to levels
-	for level in levels:
-		level.add_child(pause_menu)
 
 	start()
 
@@ -59,6 +51,16 @@ func load_level(id: int) -> bool:
 	add_child(level)
 	
 	assert(level.connect("level_end", self, "on_level_end") == OK)
+	
+	# level is newly created. So we need create new pause menu, too
+	var pause_menu = PauseMenu.instance()
+	# Connect and handle pause menu signal
+	assert(pause_menu.connect("pause", self, "on_pause") == OK)
+	assert(pause_menu.connect("resume", self, "on_resume") == OK)
+	assert(pause_menu.connect("go_to_main_menu", self, "on_go_to_main_menu") == OK)
+
+	# Add pause menu to levels
+	level.add_child(pause_menu)
 
 	return true
 
@@ -126,13 +128,11 @@ func puzzle_quit() -> void:
 """Handle pause menu events
 """
 func on_pause() -> void:
-	if level:
-		level.get_tree().paused = true
+	get_tree().paused = true
 	
 func on_resume() -> void:
-	if level:
-		level.get_tree().paused = true
-	pass
+	get_tree().paused = false
 
 func on_go_to_main_menu() -> void:
+	get_tree().paused = false
 	Utils.main_menu()
