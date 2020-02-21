@@ -8,7 +8,6 @@ signal game_end
 
 export (Array, PackedScene) var levels
 export (String, FILE, "*.tscn,*.scn") var credits_path
-export (PackedScene) var PauseMenu
 
 var level
 var level_id: int
@@ -18,7 +17,6 @@ var puzzle = null		# Stores any ongoing puzzle scene
 
 func _ready() -> void:
 	assert(levels.size() > 0)
-	assert(PauseMenu)
 
 	# Allows us to keep the gray background in the editor
 	VisualServer.set_default_clear_color(Color.black)
@@ -49,18 +47,8 @@ func load_level(id: int) -> bool:
 	level_id = id
 	level = levels[id].instance()
 	add_child(level)
-	
-	assert(level.connect("level_end", self, "on_level_end") == OK)
-	
-	# level is newly created. So we need create new pause menu, too
-	var pause_menu = PauseMenu.instance()
-	# Connect and handle pause menu signal
-	assert(pause_menu.connect("pause", self, "on_pause") == OK)
-	assert(pause_menu.connect("resume", self, "on_resume") == OK)
-	assert(pause_menu.connect("go_to_main_menu", self, "on_go_to_main_menu") == OK)
 
-	# Add pause menu to levels
-	level.add_child(pause_menu)
+	assert(level.connect("level_end", self, "on_level_end") == OK)
 
 	return true
 
@@ -125,14 +113,9 @@ func puzzle_quit() -> void:
 	puzzle = null
 
 
-"""Handle pause menu events
-"""
-func on_pause() -> void:
-	get_tree().paused = true
-	
-func on_resume() -> void:
-	get_tree().paused = false
-
-func on_go_to_main_menu() -> void:
-	get_tree().paused = false
-	Utils.main_menu()
+func _input(event: InputEvent) -> void:
+	"""
+	Allows to pause game
+	"""
+	if event.is_action_pressed("ui_cancel"):
+		$UI/PauseMenu.on_pause()
