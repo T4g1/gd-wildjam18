@@ -12,7 +12,6 @@
 [ext_resource path="res://entities/Window.tscn" type="PackedScene" id=12]
 [ext_resource path="res://entities/FrontDoor.tscn" type="PackedScene" id=13]
 
-
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 167.863, 10 )
 

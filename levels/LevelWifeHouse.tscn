@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=2]
+[gd_scene load_steps=14 format=2]
 
 [ext_resource path="res://sources/level/Level.tscn" type="PackedScene" id=1]
 [ext_resource path="res://entities/Tires.tscn" type="PackedScene" id=2]
@@ -8,17 +8,29 @@
 [ext_resource path="res://levels/LevelWifeHouse.gd" type="Script" id=6]
 [ext_resource path="res://sources/ui/dialog/Dialog.tscn" type="PackedScene" id=7]
 [ext_resource path="res://sources/ui/dialog/DialogLine.tscn" type="PackedScene" id=8]
+[ext_resource path="res://assets/images/level3/background.png" type="Texture" id=9]
 
 [sub_resource type="RectangleShape2D" id=1]
-extents = Vector2( 259.24, 6.46997 )
+extents = Vector2( 171.946, 6.46997 )
+
+[sub_resource type="RectangleShape2D" id=2]
+extents = Vector2( 171.946, 6.46997 )
+
+[sub_resource type="RectangleShape2D" id=3]
+extents = Vector2( 5.11014, 41.6173 )
+
+[sub_resource type="RectangleShape2D" id=4]
+extents = Vector2( 2.43374, 15.2732 )
 
 [node name="LevelWifeHouse" instance=ExtResource( 1 )]
 script = ExtResource( 6 )
 
 [node name="Background" type="Sprite" parent="." index="0"]
+scale = Vector2( 0.464722, 0.509834 )
+texture = ExtResource( 9 )
 
 [node name="Player" parent="." index="1"]
-position = Vector2( 43.088, 52.9392 )
+position = Vector2( -135.796, 14.9398 )
 
 [node name="Introduction" parent="UI" index="0" instance=ExtResource( 7 )]
 
@@ -74,17 +86,37 @@ who = "Jonhy"
 thinking = true
 
 [node name="Floor" type="CollisionShape2D" parent="Limits" index="0"]
-position = Vector2( 0, 73.4421 )
+position = Vector2( -5.98126, 36.3889 )
 shape = SubResource( 1 )
 
+[node name="Ceiling" type="CollisionShape2D" parent="Limits" index="1"]
+position = Vector2( -9.92459, -33.8742 )
+shape = SubResource( 2 )
+
+[node name="WallLeft" type="CollisionShape2D" parent="Limits" index="2"]
+position = Vector2( -160.13, 1.25739 )
+shape = SubResource( 3 )
+
+[node name="WallRight" type="CollisionShape2D" parent="Limits" index="3"]
+position = Vector2( 158.563, -1.96899 )
+shape = SubResource( 3 )
+
+[node name="BeamKitchen" type="CollisionShape2D" parent="Limits" index="4"]
+position = Vector2( -37.6159, -20.3668 )
+shape = SubResource( 4 )
+
+[node name="BeamGarage" type="CollisionShape2D" parent="Limits" index="5"]
+position = Vector2( 58.214, -20.2007 )
+shape = SubResource( 4 )
+
 [node name="Car" parent="." index="4" instance=ExtResource( 4 )]
-position = Vector2( 217.991, 53.1566 )
+position = Vector2( 106.502, 16.2326 )
 
 [node name="GasCan" parent="." index="5" instance=ExtResource( 5 )]
-position = Vector2( 182.789, 55.7215 )
+position = Vector2( 75.9604, 15.5712 )
 
 [node name="Tires" parent="." index="6" instance=ExtResource( 2 )]
-position = Vector2( 253.502, 55.2338 )
+position = Vector2( 137.353, 16.1589 )
 
 [node name="Tools" parent="." index="7" instance=ExtResource( 3 )]
-position = Vector2( 182.302, 11.3431 )
+position = Vector2( 76.9074, -10.166 )
