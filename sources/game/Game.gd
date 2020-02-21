@@ -126,11 +126,8 @@ func puzzle_quit() -> void:
 func on_pause() -> void:
 	if level:
 		level.get_tree().paused = true
-		# TODO: show resume popup
-	pass
 	
 func on_resume() -> void:
 	if level:
 		level.get_tree().paused = true
-		# TODO: hide resume popup
 	pass

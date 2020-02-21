@@ -34,6 +34,11 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://sources/level/Level.gd"
 }, {
+"base": "CanvasLayer",
+"class": "PauseMenu",
+"language": "GDScript",
+"path": "res://sources/game/PauseMenu.gd"
+}, {
 "base": "KinematicBody2D",
 "class": "Player",
 "language": "GDScript",
@@ -55,6 +60,7 @@ _global_script_class_icons={
 "Game": "",
 "Interactable": "",
 "Level": "",
+"PauseMenu": "",
 "Player": "",
 "PopupLabel": "",
 "SpeechBubble": ""
