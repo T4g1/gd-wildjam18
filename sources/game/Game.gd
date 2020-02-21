@@ -8,7 +8,7 @@ signal game_end
 
 export (Array, PackedScene) var levels
 export (String, FILE, "*.tscn,*.scn") var credits_path
-export (PackedScene) var GUI
+export (PackedScene) var PauseMenu
 
 var level
 var level_id: int
@@ -49,14 +49,14 @@ func load_level(id: int) -> bool:
 	level = levels[id].instance()
 	add_child(level)
 	
-	# create gui and add to level
-	var gui = GUI.instance()
+	# create pause menu and add to level
+	var pause_menu = PauseMenu.instance()
 	# TODO: set related properties for settings if need
 
 	assert(level.connect("level_end", self, "on_level_end") == OK)
 
-	assert(gui.connect("pause", self, "on_pause") == OK)
-	assert(gui.connect("resume", self, "on_resume") == OK)
+	assert(pause_menu.connect("pause", self, "on_pause") == OK)
+	assert(pause_menu.connect("resume", self, "on_resume") == OK)
 
 	return true
 
@@ -121,7 +121,7 @@ func puzzle_quit() -> void:
 	puzzle = null
 
 
-"""Handle GUI events
+"""Handle pause menu events
 """
 func on_pause() -> void:
 	if level:
