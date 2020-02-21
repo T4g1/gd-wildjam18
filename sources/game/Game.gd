@@ -9,6 +9,7 @@ signal game_end
 export (Array, PackedScene) var levels
 export (String, FILE, "*.tscn,*.scn") var credits_path
 export (PackedScene) var PauseMenu
+export (int) var main_menu_index
 
 var level
 var level_id: int
@@ -17,7 +18,8 @@ var puzzle = null		# Stores any ongoing puzzle scene
 
 
 func _ready() -> void:
-	assert(levels.size() > 0)
+	assert(main_menu_index >= 0)
+	assert(levels.size() > main_menu_index)
 
 	# Allows us to keep the gray background in the editor
 	VisualServer.set_default_clear_color(Color.black)
@@ -49,14 +51,18 @@ func load_level(id: int) -> bool:
 	level = levels[id].instance()
 	add_child(level)
 	
-	# create pause menu and add to level
-	var pause_menu = PauseMenu.instance()
-	# TODO: set related properties for settings if need
-
 	assert(level.connect("level_end", self, "on_level_end") == OK)
 
-	assert(pause_menu.connect("pause", self, "on_pause") == OK)
-	assert(pause_menu.connect("resume", self, "on_resume") == OK)
+	if level is Level:
+		# only add pause menu to level scene
+		# create pause menu and add to level
+		var pause_menu = PauseMenu.instance()
+		# TODO: set related properties for settings if need
+		assert(pause_menu.connect("pause", self, "on_pause") == OK)
+		assert(pause_menu.connect("resume", self, "on_resume") == OK)
+		assert(pause_menu.connect("go_to_main_menu", self, "on_go_to_main_menu") == OK)
+
+		level.add_child(pause_menu)
 
 	return true
 
@@ -131,3 +137,9 @@ func on_resume() -> void:
 	if level:
 		level.get_tree().paused = true
 	pass
+
+func on_go_to_main_menu() -> void:
+	if level and level_id != main_menu_index:
+		if not load_level(main_menu_index):
+			print('Can not switch to main menu')
+	
