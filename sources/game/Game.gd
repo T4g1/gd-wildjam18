@@ -22,6 +22,15 @@ func _ready() -> void:
 	# Allows us to keep the gray background in the editor
 	VisualServer.set_default_clear_color(Color.black)
 
+	# Connect and handle pause menu signal
+	assert($PauseMenu.connect("pause", self, "on_pause") == OK)
+	assert($PauseMenu.connect("resume", self, "on_resume") == OK)
+	assert($PauseMenu.connect("go_to_main_menu", self, "on_go_to_main_menu") == OK)
+
+	# Add pause menu to levels
+	for level in levels:
+		level.add_child(pause_menu)
+
 	start()
 
 
@@ -50,17 +59,6 @@ func load_level(id: int) -> bool:
 	add_child(level)
 	
 	assert(level.connect("level_end", self, "on_level_end") == OK)
-
-	if level is Level:
-		# only add pause menu to level scene
-		# create pause menu and add to level
-		var pause_menu = PauseMenu.instance()
-		# TODO: set related properties for settings if need
-		assert(pause_menu.connect("pause", self, "on_pause") == OK)
-		assert(pause_menu.connect("resume", self, "on_resume") == OK)
-		assert(pause_menu.connect("go_to_main_menu", self, "on_go_to_main_menu") == OK)
-
-		level.add_child(pause_menu)
 
 	return true
 
