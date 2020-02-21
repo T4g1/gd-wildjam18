@@ -9,7 +9,6 @@ signal game_end
 export (Array, PackedScene) var levels
 export (String, FILE, "*.tscn,*.scn") var credits_path
 export (PackedScene) var PauseMenu
-export (int) var main_menu_index
 
 var level
 var level_id: int
@@ -18,8 +17,7 @@ var puzzle = null		# Stores any ongoing puzzle scene
 
 
 func _ready() -> void:
-	assert(main_menu_index >= 0)
-	assert(levels.size() > main_menu_index)
+	assert(levels.size() > 0)
 
 	# Allows us to keep the gray background in the editor
 	VisualServer.set_default_clear_color(Color.black)
@@ -139,7 +137,4 @@ func on_resume() -> void:
 	pass
 
 func on_go_to_main_menu() -> void:
-	if level and level_id != main_menu_index:
-		if not load_level(main_menu_index):
-			print('Can not switch to main menu')
-	
+	Utils.main_menu()
