@@ -3,6 +3,7 @@ extends "res://sources/State.gd"
 
 func enter() -> void:
 	owner.play_animation("fall")
+	owner.stop_sfx()
 
 
 func _physics_process(_delta) -> void:

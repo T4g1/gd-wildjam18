@@ -11,8 +11,10 @@ func _physics_process(_delta) -> void:
 
 	if owner.velocity.x != 0:
 		owner.play_animation("run")
+		owner.play_sfx("run")
 	else:
 		owner.play_animation("idle")
+		owner.stop_sfx()
 
 
 func _unhandled_input(event: InputEvent) -> void:
