@@ -5,6 +5,7 @@ extends Node2D
 class_name MultipleAudioStreamPlayer2D
 
 var streams = []
+var timer = 0
 
 export (float) var interval = 0		# Time between two children gets played
 export (bool) var loop = false
@@ -29,22 +30,33 @@ func play() -> void:
 	"""
 	Plays a random children
 	"""
-	print("run start")
 	playing = true
+	timer = 0
 
 	var stream  = streams[randi() % streams.size()]
 	stream.play()
+
+
+func _process(delta) -> void:
+	"""
+	Tiemout to play next track
+	"""
+	if not playing:
+		return
+
+	if timer > 0:
+		timer -= delta
+
+		if timer <= 0:
+			play()
 
 
 func _on_child_finished() -> void:
 	"""
 	Starts playback of next random child
 	"""
-	if loop:
-		yield(get_tree().create_timer(interval), "timeout")
-
-		if playing:
-			play()
+	if loop and playing:
+		timer = interval
 	else:
 		playing = false
 
@@ -53,8 +65,8 @@ func stop() -> void:
 	"""
 	Ends playback
 	"""
-	print("run stop")
 	playing = false
+	timer = 0
 
 	for stream in streams:
 		stream.stop()

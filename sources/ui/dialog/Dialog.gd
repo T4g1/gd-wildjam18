@@ -50,6 +50,8 @@ func next() -> void:
 	else:
 		bubble.say(next_line.content, next_line.who)
 
+	$SFX.stop()
+	$SFX.play()
 	emit_signal("dialog_next")
 
 
@@ -59,6 +61,7 @@ func end() -> void:
 	"""
 	visible = false
 
+	$SFX.stop()
 	emit_signal("dialog_end")
 
 

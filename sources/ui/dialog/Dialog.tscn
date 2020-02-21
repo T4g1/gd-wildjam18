@@ -1,7 +1,13 @@
-[gd_scene load_steps=3 format=2]
+[gd_scene load_steps=9 format=2]
 
 [ext_resource path="res://sources/ui/dialog/Dialog.gd" type="Script" id=1]
 [ext_resource path="res://sources/ui/dialog/SpeechBubble.tscn" type="PackedScene" id=2]
+[ext_resource path="res://assets/sfx/sfx_dialogtext_3.ogg" type="AudioStream" id=3]
+[ext_resource path="res://assets/sfx/sfx_dialogtext_4.ogg" type="AudioStream" id=4]
+[ext_resource path="res://assets/sfx/sfx_dialogtext_5.ogg" type="AudioStream" id=5]
+[ext_resource path="res://assets/sfx/sfx_dialogtext_1.ogg" type="AudioStream" id=6]
+[ext_resource path="res://sources/MultipleAudioStreamPlayer2D.gd" type="Script" id=7]
+[ext_resource path="res://assets/sfx/sfx_dialogtext_2.ogg" type="AudioStream" id=8]
 
 [node name="Dialog" type="Control"]
 anchor_right = 1.0
@@ -13,4 +19,22 @@ __meta__ = {
 
 [node name="SpeechBubble" parent="." instance=ExtResource( 2 )]
 visible = false
+
+[node name="SFX" type="Node2D" parent="."]
+script = ExtResource( 7 )
+
+[node name="Dialog1" type="AudioStreamPlayer2D" parent="SFX"]
+stream = ExtResource( 6 )
+
+[node name="Dialog2" type="AudioStreamPlayer2D" parent="SFX"]
+stream = ExtResource( 8 )
+
+[node name="Dialog3" type="AudioStreamPlayer2D" parent="SFX"]
+stream = ExtResource( 3 )
+
+[node name="Dialog4" type="AudioStreamPlayer2D" parent="SFX"]
+stream = ExtResource( 4 )
+
+[node name="Dialog5" type="AudioStreamPlayer2D" parent="SFX"]
+stream = ExtResource( 5 )
 [connection signal="bubble_end" from="SpeechBubble" to="." method="on_bubble_end"]

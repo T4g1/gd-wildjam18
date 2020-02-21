@@ -1,9 +1,7 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=3 format=2]
 
 [ext_resource path="res://sources/level/Level.gd" type="Script" id=1]
 [ext_resource path="res://sources/player/Player.tscn" type="PackedScene" id=2]
-[ext_resource path="res://sources/ui/dialog/Dialog.tscn" type="PackedScene" id=3]
-[ext_resource path="res://sources/ui/dialog/DialogLine.tscn" type="PackedScene" id=4]
 
 [node name="Level" type="Node2D"]
 script = ExtResource( 1 )
