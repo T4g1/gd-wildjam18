@@ -4,6 +4,7 @@ For song that are composed of a non looping first part
 followed by a looping part
 """
 extends Node2D
+class_name ComposedAudioStreamPlayer2D
 
 export (bool) var playing = false
 export (AudioStream) var intro

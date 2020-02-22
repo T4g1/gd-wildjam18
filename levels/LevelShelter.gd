@@ -20,13 +20,21 @@ func _ready():
 func introduction() -> void:
 	yield(start_dialog($UI/Introduction), "completed")
 
+	$SteelDoor.enable()
+
 
 func on_door_interacted(_body) -> void:
-	pass
+	yield(start_dialog($UI/LockedDoor), "completed")
+
+	$SteelDoor.disable()
+	$Board.enable()
+	$Keypad.enable()
 
 
 func on_generator_interacted(_body) -> void:
-	pass
+	yield(start_dialog($UI/End), "completed")
+
+	end()
 
 
 func on_keypad_interacted(_body) -> void:
@@ -35,3 +43,18 @@ func on_keypad_interacted(_body) -> void:
 
 func on_board_interacted(_body) -> void:
 	pass
+
+
+func on_door_unlocked() -> void:
+	$Board.disable()
+	$Keypad.disable()
+
+	Utils.get_game().puzzle_quit()
+
+	yield(start_dialog($UI/DoorUnlocked), "completed")
+
+	# TODO: Move wife and kid inside
+
+	yield(start_dialog($UI/DoorBroken), "completed")
+
+	$Generator.enable()

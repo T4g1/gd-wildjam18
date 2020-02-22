@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/Level_3-5_Puzzle_-_Intro_Test.ogg-59b523872eed18835e631b8b22084b88.oggstr"
+
+[deps]
+
+source_file="res://assets/themes/puzzle/Level_3-5_Puzzle_-_Intro_Test.ogg"
+dest_files=[ "res://.import/Level_3-5_Puzzle_-_Intro_Test.ogg-59b523872eed18835e631b8b22084b88.oggstr" ]
+
+[params]
+
+loop=false
+loop_offset=0

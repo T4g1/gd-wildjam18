@@ -1,7 +1,13 @@
-[gd_scene load_steps=3 format=2]
+[gd_scene load_steps=5 format=2]
 
 [ext_resource path="res://sources/level/Level.tscn" type="PackedScene" id=1]
 [ext_resource path="res://levels/LevelTsunami.gd" type="Script" id=2]
+[ext_resource path="res://assets/themes/action/Level_2_-_Loop.ogg" type="AudioStream" id=3]
+[ext_resource path="res://assets/themes/action/Level_2_-_Intro.ogg" type="AudioStream" id=4]
 
 [node name="LevelTsunami" instance=ExtResource( 1 )]
 script = ExtResource( 2 )
+
+[node name="Theme" parent="." index="3"]
+intro = ExtResource( 4 )
+loop = ExtResource( 3 )

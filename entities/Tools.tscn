@@ -4,7 +4,7 @@
 [ext_resource path="res://assets/images/level3/Crowbar.png" type="Texture" id=2]
 [ext_resource path="res://entities/Tools.gd" type="Script" id=3]
 
-[sub_resource type="SpriteFrames" id=2]
+[sub_resource type="SpriteFrames" id=1]
 animations = [ {
 "frames": [ ExtResource( 2 ) ],
 "loop": true,
@@ -12,18 +12,18 @@ animations = [ {
 "speed": 5.0
 } ]
 
-[sub_resource type="RectangleShape2D" id=1]
-extents = Vector2( 16.4432, 8.52827 )
+[sub_resource type="RectangleShape2D" id=2]
+extents = Vector2( 16.4432, 15.5517 )
 
 [node name="Tools" instance=ExtResource( 1 )]
 script = ExtResource( 3 )
 
 [node name="Sprite" parent="." index="0"]
 position = Vector2( 9.47638, 0.890944 )
-frames = SubResource( 2 )
+frames = SubResource( 1 )
 
 [node name="CollisionShape2D" parent="InteractionRange" index="0"]
-shape = SubResource( 1 )
+shape = SubResource( 2 )
 
 [node name="Label" parent="." index="3"]
 floating_distance = 5.0

@@ -9,6 +9,11 @@
 config_version=4
 
 _global_script_classes=[ {
+"base": "Node2D",
+"class": "ComposedAudioStreamPlayer2D",
+"language": "GDScript",
+"path": "res://sources/ComposedAudioStreamPlayer2D.gd"
+}, {
 "base": "Control",
 "class": "Dialog",
 "language": "GDScript",
@@ -60,6 +65,7 @@ _global_script_classes=[ {
 "path": "res://sources/ui/dialog/SpeechBubble.gd"
 } ]
 _global_script_class_icons={
+"ComposedAudioStreamPlayer2D": "",
 "Dialog": "",
 "DialogLine": "",
 "FSM": "",
