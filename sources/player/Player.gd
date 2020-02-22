@@ -24,6 +24,8 @@ var direction: Vector2 = Vector2()
 
 var wall_direction: int = 0			# Where was wall last hit
 
+var sfx_playing = null
+
 
 func _ready() -> void:
 	gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
@@ -72,6 +74,28 @@ func _physics_process(delta) -> void:
 	speed.x = abs(velocity.x)
 
 	update_animation()
+
+
+func play_sfx(sfx_name: String) -> void:
+	"""
+	Plays a SFX
+	"""
+	if sfx_playing and sfx_playing.name == sfx_name:
+		return
+	print(sfx_name)
+	stop_sfx()
+
+	sfx_playing = $SFX.get_node(sfx_name)
+	sfx_playing.play()
+
+
+func stop_sfx() -> void:
+	"""
+	Stops SFX from playing
+	"""
+	if sfx_playing:
+		sfx_playing.stop()
+		sfx_playing = null
 
 
 func play_animation(animation_name: String) -> void:
