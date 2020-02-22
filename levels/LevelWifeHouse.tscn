@@ -43,6 +43,10 @@ texture = ExtResource( 9 )
 position = Vector2( -151.469, 17.424 )
 z_index = 1
 
+[node name="Camera2D" parent="Player" index="6"]
+limit_left = -170
+limit_top = 169
+
 [node name="Son" parent="." index="2" instance=ExtResource( 11 )]
 position = Vector2( -3.93626, 13.5557 )
 interactable = false

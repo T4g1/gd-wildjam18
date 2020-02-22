@@ -10,8 +10,6 @@ export (bool) var paused = false
 
 
 func _ready() -> void:
-	$VBoxContainer/ResumeButton.grab_focus()
-
 	if paused:
 		activate()
 	else:
@@ -26,6 +24,8 @@ func activate() -> void:
 	visible = true
 	get_tree().paused = true
 	set_process_input(true)
+
+	$VBoxContainer/ResumeButton.grab_focus()
 
 
 func deactivate() -> void:

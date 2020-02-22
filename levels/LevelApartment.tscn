@@ -39,6 +39,10 @@ position = Vector2( -27.8509, 98.3262 )
 z_index = 1
 jump_duration = 0.2
 
+[node name="Camera2D" parent="Player" index="6"]
+limit_left = -75
+limit_right = 245
+
 [node name="Fridge" parent="." index="2" instance=ExtResource( 10 )]
 position = Vector2( 174.561, 95.2681 )
 
