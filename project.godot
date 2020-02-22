@@ -81,7 +81,7 @@ _global_script_class_icons={
 [application]
 
 config/name="gd-wildjam18"
-run/main_scene="res://sources/game/Game.tscn"
+run/main_scene="res://sources/menu/Splash.tscn"
 boot_splash/bg_color=Color( 0.0509804, 0.117647, 0.160784, 1 )
 config/icon="res://assets/images/icon.png"
 
