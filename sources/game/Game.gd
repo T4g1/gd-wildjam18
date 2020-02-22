@@ -7,10 +7,9 @@ signal game_start
 signal game_end
 
 export (Array, PackedScene) var levels
-export (String, FILE, "*.tscn,*.scn") var credits_path
+export (int) var level_id = -1
 
 var level
-var level_id: int
 
 var puzzle = null		# Stores any ongoing puzzle scene
 
@@ -28,7 +27,6 @@ func start() -> void:
 	"""
 	Game just started
 	"""
-	level_id = -1
 	next()
 
 	emit_signal("game_start")
@@ -119,3 +117,16 @@ func _input(event: InputEvent) -> void:
 	"""
 	if event.is_action_pressed("ui_cancel"):
 		$UI/PauseMenu.on_pause()
+
+
+func get_active_spawn() -> Node:
+	"""
+	Get where player should spawn
+	"""
+	for spawn in get_tree().get_nodes_in_group("spawn"):
+		if spawn.is_active():
+			return spawn
+
+	# Should always have an active spawn!
+	assert(false)
+	return null

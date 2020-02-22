@@ -39,6 +39,8 @@ func start(content: String, who: String="") -> void:
 
 	visible = true
 
+	animate()
+
 	emit_signal("bubble_start")
 
 
@@ -60,6 +62,9 @@ func next() -> void:
 	var line_shown = label.lines_skipped + label.max_lines_visible
 	if line_shown < label.get_line_count():
 		label.lines_skipped += label.max_lines_visible
+
+		animate()
+
 		emit_signal("bubble_next")
 	else:
 		end()
@@ -79,3 +84,12 @@ func _unhandled_input(event: InputEvent) -> void:
 
 	if event.is_action_pressed("ui_accept"):
 		next()
+
+
+func animate() -> void:
+	"""
+	Text apparition
+	"""
+	$Tween.stop_all()
+	$Tween.interpolate_property(label, "percent_visible", 0, 1, 0.5, Tween.TRANS_LINEAR, Tween.EASE_IN)
+	$Tween.start()

@@ -18,3 +18,5 @@ levels = [ ExtResource( 2 ), ExtResource( 4 ), ExtResource( 3 ), ExtResource( 5 
 layer = 6
 
 [node name="PauseMenu" parent="UI" instance=ExtResource( 7 )]
+
+level_id = 0
