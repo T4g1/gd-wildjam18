@@ -3,10 +3,10 @@
 [ext_resource path="res://sources/entity/Entity.tscn" type="PackedScene" id=1]
 
 [sub_resource type="RectangleShape2D" id=1]
-extents = Vector2( 9.00238, 9.82215 )
+extents = Vector2( 24.8555, 13.7046 )
 
-[node name="Tires" instance=ExtResource( 1 )]
-interaction_range = NodePath("../Tires/InteractionRange")
+[node name="Wreckage" instance=ExtResource( 1 )]
+interaction_range = NodePath("../Wreckage/InteractionRange")
 
 [node name="CollisionShape2D" parent="InteractionRange" index="0"]
 shape = SubResource( 1 )
@@ -15,5 +15,5 @@ shape = SubResource( 1 )
 floating_distance = 5.0
 speed = 0.3
 color = Color( 1, 1, 1, 1 )
-text = "Get tires"
+text = "Remove"
 icon_texture = null

@@ -82,7 +82,7 @@ func play_sfx(sfx_name: String) -> void:
 	"""
 	if sfx_playing and sfx_playing.name == sfx_name:
 		return
-	print(sfx_name)
+
 	stop_sfx()
 
 	sfx_playing = $SFX.get_node(sfx_name)

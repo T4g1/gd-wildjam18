@@ -1,9 +1,31 @@
-[gd_scene load_steps=2 format=2]
+[gd_scene load_steps=5 format=2]
 
 [ext_resource path="res://sources/entity/Entity.tscn" type="PackedScene" id=1]
+[ext_resource path="res://assets/images/level3/car.png" type="Texture" id=2]
+
+[sub_resource type="SpriteFrames" id=1]
+animations = [ {
+"frames": [ ExtResource( 2 ) ],
+"loop": true,
+"name": "default",
+"speed": 5.0
+} ]
+
+[sub_resource type="RectangleShape2D" id=2]
+extents = Vector2( 19.9022, 9.84669 )
 
 [node name="Car" instance=ExtResource( 1 )]
 interaction_range = NodePath("../Car/InteractionRange")
 
+[node name="Sprite" parent="." index="0"]
+frames = SubResource( 1 )
+
+[node name="CollisionShape2D" parent="InteractionRange" index="0"]
+shape = SubResource( 2 )
+
 [node name="Label" parent="." index="3"]
+floating_distance = 5.0
+speed = 0.3
+color = Color( 1, 1, 1, 1 )
 text = "Get in car"
+icon_texture = null
