@@ -13,6 +13,8 @@ func _ready() -> void:
 	assert($Tires.connect("interacted", self, "on_tires_interacted") == OK)
 	assert($Tools.connect("interacted", self, "on_tools_interacted") == OK)
 
+	VisualServer.set_default_clear_color(Color.black)
+
 	introduction()
 
 
@@ -58,6 +60,7 @@ func on_gas_interacted(__) -> void:
 	yield(start_dialog($UI/GotGas), "completed")
 
 	$GasCan.disable()
+	$GasCan.visible = false
 
 	check_can_enter_car()
 
