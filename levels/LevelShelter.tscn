@@ -1,7 +1,223 @@
-[gd_scene load_steps=3 format=2]
+[gd_scene load_steps=25 format=2]
 
 [ext_resource path="res://sources/level/Level.tscn" type="PackedScene" id=1]
 [ext_resource path="res://levels/LevelShelter.gd" type="Script" id=2]
+[ext_resource path="res://assets/images/level5/background.png" type="Texture" id=3]
+[ext_resource path="res://entities/Board.tscn" type="PackedScene" id=4]
+[ext_resource path="res://entities/Keypad.tscn" type="PackedScene" id=5]
+[ext_resource path="res://entities/SteelDoor.tscn" type="PackedScene" id=6]
+[ext_resource path="res://entities/Generator.tscn" type="PackedScene" id=7]
+[ext_resource path="res://sources/ui/dialog/Dialog.tscn" type="PackedScene" id=8]
+[ext_resource path="res://sources/ui/dialog/DialogLine.tscn" type="PackedScene" id=9]
+[ext_resource path="res://assets/themes/puzzle/intro.ogg" type="AudioStream" id=10]
+[ext_resource path="res://assets/themes/puzzle/loop.ogg" type="AudioStream" id=11]
+[ext_resource path="res://levels/puzzles/KeypadPuzzle.tscn" type="PackedScene" id=12]
+[ext_resource path="res://levels/puzzles/BoardInfo.tscn" type="PackedScene" id=13]
+[ext_resource path="res://entities/Wife.tscn" type="PackedScene" id=14]
+[ext_resource path="res://entities/Son.tscn" type="PackedScene" id=15]
+[ext_resource path="res://assets/images/lights/light_shadow_light.png" type="Texture" id=16]
+
+[sub_resource type="RectangleShape2D" id=1]
+extents = Vector2( 162.088, 4.82501 )
+
+[sub_resource type="RectangleShape2D" id=2]
+extents = Vector2( 167.343, 5.24313 )
+
+[sub_resource type="RectangleShape2D" id=4]
+extents = Vector2( 7.15265, 66.2263 )
+
+[sub_resource type="RectangleShape2D" id=5]
+extents = Vector2( 3.07835, 17.3689 )
+
+[sub_resource type="RectangleShape2D" id=6]
+extents = Vector2( 2.2551, 11.8016 )
+
+[sub_resource type="RectangleShape2D" id=3]
+extents = Vector2( 7.54988, 90.8536 )
+
+[sub_resource type="Animation" id=7]
+resource_name = "door_openned"
+length = 3.0
+tracks/0/type = "value"
+tracks/0/path = NodePath("Wife:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 3 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Vector2( 123.219, -9.34365 ), Vector2( 231.255, -9.92763 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("Son:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 3 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Vector2( 132.878, -12.3361 ), Vector2( 242.958, -13.2121 ) ]
+}
+
+[sub_resource type="OccluderPolygon2D" id=8]
+polygon = PoolVector2Array( 105.028, -80.8934, 104.829, -27.813, 109.719, -27.1186, 109.515, -70.1429, 211.957, -68.8132, 211.345, 10.7104, 42.9549, 9.71869, 42.9427, 15.2053, 215.016, 14.828, 215.142, -73.9964 )
 
 [node name="LevelShelter" instance=ExtResource( 1 )]
 script = ExtResource( 2 )
+board_scene = ExtResource( 13 )
+keypad_scene = ExtResource( 12 )
+
+[node name="Background" type="Sprite" parent="." index="0"]
+position = Vector2( 162.108, -25.3116 )
+texture = ExtResource( 3 )
+
+[node name="Player" parent="." index="1"]
+position = Vector2( 57.3706, -8.04344 )
+z_index = 1
+
+[node name="SteelDoor" parent="." index="2" instance=ExtResource( 6 )]
+position = Vector2( 213.588, -11.3 )
+
+[node name="Generator" parent="." index="3" instance=ExtResource( 7 )]
+position = Vector2( 82.7307, -6.5257 )
+interactable = false
+
+[node name="Keypad" parent="." index="4" instance=ExtResource( 5 )]
+position = Vector2( 198.838, -15.1511 )
+interactable = false
+
+[node name="Board" parent="." index="5" instance=ExtResource( 4 )]
+position = Vector2( 150.292, -29.413 )
+interactable = false
+
+[node name="Wife" parent="." index="6" instance=ExtResource( 14 )]
+position = Vector2( 123.219, -9.34365 )
+interactable = false
+
+[node name="Son" parent="." index="7" instance=ExtResource( 15 )]
+position = Vector2( 132.878, -12.3361 )
+scale = Vector2( -1, 1 )
+interactable = false
+stuck = false
+
+[node name="Introduction" parent="UI" index="0" instance=ExtResource( 8 )]
+
+[node name="DialogLine" parent="UI/Introduction" index="2" instance=ExtResource( 9 )]
+content = "At least, the shelter, let's move to safety!"
+who = "Jonhy"
+
+[node name="LockedDoor" parent="UI" index="1" instance=ExtResource( 8 )]
+
+[node name="Jonhy" parent="UI/LockedDoor" index="2" instance=ExtResource( 9 )]
+content = "The door is locked, we need to find a way to open it..."
+who = "Jonhy"
+
+[node name="Britany" parent="UI/LockedDoor" index="3" instance=ExtResource( 9 )]
+content = "Maybe we can find some clues on how to open it in this room?"
+who = "Britany"
+
+[node name="Bily" parent="UI/LockedDoor" index="4" instance=ExtResource( 9 )]
+content = "Yeah, it's like a finding a treasure!"
+who = "Bily"
+
+[node name="DoorUnlocked" parent="UI" index="2" instance=ExtResource( 8 )]
+
+[node name="Jonhy" parent="UI/DoorUnlocked" index="2" instance=ExtResource( 9 )]
+content = "Alright, Britany, Bily, let's go into the shelter now..."
+who = "Jonhy"
+
+[node name="DoorBroken" parent="UI" index="3" instance=ExtResource( 8 )]
+
+[node name="Jonhy" parent="UI/DoorBroken" index="2" instance=ExtResource( 9 )]
+content = "Oh no, the power went out! Im stuck outside..."
+who = "Jonhy"
+
+[node name="Britany" parent="UI/DoorBroken" index="3" instance=ExtResource( 9 )]
+content = "There's a generator outside, it's probably borken..."
+who = "Britany"
+
+[node name="Jonhy2" parent="UI/DoorBroken" index="4" instance=ExtResource( 9 )]
+content = "Alright, I'll go and fix it, I'll be quick..."
+who = "Jonhy"
+
+[node name="End" parent="UI" index="4" instance=ExtResource( 8 )]
+
+[node name="Jonhy" parent="UI/End" index="2" instance=ExtResource( 9 )]
+content = "Alright, that should do it..."
+who = "Jonhy"
+thinking = true
+
+[node name="Limits" parent="." index="9"]
+collision_layer = 0
+collision_mask = 1
+
+[node name="Floor" type="CollisionShape2D" parent="Limits" index="0"]
+position = Vector2( 147.132, 10.8245 )
+shape = SubResource( 1 )
+
+[node name="Ceiling" type="CollisionShape2D" parent="Limits" index="1"]
+position = Vector2( 146.186, -55.8969 )
+shape = SubResource( 2 )
+
+[node name="Right" type="CollisionShape2D" parent="Limits" index="2"]
+position = Vector2( 286.352, -19.6289 )
+shape = SubResource( 4 )
+
+[node name="BeamLeft" type="CollisionShape2D" parent="Limits" index="3"]
+position = Vector2( 107.384, -45.5898 )
+shape = SubResource( 5 )
+
+[node name="BeamRight" type="CollisionShape2D" parent="Limits" index="4"]
+position = Vector2( 213.63, -48.0826 )
+shape = SubResource( 6 )
+
+[node name="Left" type="CollisionShape2D" parent="Limits" index="5"]
+position = Vector2( 38.5933, -16.8954 )
+shape = SubResource( 3 )
+
+[node name="Theme" parent="." index="10"]
+intro = ExtResource( 10 )
+loop = ExtResource( 11 )
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." index="11"]
+anims/door_openned = SubResource( 7 )
+
+[node name="Lights" type="Node2D" parent="." index="12"]
+
+[node name="Outside" type="Light2D" parent="Lights" index="0"]
+position = Vector2( 90.9422, -50.188 )
+scale = Vector2( 0.919812, 1 )
+texture = ExtResource( 16 )
+texture_scale = 0.2
+energy = 0.5
+shadow_enabled = true
+
+[node name="Spot1" type="Light2D" parent="Lights" index="1"]
+position = Vector2( 160.564, -47.1692 )
+scale = Vector2( 0.658023, 1 )
+texture = ExtResource( 16 )
+texture_scale = 0.2
+color = Color( 0, 0, 0, 1 )
+energy = 0.5
+mode = 2
+shadow_enabled = true
+
+[node name="Spot2" type="Light2D" parent="Lights" index="2"]
+position = Vector2( 272.638, -49.056 )
+scale = Vector2( 0.719343, 1 )
+texture = ExtResource( 16 )
+texture_scale = 0.2
+color = Color( 0, 0, 0, 1 )
+energy = 0.5
+mode = 2
+shadow_enabled = true
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="Occluder" type="LightOccluder2D" parent="Lights" index="3"]
+occluder = SubResource( 8 )

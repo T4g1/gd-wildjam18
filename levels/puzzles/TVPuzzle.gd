@@ -4,33 +4,18 @@ Puzzle state is represented by two coordinates:
 	Position of the antenna on the X axis
 	Selected channel on the Y axis
 """
-extends Node2D
-signal puzzle_quit
-signal puzzle_won
-
+extends "res://sources/Puzzle.gd"
 const MIN_VALUE = 0
 const MAX_VALUE = 4
-
-const LEFT =  Vector2(-1,  0)
-const RIGHT = Vector2( 1,  0)
-const UP =    Vector2( 0, -1)
-const DOWN =  Vector2( 0,  1)
 
 export (int, 0, 4) var initial_antenna = 0
 export (int, 0, 4) var initial_channel = 0
 export (int) var max_win_streak = 4
 export (float) var size_factor = 0.2
 
-var accept_inputs = true
 var state = Vector2(0, 0)
 var correct_move = Vector2(0, 0)
 var win_streak = 0
-var moves = [
-	DOWN,
-	UP,
-	RIGHT,
-	LEFT,
-]
 
 # Same order as "moves": Clues matching every moves
 onready var clues = [
@@ -53,16 +38,7 @@ onready var sfx_antennas = [
 ]
 
 
-func _ready() -> void:
-	reset()
-
-
 func reset() -> void:
-	"""
-	Reset puzzle
-	"""
-	randomize()
-
 	state.x = initial_antenna
 	state.y = initial_channel
 
@@ -76,7 +52,7 @@ func _input(event: InputEvent) -> void:
 		return
 
 	if event.is_action_pressed("ui_cancel"):
-		emit_signal("puzzle_quit")
+		quit()
 
 	var guess = Vector2(0, 0)
 	var button
@@ -100,15 +76,6 @@ func _input(event: InputEvent) -> void:
 		play(guess)
 
 
-func animate_press(button: AnimatedSprite) -> void:
-	"""
-	Animate the press on a button
-	"""
-	button.play("pressed")
-	yield(button, "animation_finished")
-	button.play("default")
-
-
 func play(guess: Vector2) -> void:
 	"""
 	Try a possible move
@@ -128,7 +95,7 @@ func play(guess: Vector2) -> void:
 		yield(wrong_guess(), "completed")
 
 	if has_won():
-		emit_signal("puzzle_won")
+		won()
 	else:
 		generate_clue()
 

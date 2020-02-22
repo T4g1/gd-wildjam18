@@ -1,0 +1,52 @@
+[gd_scene load_steps=9 format=2]
+
+[ext_resource path="res://sources/entity/Entity.tscn" type="PackedScene" id=1]
+[ext_resource path="res://assets/images/level3/Son.png" type="Texture" id=2]
+[ext_resource path="res://entities/Son.gd" type="Script" id=3]
+
+[sub_resource type="AtlasTexture" id=1]
+atlas = ExtResource( 2 )
+region = Rect2( 0, 0, 17, 24 )
+
+[sub_resource type="AtlasTexture" id=2]
+atlas = ExtResource( 2 )
+region = Rect2( 17, 0, 17, 24 )
+
+[sub_resource type="AtlasTexture" id=3]
+atlas = ExtResource( 2 )
+region = Rect2( 0, 24, 17, 24 )
+
+[sub_resource type="SpriteFrames" id=4]
+animations = [ {
+"frames": [ SubResource( 1 ), SubResource( 2 ) ],
+"loop": true,
+"name": "default",
+"speed": 1.0
+}, {
+"frames": [ SubResource( 3 ) ],
+"loop": true,
+"name": "stuck",
+"speed": 5.0
+} ]
+
+[sub_resource type="RectangleShape2D" id=5]
+extents = Vector2( 9.00195, 16.9401 )
+
+[node name="Son" instance=ExtResource( 1 )]
+script = ExtResource( 3 )
+
+[node name="Sprite" parent="." index="0"]
+position = Vector2( 0, 5.50006 )
+frames = SubResource( 4 )
+animation = "stuck"
+playing = true
+
+[node name="CollisionShape2D" parent="InteractionRange" index="0"]
+shape = SubResource( 5 )
+
+[node name="Label" parent="." index="3"]
+floating_distance = 5.0
+speed = 0.3
+color = Color( 1, 1, 1, 1 )
+text = "Talk"
+icon_texture = null

@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/loop.ogg-2372009b63989ac4fb762b06f7fcd738.oggstr"
+
+[deps]
+
+source_file="res://assets/themes/puzzle/loop.ogg"
+dest_files=[ "res://.import/loop.ogg-2372009b63989ac4fb762b06f7fcd738.oggstr" ]
+
+[params]
+
+loop=true
+loop_offset=0

@@ -100,3 +100,17 @@ func set_interactable(value: bool) -> void:
 
 	if not interactable:
 		$Label.hide()
+
+
+func enable() -> void:
+	"""
+	Allow interactions
+	"""
+	self.interactable = true
+
+
+func disable() -> void:
+	"""
+	Forbid interactions
+	"""
+	self.interactable = false

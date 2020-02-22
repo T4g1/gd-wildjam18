@@ -30,11 +30,13 @@ animations = [ {
 } ]
 
 [node name="TVPuzzle" type="Node2D"]
+z_index = 2
 script = ExtResource( 1 )
 
 [node name="Screen" type="AnimatedSprite" parent="."]
 position = Vector2( 119.278, 87.3777 )
 frames = SubResource( 1 )
+frame = 1
 playing = true
 
 [node name="Clues" type="Node2D" parent="."]
