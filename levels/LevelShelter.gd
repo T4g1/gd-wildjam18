@@ -24,6 +24,8 @@ func _ready():
 
 
 func introduction() -> void:
+	$Lights.visible = false
+
 	yield(start_dialog($UI/Introduction), "completed")
 
 	$SteelDoor.enable()
@@ -56,11 +58,19 @@ func on_door_unlocked() -> void:
 	$Board.disable()
 	$Keypad.disable()
 
+	$SteelDoor.open()
+
 	Utils.get_game().puzzle_quit()
 
 	yield(start_dialog($UI/DoorUnlocked), "completed")
 
-	# TODO: Move wife and kid inside
+	$Player.disable()
+
+	$AnimationPlayer.play("door_openned")
+	yield($AnimationPlayer, "animation_finished")
+
+	$SteelDoor.close()
+	$Lights.visible = true
 
 	yield(start_dialog($UI/DoorBroken), "completed")
 
