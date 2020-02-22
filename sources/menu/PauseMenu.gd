@@ -10,6 +10,8 @@ export (bool) var paused = false
 
 
 func _ready() -> void:
+	$VBoxContainer/ResumeButton.grab_focus()
+
 	if paused:
 		activate()
 	else:

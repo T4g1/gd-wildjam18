@@ -1,46 +1,135 @@
-[gd_scene load_steps=2 format=2]
+[gd_scene load_steps=13 format=2]
 
 [ext_resource path="res://sources/menu/TitleScreen.gd" type="Script" id=1]
+[ext_resource path="res://assets/ui_theme.tres" type="Theme" id=2]
+[ext_resource path="res://assets/title_buttongroup.tres" type="ButtonGroup" id=3]
+[ext_resource path="res://assets/themes/title_theme.ogg" type="AudioStream" id=4]
+[ext_resource path="res://assets/images/level2/buildings-layer.png" type="Texture" id=5]
+[ext_resource path="res://assets/images/level2/Sky-layer.png" type="Texture" id=6]
+[ext_resource path="res://assets/fonts/poco/Poco.ttf" type="DynamicFontData" id=7]
+[ext_resource path="res://assets/action_tileset.tres" type="TileSet" id=8]
+[ext_resource path="res://assets/player_spriteframes.tres" type="SpriteFrames" id=9]
+[ext_resource path="res://entities/Wife.tscn" type="PackedScene" id=10]
+[ext_resource path="res://entities/Son.tscn" type="PackedScene" id=11]
 
-[node name="TitleScreen" type="Control"]
-anchor_right = 1.0
-anchor_bottom = 1.0
+[sub_resource type="DynamicFont" id=1]
+size = 30
+outline_size = 1
+outline_color = Color( 0, 0, 0, 1 )
+font_data = ExtResource( 7 )
+
+[node name="TitleScreen" type="Node2D"]
 script = ExtResource( 1 )
-__meta__ = {
-"_edit_use_anchors_": false
-}
 game_path = "res://sources/game/Game.tscn"
 
-[node name="Title" type="Label" parent="."]
-margin_left = 22.345
-margin_top = 19.7779
-margin_right = 108.345
-margin_bottom = 33.7779
-text = "gd-wildjam18"
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 4 )
+autoplay = true
+
+[node name="ParallaxBackground" type="ParallaxBackground" parent="."]
+scroll_ignore_camera_zoom = true
+
+[node name="Sky" type="ParallaxLayer" parent="ParallaxBackground"]
+motion_scale = Vector2( 0.3, 0.3 )
+
+[node name="Sprite" type="Sprite" parent="ParallaxBackground/Sky"]
+position = Vector2( 77.6143, 74 )
+texture = ExtResource( 6 )
+region_enabled = true
+region_rect = Rect2( 0, 0, 560, 224 )
+
+[node name="City" type="ParallaxLayer" parent="ParallaxBackground"]
+motion_scale = Vector2( 0.5, 0.5 )
+
+[node name="Sprite" type="Sprite" parent="ParallaxBackground/City"]
+position = Vector2( 0, 64 )
+texture = ExtResource( 5 )
+region_enabled = true
+region_rect = Rect2( 0, 0, 960, 129 )
+
+[node name="TileMap" type="TileMap" parent="."]
+tile_set = ExtResource( 8 )
+cell_size = Vector2( 20, 20 )
+format = 1
+tile_data = PoolIntArray( 196613, 10, 0, 262144, 7, 0, 458751, 1, 0, 393216, 1, 1, 393217, 1, 1, 393218, 1, 1, 393219, 1, 1, 393220, 1, 1, 393221, 1, 1, 393222, 1, 1, 393223, 1, 1, 393224, 1, 1, 393225, 1, 1, 393226, 1, 2, 524287, 1, 131072, 458752, 1, 131073, 458753, 1, 131073, 458754, 1, 131073, 458755, 1, 131073, 458756, 1, 131073, 458757, 1, 131073, 458758, 1, 131073, 458759, 1, 131073, 458760, 1, 131073, 458761, 1, 131073, 458762, 1, 131074 )
+
+[node name="UI" type="CanvasLayer" parent="."]
+
+[node name="Control" type="Control" parent="UI"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+theme = ExtResource( 2 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="VBoxContainer" type="VBoxContainer" parent="."]
-margin_left = 36.8406
-margin_top = 63.4106
-margin_right = 164.841
-margin_bottom = 122.411
+[node name="Title" type="Label" parent="UI/Control"]
+anchor_right = 1.0
+margin_bottom = 36.0
+custom_fonts/font = SubResource( 1 )
+text = "Jonhy's Curse"
+align = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="VBoxContainer" type="VBoxContainer" parent="UI/Control"]
+margin_left = 12.0
+margin_top = 53.0
+margin_right = 92.0
+margin_bottom = 103.0
 custom_constants/separation = 10
 __meta__ = {
 "_edit_group_": true,
 "_edit_use_anchors_": false
 }
 
-[node name="PlayButton" type="Button" parent="VBoxContainer"]
-margin_right = 128.0
-margin_bottom = 20.0
+[node name="PlayButton" type="Button" parent="UI/Control/VBoxContainer"]
+margin_right = 80.0
+margin_bottom = 11.0
+focus_neighbour_top = NodePath("../QuitButton")
+focus_neighbour_bottom = NodePath("../QuitButton")
+focus_next = NodePath("../QuitButton")
+focus_previous = NodePath("../QuitButton")
+group = ExtResource( 3 )
 text = "Play"
+__meta__ = {
+"_edit_use_anchors_": false
+}
 
-[node name="QuitButton" type="Button" parent="VBoxContainer"]
-margin_top = 30.0
-margin_right = 128.0
-margin_bottom = 50.0
+[node name="QuitButton" type="Button" parent="UI/Control/VBoxContainer"]
+margin_top = 21.0
+margin_right = 80.0
+margin_bottom = 32.0
+focus_neighbour_top = NodePath("../PlayButton")
+focus_neighbour_bottom = NodePath("../PlayButton")
+focus_next = NodePath("../PlayButton")
+focus_previous = NodePath("../PlayButton")
+group = ExtResource( 3 )
 text = "Quit"
-[connection signal="pressed" from="VBoxContainer/PlayButton" to="." method="_on_play_pressed"]
-[connection signal="pressed" from="VBoxContainer/QuitButton" to="." method="_on_quit_pressed"]
+
+[node name="Camera2D" type="Camera2D" parent="."]
+anchor_mode = 0
+current = true
+smoothing_enabled = true
+
+[node name="Wife" parent="." instance=ExtResource( 10 )]
+position = Vector2( 181.238, 105.853 )
+rotation = -3.14159
+scale = Vector2( 1, -1 )
+interactable = false
+
+[node name="Son" parent="." instance=ExtResource( 11 )]
+position = Vector2( 164.302, 102.641 )
+interactable = false
+stuck = false
+
+[node name="Jonhy" type="AnimatedSprite" parent="."]
+position = Vector2( 173.83, 105.79 )
+frames = ExtResource( 9 )
+animation = "idle"
+frame = 1
+playing = true
+flip_h = true
+[connection signal="pressed" from="UI/Control/VBoxContainer/PlayButton" to="." method="_on_play_pressed"]
+[connection signal="pressed" from="UI/Control/VBoxContainer/QuitButton" to="." method="_on_quit_pressed"]

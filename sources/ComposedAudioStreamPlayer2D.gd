@@ -12,8 +12,10 @@ export (AudioStream) var loop
 
 
 func _ready() -> void:
-	assert(intro)
 	assert(loop)
+
+	if intro == null:
+		intro = loop
 
 	$Intro.stream = intro
 	$Loop.stream = loop

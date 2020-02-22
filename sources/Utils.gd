@@ -3,6 +3,8 @@ Generic features
 """
 extends Node
 
+export (bool) var game_completed = false
+
 
 func change_scene(path: String) -> void:
 	"""
