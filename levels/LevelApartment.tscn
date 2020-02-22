@@ -5,7 +5,7 @@
 [ext_resource path="res://sources/ui/dialog/Dialog.tscn" type="PackedScene" id=3]
 [ext_resource path="res://assets/images/level1/couch.png" type="Texture" id=4]
 [ext_resource path="res://levels/LevelApartment.gd" type="Script" id=5]
-[ext_resource path="res://assets/themes/puzzle/Level_3-5_Puzzle_-_Loop_Test.ogg" type="AudioStream" id=6]
+[ext_resource path="res://assets/themes/puzzle/intro.ogg" type="AudioStream" id=6]
 [ext_resource path="res://entities/TV.tscn" type="PackedScene" id=7]
 [ext_resource path="res://assets/images/level1/scene.png" type="Texture" id=8]
 [ext_resource path="res://levels/puzzles/TVPuzzle.tscn" type="PackedScene" id=9]
@@ -13,7 +13,7 @@
 [ext_resource path="res://entities/Drawer.tscn" type="PackedScene" id=11]
 [ext_resource path="res://entities/Window.tscn" type="PackedScene" id=12]
 [ext_resource path="res://entities/FrontDoor.tscn" type="PackedScene" id=13]
-[ext_resource path="res://assets/themes/puzzle/Level_3-5_Puzzle_-_Intro_Test.ogg" type="AudioStream" id=14]
+[ext_resource path="res://assets/themes/puzzle/loop.ogg" type="AudioStream" id=14]
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 167.863, 10 )
@@ -160,5 +160,5 @@ shape = SubResource( 4 )
 [node name="Tween" type="Tween" parent="." index="10"]
 
 [node name="Theme" parent="." index="11"]
-intro = ExtResource( 14 )
-loop = ExtResource( 6 )
+intro = ExtResource( 6 )
+loop = ExtResource( 14 )

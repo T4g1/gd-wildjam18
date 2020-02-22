@@ -12,8 +12,8 @@
 [ext_resource path="res://entities/Wife.tscn" type="PackedScene" id=10]
 [ext_resource path="res://entities/Son.tscn" type="PackedScene" id=11]
 [ext_resource path="res://entities/Wreckage.tscn" type="PackedScene" id=12]
-[ext_resource path="res://assets/themes/puzzle/Level_3-5_Puzzle_-_Loop_Test.ogg" type="AudioStream" id=13]
-[ext_resource path="res://assets/themes/puzzle/Level_3-5_Puzzle_-_Intro_Test.ogg" type="AudioStream" id=14]
+[ext_resource path="res://assets/themes/puzzle/intro.ogg" type="AudioStream" id=13]
+[ext_resource path="res://assets/themes/puzzle/loop.ogg" type="AudioStream" id=14]
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 171.946, 6.46997 )
@@ -146,5 +146,5 @@ position = Vector2( 62.8244, -20.2007 )
 shape = SubResource( 4 )
 
 [node name="Theme" parent="." index="11"]
-intro = ExtResource( 14 )
-loop = ExtResource( 13 )
+intro = ExtResource( 13 )
+loop = ExtResource( 14 )

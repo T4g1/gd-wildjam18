@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=2]
+[gd_scene load_steps=20 format=2]
 
 [ext_resource path="res://sources/level/Level.tscn" type="PackedScene" id=1]
 [ext_resource path="res://levels/LevelShelter.gd" type="Script" id=2]
@@ -9,52 +9,55 @@
 [ext_resource path="res://entities/Generator.tscn" type="PackedScene" id=7]
 [ext_resource path="res://sources/ui/dialog/Dialog.tscn" type="PackedScene" id=8]
 [ext_resource path="res://sources/ui/dialog/DialogLine.tscn" type="PackedScene" id=9]
-[ext_resource path="res://assets/themes/puzzle/Level_3-5_Puzzle_-_Loop_Test.ogg" type="AudioStream" id=10]
-[ext_resource path="res://assets/themes/puzzle/Level_3-5_Puzzle_-_Intro_Test.ogg" type="AudioStream" id=11]
+[ext_resource path="res://assets/themes/puzzle/intro.ogg" type="AudioStream" id=10]
+[ext_resource path="res://assets/themes/puzzle/loop.ogg" type="AudioStream" id=11]
+[ext_resource path="res://levels/puzzles/KeypadPuzzle.tscn" type="PackedScene" id=12]
+[ext_resource path="res://levels/puzzles/BoardInfo.tscn" type="PackedScene" id=13]
 
 [sub_resource type="RectangleShape2D" id=1]
-extents = Vector2( 364.264, 4.82501 )
+extents = Vector2( 162.088, 4.82501 )
 
 [sub_resource type="RectangleShape2D" id=2]
-extents = Vector2( 355.901, 5.24313 )
+extents = Vector2( 167.343, 5.24313 )
 
 [sub_resource type="RectangleShape2D" id=4]
 extents = Vector2( 7.15265, 66.2263 )
 
 [sub_resource type="RectangleShape2D" id=5]
-extents = Vector2( 4.76939, 17.3689 )
+extents = Vector2( 3.07835, 17.3689 )
 
 [sub_resource type="RectangleShape2D" id=6]
-extents = Vector2( 5.15154, 11.8016 )
+extents = Vector2( 2.2551, 11.8016 )
 
 [sub_resource type="RectangleShape2D" id=3]
 extents = Vector2( 7.54988, 90.8536 )
 
 [node name="LevelShelter" instance=ExtResource( 1 )]
 script = ExtResource( 2 )
+board_scene = ExtResource( 13 )
+keypad_scene = ExtResource( 12 )
 
 [node name="Background" type="Sprite" parent="." index="0"]
 position = Vector2( 162.108, -25.3116 )
-scale = Vector2( 0.811535, 0.646518 )
 texture = ExtResource( 3 )
 
 [node name="Player" parent="." index="1"]
-position = Vector2( -1.11012, 0.713909 )
+position = Vector2( 57.4808, -8.26381 )
 z_index = 1
 
 [node name="SteelDoor" parent="." index="2" instance=ExtResource( 6 )]
-position = Vector2( 244.29, -11.4107 )
+position = Vector2( 213.554, -22.1682 )
 
 [node name="Generator" parent="." index="3" instance=ExtResource( 7 )]
-position = Vector2( 43.6964, -0.685913 )
+position = Vector2( 82.7307, -6.5257 )
 interactable = false
 
 [node name="Keypad" parent="." index="4" instance=ExtResource( 5 )]
-position = Vector2( 217.279, -12.9996 )
+position = Vector2( 198.838, -15.1511 )
 interactable = false
 
 [node name="Board" parent="." index="5" instance=ExtResource( 4 )]
-position = Vector2( 152.136, -28.4909 )
+position = Vector2( 150.292, -29.413 )
 interactable = false
 
 [node name="Introduction" parent="UI" index="0" instance=ExtResource( 8 )]
@@ -110,29 +113,29 @@ collision_layer = 0
 collision_mask = 1
 
 [node name="Floor" type="CollisionShape2D" parent="Limits" index="0"]
-position = Vector2( 19.2335, 19.6516 )
+position = Vector2( 147.132, 10.8245 )
 shape = SubResource( 1 )
 
 [node name="Ceiling" type="CollisionShape2D" parent="Limits" index="1"]
-position = Vector2( 56.8644, -59.7912 )
+position = Vector2( 146.186, -55.8969 )
 shape = SubResource( 2 )
 
 [node name="Right" type="CollisionShape2D" parent="Limits" index="2"]
-position = Vector2( 355.507, -17.4774 )
+position = Vector2( 286.352, -19.6289 )
 shape = SubResource( 4 )
 
 [node name="BeamLeft" type="CollisionShape2D" parent="Limits" index="3"]
-position = Vector2( 73.8819, -45.2824 )
+position = Vector2( 107.384, -45.5898 )
 shape = SubResource( 5 )
 
 [node name="BeamRight" type="CollisionShape2D" parent="Limits" index="4"]
-position = Vector2( 244.059, -48.6973 )
+position = Vector2( 213.63, -48.0826 )
 shape = SubResource( 6 )
 
 [node name="Left" type="CollisionShape2D" parent="Limits" index="5"]
-position = Vector2( -34.5576, -6.75264 )
+position = Vector2( 38.5933, -16.8954 )
 shape = SubResource( 3 )
 
 [node name="Theme" parent="." index="8"]
-intro = ExtResource( 11 )
-loop = ExtResource( 10 )
+intro = ExtResource( 10 )
+loop = ExtResource( 11 )

@@ -1,0 +1,16 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://levels/puzzles/BoardInfo.gd" type="Script" id=1]
+[ext_resource path="res://assets/images/level5/Board.png" type="Texture" id=2]
+
+[node name="BoardInfo" type="Node2D"]
+z_index = 2
+script = ExtResource( 1 )
+
+[node name="Background" type="Sprite" parent="."]
+texture = ExtResource( 2 )
+centered = false
+
+[node name="Camera2D" type="Camera2D" parent="."]
+anchor_mode = 0
+current = true

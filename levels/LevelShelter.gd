@@ -5,8 +5,14 @@ In this level player must open steel door solving a short puzzle
 """
 extends "res://sources/level/Level.gd"
 
+export (PackedScene) var board_scene
+export (PackedScene) var keypad_scene
+
 
 func _ready():
+	assert(board_scene)
+	assert(keypad_scene)
+
 	assert($SteelDoor.connect("interacted", self, "on_door_interacted") == OK)
 	assert($Generator.connect("interacted", self, "on_generator_interacted") == OK)
 	assert($Keypad.connect("interacted", self, "on_keypad_interacted") == OK)
@@ -38,11 +44,12 @@ func on_generator_interacted(_body) -> void:
 
 
 func on_keypad_interacted(_body) -> void:
-	pass
+	var keypad = Utils.get_game().puzzle_start(keypad_scene)
+	assert(keypad.connect("puzzle_won", self, "on_door_unlocked") == OK)
 
 
 func on_board_interacted(_body) -> void:
-	pass
+	var _board = Utils.get_game().puzzle_start(board_scene)
 
 
 func on_door_unlocked() -> void:
