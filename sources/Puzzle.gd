@@ -50,3 +50,28 @@ func animate_press(button: AnimatedSprite) -> void:
 	button.play("pressed")
 	yield(button, "animation_finished")
 	button.play("default")
+
+
+func has_won() -> bool:
+	"""
+	Override me
+	"""
+	return false
+
+
+func wrong_guess() -> void:
+	"""
+	Animation showing the player is wrong
+	Override me
+	"""
+	yield(get_tree(), "idle_frame")
+
+
+func right_guess() -> void:
+	"""
+	Animation showing the player is correct
+	Override me
+	"""
+	yield(get_tree(), "idle_frame")
+
+

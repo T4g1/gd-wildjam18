@@ -76,15 +76,6 @@ func _input(event: InputEvent) -> void:
 		play(guess)
 
 
-func animate_press(button: AnimatedSprite) -> void:
-	"""
-	Animate the press on a button
-	"""
-	button.play("pressed")
-	yield(button, "animation_finished")
-	button.play("default")
-
-
 func play(guess: Vector2) -> void:
 	"""
 	Try a possible move
