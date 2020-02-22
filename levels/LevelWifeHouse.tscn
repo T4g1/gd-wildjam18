@@ -162,7 +162,7 @@ position = Vector2( -60.8412, -13.9025 )
 scale = Vector2( 1.28714, 1 )
 texture = ExtResource( 15 )
 texture_scale = 0.2
-energy = 0.5
+energy = 0.4
 shadow_enabled = true
 
 [node name="Garage" type="Light2D" parent="Lights" index="1"]
@@ -170,7 +170,7 @@ position = Vector2( 92.692, -13.9025 )
 scale = Vector2( 1.29118, 1 )
 texture = ExtResource( 15 )
 texture_scale = 0.2
-energy = 0.5
+energy = 0.4
 shadow_enabled = true
 
 [node name="Occluder" type="LightOccluder2D" parent="Lights" index="2"]

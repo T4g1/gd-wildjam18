@@ -31,6 +31,8 @@ func won() -> void:
 
 
 func _ready() -> void:
+	yield(get_tree(), "idle_frame")
+
 	randomize()
 
 	reset()
