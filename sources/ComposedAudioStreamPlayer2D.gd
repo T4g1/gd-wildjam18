@@ -1,5 +1,7 @@
 """
 Allows to an intro to loop song
+For song that are composed of a non looping first part
+followed by a looping part
 """
 extends Node2D
 
