@@ -29,38 +29,37 @@ extents = Vector2( 2.43374, 15.2732 )
 script = ExtResource( 6 )
 
 [node name="Background" type="Sprite" parent="." index="0"]
-scale = Vector2( 0.464722, 0.509834 )
 texture = ExtResource( 9 )
 
 [node name="Player" parent="." index="1"]
-position = Vector2( -135.796, 14.9398 )
+position = Vector2( -151.469, 17.424 )
 z_index = 1
 
 [node name="Son" parent="." index="2" instance=ExtResource( 11 )]
-position = Vector2( 3.17877, 12.5017 )
+position = Vector2( -3.93626, 13.5557 )
 interactable = false
 
 [node name="Wife" parent="." index="3" instance=ExtResource( 10 )]
-position = Vector2( -66.3809, 12.1781 )
+position = Vector2( -60.32, 14.8133 )
 
 [node name="Wreckage" parent="." index="4" instance=ExtResource( 12 )]
-position = Vector2( 8.03178, 13.1487 )
+position = Vector2( -5.67126, 17.365 )
 interactable = false
 
 [node name="Car" parent="." index="5" instance=ExtResource( 4 )]
-position = Vector2( 105.855, 17.8503 )
+position = Vector2( 124.038, 20.2219 )
 interactable = false
 
 [node name="GasCan" parent="." index="6" instance=ExtResource( 5 )]
-position = Vector2( 75.9604, 15.5712 )
+position = Vector2( 77.8051, 18.997 )
 interactable = false
 
 [node name="Tires" parent="." index="7" instance=ExtResource( 2 )]
-position = Vector2( 137.353, 16.1589 )
+position = Vector2( 154.218, 22.7469 )
 interactable = false
 
 [node name="Tools" parent="." index="8" instance=ExtResource( 3 )]
-position = Vector2( 76.9074, -10.166 )
+position = Vector2( 85.34, -1.99687 )
 interactable = false
 
 [node name="Introduction" parent="UI" index="0" instance=ExtResource( 7 )]
@@ -117,25 +116,25 @@ who = "Jonhy"
 thinking = true
 
 [node name="Floor" type="CollisionShape2D" parent="Limits" index="0"]
-position = Vector2( -5.98126, 36.3889 )
+position = Vector2( -0.756185, 37.9257 )
 shape = SubResource( 1 )
 
 [node name="Ceiling" type="CollisionShape2D" parent="Limits" index="1"]
-position = Vector2( -9.92459, -33.8742 )
+position = Vector2( -1.93332, -33.5668 )
 shape = SubResource( 2 )
 
 [node name="WallLeft" type="CollisionShape2D" parent="Limits" index="2"]
-position = Vector2( -160.13, 1.25739 )
+position = Vector2( -171.195, 1.25739 )
 shape = SubResource( 3 )
 
 [node name="WallRight" type="CollisionShape2D" parent="Limits" index="3"]
-position = Vector2( 158.563, -1.96899 )
+position = Vector2( 169.628, 1.71929 )
 shape = SubResource( 3 )
 
 [node name="BeamKitchen" type="CollisionShape2D" parent="Limits" index="4"]
-position = Vector2( -37.6159, -20.3668 )
+position = Vector2( -40.9968, -20.3668 )
 shape = SubResource( 4 )
 
 [node name="BeamGarage" type="CollisionShape2D" parent="Limits" index="5"]
-position = Vector2( 58.214, -20.2007 )
+position = Vector2( 62.8244, -20.2007 )
 shape = SubResource( 4 )

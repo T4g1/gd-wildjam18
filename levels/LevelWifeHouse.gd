@@ -49,6 +49,8 @@ func on_tools_interacted(__) -> void:
 
 
 func on_wreckage_interacted(__) -> void:
+	$Son.saved()
+
 	yield(start_dialog($UI/BilySaved), "completed")
 
 	$Wreckage.disable()
@@ -67,6 +69,8 @@ func on_gas_interacted(__) -> void:
 
 func on_tires_interacted(__) -> void:
 	yield(start_dialog($UI/GotTires), "completed")
+
+	$Tires.empty()
 
 	$Tires.disable()
 
