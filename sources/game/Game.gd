@@ -111,6 +111,14 @@ func puzzle_quit() -> void:
 	puzzle = null
 
 
+func _input(event: InputEvent) -> void:
+	"""
+	Allows to pause game
+	"""
+	if event.is_action_pressed("ui_cancel"):
+		$UI/PauseMenu.on_pause()
+
+
 func get_active_spawn() -> Node:
 	"""
 	Get where player should spawn
