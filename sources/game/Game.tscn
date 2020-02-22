@@ -13,6 +13,7 @@
 ]]
 script = ExtResource( 1 )
 levels = [ ExtResource( 2 ), ExtResource( 4 ), ExtResource( 3 ), ExtResource( 5 ), ExtResource( 6 ) ]
+level_id = 3
 
 [node name="UI" type="CanvasLayer" parent="."]
 layer = 6

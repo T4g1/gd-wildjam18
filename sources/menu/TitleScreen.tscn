@@ -128,7 +128,6 @@ stuck = false
 position = Vector2( 173.83, 105.79 )
 frames = ExtResource( 9 )
 animation = "idle"
-frame = 1
 playing = true
 flip_h = true
 [connection signal="pressed" from="UI/Control/VBoxContainer/PlayButton" to="." method="_on_play_pressed"]
