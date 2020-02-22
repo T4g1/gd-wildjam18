@@ -13,6 +13,8 @@ func _input(event: InputEvent) -> void:
 
 
 func _ready() -> void:
+	VisualServer.set_default_clear_color(Color("#0d1e29"))
+
 	logo.modulate.a = 0
 	topic.modulate.a = 0
 

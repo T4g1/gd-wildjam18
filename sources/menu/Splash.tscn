@@ -12,7 +12,6 @@ script = ExtResource( 4 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
-title_screen_path = "res://sources/menu/TitleScreen.tscn"
 
 [node name="Tween" type="Tween" parent="."]
 
