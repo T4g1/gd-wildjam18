@@ -1,4 +1,4 @@
-[gd_scene load_steps=19 format=2]
+[gd_scene load_steps=20 format=2]
 
 [ext_resource path="res://assets/player_spriteframes.tres" type="SpriteFrames" id=1]
 [ext_resource path="res://sources/player/Player.gd" type="Script" id=2]
@@ -16,6 +16,7 @@
 [ext_resource path="res://assets/sfx/player/sfx_footstep_5.ogg" type="AudioStream" id=14]
 [ext_resource path="res://sources/MultipleAudioStreamPlayer2D.gd" type="Script" id=15]
 [ext_resource path="res://assets/sfx/player/sfx_player_dies.ogg" type="AudioStream" id=16]
+[ext_resource path="res://assets/sfx/player/sfx_player_jump.ogg" type="AudioStream" id=17]
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 5.62455, 12.5059 )
@@ -37,7 +38,6 @@ shape = SubResource( 1 )
 [node name="Sprite" type="AnimatedSprite" parent="."]
 frames = ExtResource( 1 )
 animation = "idle"
-frame = 1
 playing = true
 __meta__ = {
 "_edit_lock_": true
@@ -79,6 +79,7 @@ shape = SubResource( 2 )
 [node name="SFX" type="Node2D" parent="."]
 
 [node name="jump" type="AudioStreamPlayer2D" parent="SFX"]
+stream = ExtResource( 17 )
 
 [node name="die" type="AudioStreamPlayer2D" parent="SFX"]
 stream = ExtResource( 16 )

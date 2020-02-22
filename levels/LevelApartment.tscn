@@ -33,6 +33,35 @@ puzzle_scene = ExtResource( 9 )
 position = Vector2( 84.8247, 82.308 )
 texture = ExtResource( 8 )
 
+[node name="Player" parent="." index="1"]
+position = Vector2( -27.8509, 98.3262 )
+z_index = 1
+jump_duration = 0.2
+
+[node name="Fridge" parent="." index="2" instance=ExtResource( 10 )]
+position = Vector2( 174.561, 95.2681 )
+
+[node name="Drawer" parent="." index="3" instance=ExtResource( 11 )]
+position = Vector2( 7.35558, 103.054 )
+interactable = false
+
+[node name="TV" parent="." index="4" instance=ExtResource( 7 )]
+position = Vector2( 110.757, 90.2222 )
+interactable = false
+
+[node name="FrontDoor" parent="." index="5" instance=ExtResource( 13 )]
+position = Vector2( 240.729, 91.9414 )
+interactable = false
+
+[node name="Window" parent="." index="6" instance=ExtResource( 12 )]
+position = Vector2( -60.3979, 85.4886 )
+interactable = false
+
+[node name="couch" type="Sprite" parent="." index="7"]
+position = Vector2( 80.006, 98.1615 )
+scale = Vector2( 0.876199, 0.876199 )
+texture = ExtResource( 4 )
+
 [node name="Mask" type="ColorRect" parent="UI" index="0"]
 visible = false
 anchor_right = 1.0
@@ -98,30 +127,6 @@ content = "Let's exit by the front door now...
 who = "Johnny"
 thinking = true
 
-[node name="Fridge" parent="." index="2" instance=ExtResource( 10 )]
-position = Vector2( 174.561, 95.2681 )
-
-[node name="Drawer" parent="." index="3" instance=ExtResource( 11 )]
-position = Vector2( 7.35558, 103.054 )
-interactable = false
-
-[node name="TV" parent="." index="4" instance=ExtResource( 7 )]
-position = Vector2( 110.757, 90.2222 )
-interactable = false
-
-[node name="FrontDoor" parent="." index="5" instance=ExtResource( 13 )]
-position = Vector2( 240.729, 91.9414 )
-interactable = false
-
-[node name="Window" parent="." index="6" instance=ExtResource( 12 )]
-position = Vector2( -60.3979, 85.4886 )
-interactable = false
-
-[node name="couch" type="Sprite" parent="." index="7"]
-position = Vector2( 80.006, 98.1615 )
-scale = Vector2( 0.876199, 0.876199 )
-texture = ExtResource( 4 )
-
 [node name="Floor" type="CollisionShape2D" parent="Limits" index="0"]
 position = Vector2( 79.385, 122.64 )
 shape = SubResource( 1 )
@@ -145,10 +150,5 @@ shape = SubResource( 3 )
 [node name="BedroomBeam" type="CollisionShape2D" parent="Limits" index="5"]
 position = Vector2( 33.2068, 58.5754 )
 shape = SubResource( 4 )
-
-[node name="Player" parent="." index="9"]
-position = Vector2( -27.8509, 98.3262 )
-z_index = 1
-jump_duration = 0.2
 
 [node name="Tween" type="Tween" parent="." index="10"]

@@ -19,3 +19,19 @@ func _ready():
 
 func introduction() -> void:
 	yield(start_dialog($UI/Introduction), "completed")
+
+
+func on_door_interacted(_body) -> void:
+	pass
+
+
+func on_generator_interacted(_body) -> void:
+	pass
+
+
+func on_keypad_interacted(_body) -> void:
+	pass
+
+
+func on_board_interacted(_body) -> void:
+	pass

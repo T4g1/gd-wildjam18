@@ -16,9 +16,6 @@ extents = Vector2( 364.264, 4.82501 )
 [sub_resource type="RectangleShape2D" id=2]
 extents = Vector2( 355.901, 5.24313 )
 
-[sub_resource type="RectangleShape2D" id=3]
-extents = Vector2( 7.54988, 90.8536 )
-
 [sub_resource type="RectangleShape2D" id=4]
 extents = Vector2( 7.15265, 66.2263 )
 
@@ -27,6 +24,9 @@ extents = Vector2( 4.76939, 17.3689 )
 
 [sub_resource type="RectangleShape2D" id=6]
 extents = Vector2( 5.15154, 11.8016 )
+
+[sub_resource type="RectangleShape2D" id=3]
+extents = Vector2( 7.54988, 90.8536 )
 
 [node name="LevelShelter" instance=ExtResource( 1 )]
 script = ExtResource( 2 )
@@ -68,18 +68,22 @@ shape = SubResource( 1 )
 position = Vector2( 56.8644, -59.7912 )
 shape = SubResource( 2 )
 
-[node name="Left" type="CollisionShape2D" parent="Limits" index="2"]
-position = Vector2( -34.5576, -6.75264 )
-shape = SubResource( 3 )
-
-[node name="Right" type="CollisionShape2D" parent="Limits" index="3"]
+[node name="Right" type="CollisionShape2D" parent="Limits" index="2"]
 position = Vector2( 355.507, -17.4774 )
 shape = SubResource( 4 )
 
-[node name="BeamLeft" type="CollisionShape2D" parent="Limits" index="4"]
+[node name="BeamLeft" type="CollisionShape2D" parent="Limits" index="3"]
 position = Vector2( 73.8819, -45.2824 )
 shape = SubResource( 5 )
 
-[node name="BeamRight" type="CollisionShape2D" parent="Limits" index="5"]
+[node name="BeamRight" type="CollisionShape2D" parent="Limits" index="4"]
 position = Vector2( 244.059, -48.6973 )
 shape = SubResource( 6 )
+
+[node name="LeftWall" type="RigidBody2D" parent="." index="8"]
+collision_layer = 0
+mode = 1
+
+[node name="Left" type="CollisionShape2D" parent="LeftWall" index="0"]
+position = Vector2( -34.5576, -6.75264 )
+shape = SubResource( 3 )
