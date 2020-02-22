@@ -27,7 +27,6 @@ interaction_range = NodePath("../Wife/InteractionRange")
 
 [node name="Sprite" parent="." index="0"]
 frames = SubResource( 3 )
-frame = 1
 playing = true
 
 [node name="CollisionShape2D" parent="InteractionRange" index="0"]
