@@ -44,6 +44,8 @@ func on_son_interacted(__) -> void:
 func on_tools_interacted(__) -> void:
 	yield(start_dialog($UI/GotCrowbar), "completed")
 
+	$Tools.remove_crowbar()
+
 	$Tools.disable()
 	$Wreckage.enable()
 

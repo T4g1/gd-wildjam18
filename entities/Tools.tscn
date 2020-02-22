@@ -1,12 +1,26 @@
-[gd_scene load_steps=3 format=2]
+[gd_scene load_steps=6 format=2]
 
 [ext_resource path="res://sources/entity/Entity.tscn" type="PackedScene" id=1]
+[ext_resource path="res://assets/images/level3/Crowbar.png" type="Texture" id=2]
+[ext_resource path="res://entities/Tools.gd" type="Script" id=3]
+
+[sub_resource type="SpriteFrames" id=2]
+animations = [ {
+"frames": [ ExtResource( 2 ) ],
+"loop": true,
+"name": "default",
+"speed": 5.0
+} ]
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 16.4432, 8.52827 )
 
 [node name="Tools" instance=ExtResource( 1 )]
-interaction_range = NodePath("../Tools/InteractionRange")
+script = ExtResource( 3 )
+
+[node name="Sprite" parent="." index="0"]
+position = Vector2( 9.47638, 0.890944 )
+frames = SubResource( 2 )
 
 [node name="CollisionShape2D" parent="InteractionRange" index="0"]
 shape = SubResource( 1 )
