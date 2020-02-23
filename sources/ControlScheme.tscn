@@ -1,0 +1,160 @@
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://assets/player_spriteframes.tres" type="SpriteFrames" id=1]
+[ext_resource path="res://assets/TVPuzzle_arrow_spriteframes.tres" type="SpriteFrames" id=2]
+
+[sub_resource type="Animation" id=1]
+resource_name = "default"
+length = 6.0
+loop = true
+step = 1.0
+tracks/0/type = "value"
+tracks/0/path = NodePath("ui_left:animation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 2 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ "loop", "default" ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("Left:playing")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 2 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ true, false ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("ui_up:animation")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 2, 4 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ "loop", "default" ]
+}
+tracks/3/type = "value"
+tracks/3/path = NodePath("Jump:playing")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 2, 4 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ true, false ]
+}
+tracks/4/type = "value"
+tracks/4/path = NodePath("ui_right:animation")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/keys = {
+"times": PoolRealArray( 4, 6 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ "loop", "default" ]
+}
+tracks/5/type = "value"
+tracks/5/path = NodePath("Right:playing")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/keys = {
+"times": PoolRealArray( 4, 6 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ true, false ]
+}
+tracks/6/type = "value"
+tracks/6/path = NodePath("Jump:animation")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/keys = {
+"times": PoolRealArray( 2, 4 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ "jump", "idle" ]
+}
+tracks/7/type = "value"
+tracks/7/path = NodePath("Left:animation")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/keys = {
+"times": PoolRealArray( 0, 2 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ "run", "idle" ]
+}
+tracks/8/type = "value"
+tracks/8/path = NodePath("Right:animation")
+tracks/8/interp = 1
+tracks/8/loop_wrap = true
+tracks/8/imported = false
+tracks/8/enabled = true
+tracks/8/keys = {
+"times": PoolRealArray( 4, 6 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ "run", "idle" ]
+}
+
+[node name="ControlScheme" type="Node2D"]
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+autoplay = "default"
+anims/default = SubResource( 1 )
+
+[node name="Jump" type="AnimatedSprite" parent="."]
+position = Vector2( -1.5, -21.5 )
+frames = ExtResource( 1 )
+animation = "idle"
+
+[node name="Left" type="AnimatedSprite" parent="."]
+position = Vector2( -35.5, 0 )
+frames = ExtResource( 1 )
+animation = "idle"
+flip_h = true
+
+[node name="Right" type="AnimatedSprite" parent="."]
+position = Vector2( 35, 1.5 )
+frames = ExtResource( 1 )
+animation = "run"
+playing = true
+
+[node name="ui_up" type="AnimatedSprite" parent="."]
+position = Vector2( -1, 6.5 )
+rotation = 3.14159
+frames = ExtResource( 2 )
+playing = true
+
+[node name="ui_left" type="AnimatedSprite" parent="."]
+position = Vector2( -16, 8 )
+rotation = 1.5708
+frames = ExtResource( 2 )
+playing = true
+
+[node name="ui_right" type="AnimatedSprite" parent="."]
+position = Vector2( 14, 8.5 )
+rotation = -1.5708
+frames = ExtResource( 2 )
+animation = "loop"
+playing = true

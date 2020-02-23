@@ -1,4 +1,4 @@
-[gd_scene load_steps=25 format=2]
+[gd_scene load_steps=27 format=2]
 
 [ext_resource path="res://sources/level/Level.tscn" type="PackedScene" id=1]
 [ext_resource path="res://levels/LevelShelter.gd" type="Script" id=2]
@@ -16,6 +16,8 @@
 [ext_resource path="res://entities/Wife.tscn" type="PackedScene" id=14]
 [ext_resource path="res://entities/Son.tscn" type="PackedScene" id=15]
 [ext_resource path="res://assets/images/lights/light_shadow_light.png" type="Texture" id=16]
+[ext_resource path="res://entities/Rain.tscn" type="PackedScene" id=17]
+[ext_resource path="res://assets/images/rain.png" type="Texture" id=18]
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 162.088, 4.82501 )
@@ -23,16 +25,16 @@ extents = Vector2( 162.088, 4.82501 )
 [sub_resource type="RectangleShape2D" id=2]
 extents = Vector2( 167.343, 5.24313 )
 
-[sub_resource type="RectangleShape2D" id=4]
+[sub_resource type="RectangleShape2D" id=3]
 extents = Vector2( 7.15265, 66.2263 )
 
-[sub_resource type="RectangleShape2D" id=5]
+[sub_resource type="RectangleShape2D" id=4]
 extents = Vector2( 3.07835, 17.3689 )
 
-[sub_resource type="RectangleShape2D" id=6]
+[sub_resource type="RectangleShape2D" id=5]
 extents = Vector2( 2.2551, 11.8016 )
 
-[sub_resource type="RectangleShape2D" id=3]
+[sub_resource type="RectangleShape2D" id=6]
 extents = Vector2( 7.54988, 90.8536 )
 
 [sub_resource type="Animation" id=7]
@@ -79,26 +81,47 @@ texture = ExtResource( 3 )
 position = Vector2( 57.3706, -8.04344 )
 z_index = 1
 
-[node name="SteelDoor" parent="." index="2" instance=ExtResource( 6 )]
+[node name="Camera2D" parent="Player" index="6"]
+limit_left = 42
+limit_right = 280
+
+[node name="Rain" parent="." index="2" instance=ExtResource( 17 )]
+position = Vector2( 43.9076, -66.5783 )
+
+[node name="Occluder" type="Sprite" parent="." index="3"]
+modulate = Color( 0, 0, 0, 1 )
+position = Vector2( 4.38558, 8.5518 )
+scale = Vector2( 347.187, 45.4851 )
+texture = ExtResource( 18 )
+centered = false
+
+[node name="Occluder2" type="Sprite" parent="." index="4"]
+modulate = Color( 0, 0, 0, 1 )
+position = Vector2( -7.87478, -146.437 )
+scale = Vector2( 347.187, 45.4851 )
+texture = ExtResource( 18 )
+centered = false
+
+[node name="SteelDoor" parent="." index="5" instance=ExtResource( 6 )]
 position = Vector2( 213.588, -11.3 )
 
-[node name="Generator" parent="." index="3" instance=ExtResource( 7 )]
+[node name="Generator" parent="." index="6" instance=ExtResource( 7 )]
 position = Vector2( 82.7307, -6.5257 )
 interactable = false
 
-[node name="Keypad" parent="." index="4" instance=ExtResource( 5 )]
+[node name="Keypad" parent="." index="7" instance=ExtResource( 5 )]
 position = Vector2( 198.838, -15.1511 )
 interactable = false
 
-[node name="Board" parent="." index="5" instance=ExtResource( 4 )]
+[node name="Board" parent="." index="8" instance=ExtResource( 4 )]
 position = Vector2( 150.292, -29.413 )
 interactable = false
 
-[node name="Wife" parent="." index="6" instance=ExtResource( 14 )]
+[node name="Wife" parent="." index="9" instance=ExtResource( 14 )]
 position = Vector2( 123.219, -9.34365 )
 interactable = false
 
-[node name="Son" parent="." index="7" instance=ExtResource( 15 )]
+[node name="Son" parent="." index="10" instance=ExtResource( 15 )]
 position = Vector2( 132.878, -12.3361 )
 scale = Vector2( -1, 1 )
 interactable = false
@@ -151,7 +174,8 @@ content = "Alright, that should do it..."
 who = "Jonhy"
 thinking = true
 
-[node name="Limits" parent="." index="9"]
+[node name="Limits" parent="." index="12"]
+visible = false
 collision_layer = 0
 collision_mask = 1
 
@@ -165,28 +189,28 @@ shape = SubResource( 2 )
 
 [node name="Right" type="CollisionShape2D" parent="Limits" index="2"]
 position = Vector2( 286.352, -19.6289 )
-shape = SubResource( 4 )
+shape = SubResource( 3 )
 
 [node name="BeamLeft" type="CollisionShape2D" parent="Limits" index="3"]
 position = Vector2( 107.384, -45.5898 )
-shape = SubResource( 5 )
+shape = SubResource( 4 )
 
 [node name="BeamRight" type="CollisionShape2D" parent="Limits" index="4"]
 position = Vector2( 213.63, -48.0826 )
-shape = SubResource( 6 )
+shape = SubResource( 5 )
 
 [node name="Left" type="CollisionShape2D" parent="Limits" index="5"]
 position = Vector2( 38.5933, -16.8954 )
-shape = SubResource( 3 )
+shape = SubResource( 6 )
 
-[node name="Theme" parent="." index="10"]
+[node name="Theme" parent="." index="13"]
 intro = ExtResource( 10 )
 loop = ExtResource( 11 )
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="." index="11"]
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." index="14"]
 anims/door_openned = SubResource( 7 )
 
-[node name="Lights" type="Node2D" parent="." index="12"]
+[node name="Lights" type="Node2D" parent="." index="15"]
 
 [node name="Outside" type="Light2D" parent="Lights" index="0"]
 position = Vector2( 90.9422, -50.188 )

@@ -8,16 +8,21 @@ func _ready() -> void:
 	"""
 	Start credits animation
 	"""
-	yield(get_tree().create_timer(1), "timeout")
+	VisualServer.set_default_clear_color(Color.black)
+	
+	$AnimationPlayer.play("lightning")
 
-	$Sprite.play("die")
-
-	yield($Sprite, "animation_finished")
+	yield($AnimationPlayer, "animation_finished")
 
 	$AnimationPlayer.play("credits")
 
 	yield($AnimationPlayer, "animation_finished")
 
+	$AnimationPlayer.play("staff")
+
+	yield($AnimationPlayer, "animation_finished")
+
+	Utils.game_completed = true
 	Utils.main_menu()
 
 

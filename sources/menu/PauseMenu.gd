@@ -25,6 +25,8 @@ func activate() -> void:
 	get_tree().paused = true
 	set_process_input(true)
 
+	$VBoxContainer/ResumeButton.grab_focus()
+
 
 func deactivate() -> void:
 	"""

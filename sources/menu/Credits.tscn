@@ -1,13 +1,16 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=10 format=2]
 
 [ext_resource path="res://assets/player_spriteframes.tres" type="SpriteFrames" id=1]
 [ext_resource path="res://sources/menu/Credits.gd" type="Script" id=2]
 [ext_resource path="res://assets/fonts/poco/Poco_DynamicFont.tres" type="DynamicFont" id=3]
+[ext_resource path="res://assets/sfx/sfx_thunderstrike.ogg" type="AudioStream" id=4]
+[ext_resource path="res://assets/ui_theme.tres" type="Theme" id=5]
+[ext_resource path="res://assets/lightningbolt_spriteframes.tres" type="SpriteFrames" id=6]
 
 [sub_resource type="Animation" id=1]
 resource_name = "credits"
 length = 15.0
-step = 0.5
+step = 0.0
 tracks/0/type = "value"
 tracks/0/path = NodePath("Sprite:position")
 tracks/0/interp = 1
@@ -33,6 +36,184 @@ tracks/1/keys = {
 "values": [ Vector2( 0, 150 ), Vector2( 0, -100 ) ]
 }
 
+[sub_resource type="Animation" id=2]
+resource_name = "lightning"
+length = 2.5
+step = 1.0
+tracks/0/type = "value"
+tracks/0/path = NodePath("AudioStreamPlayer:playing")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ true ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("Sprite:animation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ "die" ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("Sprite:playing")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ true ]
+}
+tracks/3/type = "value"
+tracks/3/path = NodePath("Sprite:position")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector2( 0, 0 ) ]
+}
+tracks/4/type = "value"
+tracks/4/path = NodePath("LightningBolt:animation")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ "bolt" ]
+}
+
+[sub_resource type="Animation" id=3]
+resource_name = "staff"
+length = 6.0
+step = 0.5
+tracks/0/type = "value"
+tracks/0/path = NodePath("UI/Content/Code:rect_position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.5, 1.5, 2 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"update": 0,
+"values": [ Vector2( -82.4037, 58.6603 ), Vector2( 42.5986, 58.6603 ), Vector2( 42.5986, 58.6603 ), Vector2( 236.038, 58.6603 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("UI/Content/CodeStaff:rect_position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.5, 1.5, 2 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"update": 0,
+"values": [ Vector2( 229.753, 72.6603 ), Vector2( 53.772, 72.6603 ), Vector2( 53.772, 72.6603 ), Vector2( -85.8954, 72.6603 ) ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("UI/Content/Graphic:rect_position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 1.5, 2, 3, 3.5 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"update": 0,
+"values": [ Vector2( 222.071, 15.3634 ), Vector2( 122.907, 15.3634 ), Vector2( 122.907, 15.3634 ), Vector2( -60.057, 15.3634 ) ]
+}
+tracks/3/type = "value"
+tracks/3/path = NodePath("UI/Content/GraphicStaff:rect_position")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 1.5, 2, 3, 3.5 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"update": 0,
+"values": [ Vector2( -77.5154, 29.3302 ), Vector2( 78.9121, 29.3302 ), Vector2( 78.9121, 29.3302 ), Vector2( 224.864, 29.3302 ) ]
+}
+tracks/4/type = "value"
+tracks/4/path = NodePath("UI/Content/Audio:rect_position")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/keys = {
+"times": PoolRealArray( 3, 3.5, 4.5, 5 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"update": 0,
+"values": [ Vector2( -72.8816, 103.342 ), Vector2( 32.0675, 103.342 ), Vector2( 32.0675, 103.342 ), Vector2( 229.178, 103.342 ) ]
+}
+tracks/5/type = "value"
+tracks/5/path = NodePath("UI/Content/AudioStaff:rect_position")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/keys = {
+"times": PoolRealArray( 3, 3.5, 4.5, 5 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"update": 0,
+"values": [ Vector2( 236.346, 118.044 ), Vector2( 56.0547, 118.044 ), Vector2( 56.0547, 118.044 ), Vector2( -131.2, 118.044 ) ]
+}
+tracks/6/type = "value"
+tracks/6/path = NodePath("Sprite:animation")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ "run" ]
+}
+tracks/7/type = "value"
+tracks/7/path = NodePath("Sprite:position")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/keys = {
+"times": PoolRealArray( 0, 6 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Vector2( -114.617, 11.7325 ), Vector2( 111.91, 11.732 ) ]
+}
+tracks/8/type = "value"
+tracks/8/path = NodePath("UI/Content/Text:visible")
+tracks/8/interp = 1
+tracks/8/loop_wrap = true
+tracks/8/imported = false
+tracks/8/enabled = true
+tracks/8/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ false ]
+}
+
 [node name="Credits" type="Node2D"]
 script = ExtResource( 2 )
 
@@ -41,6 +222,7 @@ script = ExtResource( 2 )
 [node name="Content" type="Control" parent="UI"]
 anchor_right = 1.0
 anchor_bottom = 1.0
+theme = ExtResource( 5 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -71,13 +253,85 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
+[node name="Code" type="Label" parent="UI/Content"]
+margin_left = 236.038
+margin_top = 58.6603
+margin_right = 276.038
+margin_bottom = 72.6603
+text = "Code"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="CodeStaff" type="Label" parent="UI/Content"]
+margin_left = -85.8954
+margin_top = 72.6603
+margin_right = -45.896
+margin_bottom = 89.6603
+text = "Pippi
+T4g1"
+align = 2
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Graphic" type="Label" parent="UI/Content"]
+margin_left = -60.057
+margin_top = 15.3634
+margin_right = -20.0571
+margin_bottom = 22.3634
+text = "Graphic"
+
+[node name="GraphicStaff" type="Label" parent="UI/Content"]
+margin_left = 224.864
+margin_top = 29.3302
+margin_right = 271.865
+margin_bottom = 46.3302
+text = "BurntRobot
+justadude1"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Audio" type="Label" parent="UI/Content"]
+margin_left = 229.178
+margin_top = 103.342
+margin_right = 269.178
+margin_bottom = 110.342
+text = "Audio"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="AudioStaff" type="Label" parent="UI/Content"]
+margin_left = -131.2
+margin_top = 118.044
+margin_right = -45.2002
+margin_bottom = 135.044
+text = "Rose Tinted Dreams
+The Walker"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
 [node name="Camera2D" type="Camera2D" parent="."]
 current = true
 
 [node name="Sprite" type="AnimatedSprite" parent="."]
 frames = ExtResource( 1 )
 animation = "idle"
+frame = 1
+playing = true
+
+[node name="LightningBolt" type="AnimatedSprite" parent="."]
+position = Vector2( -0.152802, -10.9955 )
+frames = ExtResource( 6 )
 playing = true
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 anims/credits = SubResource( 1 )
+anims/lightning = SubResource( 2 )
+anims/staff = SubResource( 3 )
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 4 )

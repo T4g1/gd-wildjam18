@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/sfx_thunderstrike.ogg-1047b35a337794e413162e17a600360b.oggstr"
+
+[deps]
+
+source_file="res://assets/sfx/sfx_thunderstrike.ogg"
+dest_files=[ "res://.import/sfx_thunderstrike.ogg-1047b35a337794e413162e17a600360b.oggstr" ]
+
+[params]
+
+loop=false
+loop_offset=0

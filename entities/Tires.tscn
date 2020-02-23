@@ -4,42 +4,42 @@
 [ext_resource path="res://assets/images/level3/Tires.png" type="Texture" id=2]
 [ext_resource path="res://entities/Tires.gd" type="Script" id=3]
 
-[sub_resource type="AtlasTexture" id=2]
+[sub_resource type="AtlasTexture" id=1]
 atlas = ExtResource( 2 )
 region = Rect2( 10, 0, 10, 16 )
 
-[sub_resource type="AtlasTexture" id=3]
+[sub_resource type="AtlasTexture" id=2]
 atlas = ExtResource( 2 )
 region = Rect2( 0, 0, 10, 16 )
 
-[sub_resource type="SpriteFrames" id=4]
+[sub_resource type="SpriteFrames" id=3]
 animations = [ {
-"frames": [ SubResource( 2 ) ],
+"frames": [ SubResource( 1 ) ],
 "loop": true,
 "name": "empty",
 "speed": 5.0
 }, {
-"frames": [ SubResource( 3 ) ],
+"frames": [ SubResource( 2 ) ],
 "loop": true,
 "name": "default",
 "speed": 5.0
 } ]
 
-[sub_resource type="RectangleShape2D" id=1]
+[sub_resource type="RectangleShape2D" id=4]
 extents = Vector2( 5.11954, 8.20474 )
 
 [node name="Tires" instance=ExtResource( 1 )]
 script = ExtResource( 3 )
 
 [node name="Sprite" parent="." index="0"]
-frames = SubResource( 4 )
+frames = SubResource( 3 )
 
 [node name="CollisionShape2D" parent="InteractionRange" index="0"]
-shape = SubResource( 1 )
+shape = SubResource( 4 )
 
 [node name="Label" parent="." index="3"]
-floating_distance = 5.0
-speed = 0.3
-color = Color( 1, 1, 1, 1 )
+margin_left = -11.698
+margin_top = -23.3774
+margin_right = -11.698
+margin_bottom = -23.3774
 text = "Get tires"
-icon_texture = null
