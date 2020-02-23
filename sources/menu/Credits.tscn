@@ -36,7 +36,7 @@ tracks/1/keys = {
 
 [sub_resource type="Animation" id=2]
 resource_name = "lightning"
-length = 3.0
+length = 2.5
 step = 1.0
 tracks/0/type = "value"
 tracks/0/path = NodePath("AudioStreamPlayer:playing")

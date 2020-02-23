@@ -8,9 +8,11 @@ func _ready() -> void:
 	"""
 	Start credits animation
 	"""
+	VisualServer.set_default_clear_color(Color.black)
+	
 	$AnimationPlayer.play("lightning")
 
-	yield($Sprite, "animation_finished")
+	yield($AnimationPlayer, "animation_finished")
 
 	$AnimationPlayer.play("credits")
 
