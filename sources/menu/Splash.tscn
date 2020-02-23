@@ -60,3 +60,4 @@ stretch_mode = 6
 __meta__ = {
 "_edit_use_anchors_": false
 }
+[connection signal="tween_all_completed" from="Tween" to="." method="load_title"]

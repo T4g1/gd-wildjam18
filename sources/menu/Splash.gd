@@ -4,12 +4,15 @@ onready var tween := $Tween as Tween
 onready var logo := $Logo
 onready var topic := $Topic
 
+# warning-ignore:unused_class_variable
+var delay := 0.0
+
 var animate_state
 
 
 func _input(event: InputEvent) -> void:
 	if event.is_action_pressed("ui_cancel"):
-		Utils.force_complete(animate_state)
+		load_title()
 
 
 func _ready() -> void:
@@ -18,7 +21,7 @@ func _ready() -> void:
 	logo.modulate.a = 0
 	topic.modulate.a = 0
 
-	animate_state = animate()
+	animate()
 
 
 func animate() -> void:
@@ -33,12 +36,11 @@ func animate() -> void:
 	__ = tween.interpolate_property(topic, "modulate:a", 0, 1, 1, Tween.TRANS_SINE, Tween.EASE_IN_OUT, 5)
 	__ = tween.interpolate_property(topic, "modulate:a", 1, 0, 1, Tween.TRANS_SINE, Tween.EASE_IN_OUT, 7)
 
+	# Wait one second
+	__ = tween.interpolate_property(self, "delay", 0, 1, 1, Tween.TRANS_SINE, Tween.EASE_IN_OUT, 8)
+
 	__ = tween.start()
 	yield(tween, "tween_all_completed")
-
-	yield(get_tree().create_timer(1), "timeout")
-
-	load_title()
 
 
 func load_title() -> void:

@@ -30,14 +30,6 @@ func credits() -> void:
 	change_scene("res://sources/menu/Credits.tscn")
 
 
-func force_complete(function_state: GDScriptFunctionState) -> void:
-	"""
-	Force a pending yield to finish
-	"""
-	while function_state is GDScriptFunctionState:
-		function_state = function_state.resume()
-
-
 func _get_group_singleton(name : String) -> Node:
 	assert(len(get_tree().get_nodes_in_group(name)) == 1)
 

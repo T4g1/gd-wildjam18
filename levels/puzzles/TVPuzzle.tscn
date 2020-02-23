@@ -38,6 +38,7 @@ script = ExtResource( 1 )
 [node name="Screen" type="AnimatedSprite" parent="."]
 position = Vector2( 119.278, 87.3777 )
 frames = SubResource( 1 )
+frame = 2
 playing = true
 
 [node name="Clues" type="Node2D" parent="."]
@@ -45,25 +46,21 @@ playing = true
 [node name="LeftClue" type="AnimatedSprite" parent="Clues"]
 position = Vector2( 67.3981, 88.9478 )
 frames = ExtResource( 2 )
-frame = 2
 playing = true
 
 [node name="RighClue" type="AnimatedSprite" parent="Clues"]
 position = Vector2( 176.951, 89.3628 )
 frames = ExtResource( 2 )
-frame = 2
 playing = true
 
 [node name="TopClue" type="AnimatedSprite" parent="Clues"]
 position = Vector2( 125.28, 51.6106 )
 frames = ExtResource( 2 )
-frame = 2
 playing = true
 
 [node name="BottomClue" type="AnimatedSprite" parent="Clues"]
 position = Vector2( 120.083, 121.341 )
 frames = ExtResource( 2 )
-frame = 2
 playing = true
 
 [node name="Background" type="Sprite" parent="."]
