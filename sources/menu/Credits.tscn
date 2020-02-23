@@ -1,10 +1,11 @@
-[gd_scene load_steps=9 format=2]
+[gd_scene load_steps=10 format=2]
 
 [ext_resource path="res://assets/player_spriteframes.tres" type="SpriteFrames" id=1]
 [ext_resource path="res://sources/menu/Credits.gd" type="Script" id=2]
 [ext_resource path="res://assets/fonts/poco/Poco_DynamicFont.tres" type="DynamicFont" id=3]
 [ext_resource path="res://assets/sfx/sfx_thunderstrike.ogg" type="AudioStream" id=4]
 [ext_resource path="res://assets/ui_theme.tres" type="Theme" id=5]
+[ext_resource path="res://assets/lightningbolt_spriteframes.tres" type="SpriteFrames" id=6]
 
 [sub_resource type="Animation" id=1]
 resource_name = "credits"
@@ -86,6 +87,18 @@ tracks/3/keys = {
 "transitions": PoolRealArray( 1 ),
 "update": 0,
 "values": [ Vector2( 0, 0 ) ]
+}
+tracks/4/type = "value"
+tracks/4/path = NodePath("LightningBolt:animation")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ "bolt" ]
 }
 
 [sub_resource type="Animation" id=3]
@@ -215,10 +228,11 @@ __meta__ = {
 }
 
 [node name="Text" type="Label" parent="UI/Content"]
+visible = false
 anchor_right = 1.0
 anchor_bottom = 1.0
-margin_top = 150.0
-margin_bottom = 247.0
+margin_top = 32.2
+margin_bottom = 129.2
 custom_fonts/font = ExtResource( 3 )
 text = "Thanks to you, Britany and Bily are now safe.
 
@@ -305,9 +319,14 @@ __meta__ = {
 current = true
 
 [node name="Sprite" type="AnimatedSprite" parent="."]
-position = Vector2( 111.91, 11.732 )
 frames = ExtResource( 1 )
 animation = "run"
+frame = 3
+playing = true
+
+[node name="LightningBolt" type="AnimatedSprite" parent="."]
+position = Vector2( -0.152802, -10.9955 )
+frames = ExtResource( 6 )
 playing = true
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
