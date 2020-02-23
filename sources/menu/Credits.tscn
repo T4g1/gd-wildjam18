@@ -320,13 +320,12 @@ current = true
 [node name="Sprite" type="AnimatedSprite" parent="."]
 frames = ExtResource( 1 )
 animation = "idle"
+frame = 1
 playing = true
 
 [node name="LightningBolt" type="AnimatedSprite" parent="."]
 position = Vector2( -0.152802, -10.9955 )
 frames = ExtResource( 6 )
-animation = "bolt"
-frame = 9
 playing = true
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
