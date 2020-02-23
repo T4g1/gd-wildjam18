@@ -18,6 +18,10 @@ func _ready() -> void:
 
 	yield($AnimationPlayer, "animation_finished")
 
+	$AnimationPlayer.play("staff")
+
+	yield($AnimationPlayer, "animation_finished")
+
 	Utils.game_completed = true
 	Utils.main_menu()
 
