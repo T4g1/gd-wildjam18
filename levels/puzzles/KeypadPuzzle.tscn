@@ -1,8 +1,10 @@
-[gd_scene load_steps=4 format=2]
+[gd_scene load_steps=6 format=2]
 
 [ext_resource path="res://levels/puzzles/KeypadPuzzle.gd" type="Script" id=1]
 [ext_resource path="res://assets/images/level5/Keypad.png" type="Texture" id=2]
 [ext_resource path="res://assets/TVPuzzle_arrow_spriteframes.tres" type="SpriteFrames" id=3]
+[ext_resource path="res://assets/ui_theme.tres" type="Theme" id=4]
+[ext_resource path="res://sources/InteractionScheme.tscn" type="PackedScene" id=5]
 
 [node name="KeypadPuzzle" type="Node2D"]
 z_index = 2
@@ -34,3 +36,17 @@ frames = ExtResource( 3 )
 [node name="Down" type="AnimatedSprite" parent="."]
 position = Vector2( 53.7378, 79.5267 )
 frames = ExtResource( 3 )
+
+[node name="InteractionScheme" parent="." instance=ExtResource( 5 )]
+position = Vector2( 7.18072, 7 )
+scale = Vector2( 0.5, 0.5 )
+
+[node name="Label" type="Label" parent="."]
+margin_right = 40.0
+margin_bottom = 14.0
+rect_scale = Vector2( 0.5, 0.5 )
+theme = ExtResource( 4 )
+text = "Escape - back"
+__meta__ = {
+"_edit_use_anchors_": false
+}

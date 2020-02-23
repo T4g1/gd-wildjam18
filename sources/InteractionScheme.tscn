@@ -1,0 +1,40 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://assets/TVPuzzle_arrow_spriteframes.tres" type="SpriteFrames" id=1]
+[ext_resource path="res://assets/ui_theme.tres" type="Theme" id=2]
+
+[node name="InteractionScheme" type="Node2D"]
+
+[node name="Up" type="AnimatedSprite" parent="."]
+position = Vector2( 0, -1 )
+rotation = 3.14159
+frames = ExtResource( 1 )
+playing = true
+
+[node name="Down" type="AnimatedSprite" parent="."]
+position = Vector2( -1, 18 )
+frames = ExtResource( 1 )
+playing = true
+
+[node name="Left" type="AnimatedSprite" parent="."]
+position = Vector2( -10, 8 )
+rotation = 1.5708
+frames = ExtResource( 1 )
+playing = true
+
+[node name="Right" type="AnimatedSprite" parent="."]
+position = Vector2( 9, 9 )
+rotation = -1.5708
+frames = ExtResource( 1 )
+playing = true
+
+[node name="Label" type="Label" parent="."]
+margin_left = 19.081
+margin_top = 5.26863
+margin_right = 59.081
+margin_bottom = 19.2686
+theme = ExtResource( 2 )
+text = "Interact"
+__meta__ = {
+"_edit_use_anchors_": false
+}
