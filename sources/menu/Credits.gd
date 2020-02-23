@@ -8,9 +8,7 @@ func _ready() -> void:
 	"""
 	Start credits animation
 	"""
-	yield(get_tree().create_timer(1), "timeout")
-
-	$Sprite.play("die")
+	$AnimationPlayer.play("lightning")
 
 	yield($Sprite, "animation_finished")
 
