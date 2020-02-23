@@ -62,6 +62,18 @@ tracks/1/keys = {
 "update": 1,
 "values": [ "die" ]
 }
+tracks/2/type = "value"
+tracks/2/path = NodePath("Sprite:playing")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ true ]
+}
 
 [node name="Credits" type="Node2D"]
 script = ExtResource( 2 )
@@ -107,8 +119,6 @@ current = true
 [node name="Sprite" type="AnimatedSprite" parent="."]
 frames = ExtResource( 1 )
 animation = "die"
-frame = 2
-playing = true
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 anims/credits = SubResource( 1 )
