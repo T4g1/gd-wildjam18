@@ -11,6 +11,8 @@ extents = Vector2( 6.61328, 21.0275 )
 shape = SubResource( 1 )
 
 [node name="Label" parent="." index="3"]
-margin_top = -23.0
-margin_bottom = -23.0
+margin_left = -11.2385
+margin_top = -23.3406
+margin_right = -11.2385
+margin_bottom = -23.3406
 text = "Exit"
