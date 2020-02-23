@@ -1,7 +1,8 @@
-[gd_scene load_steps=3 format=2]
+[gd_scene load_steps=4 format=2]
 
 [ext_resource path="res://sources/ui/PopupLabel.gd" type="Script" id=1]
 [ext_resource path="res://assets/fonts/poco/Poco_DynamicFont.tres" type="DynamicFont" id=2]
+[ext_resource path="res://assets/TVPuzzle_arrow_spriteframes.tres" type="SpriteFrames" id=3]
 
 [node name="PopupLabel" type="Control"]
 grow_horizontal = 2
@@ -27,6 +28,14 @@ mouse_filter = 2
 __meta__ = {
 "_edit_use_anchors_": false
 }
+
+[node name="AnimatedSprite" type="AnimatedSprite" parent="."]
+frames = ExtResource( 3 )
+animation = "loop"
+frame = 1
+speed_scale = 0.8
+playing = true
+offset = Vector2( 0, 13 )
 
 [node name="Label" type="Label" parent="."]
 anchor_left = 0.5
